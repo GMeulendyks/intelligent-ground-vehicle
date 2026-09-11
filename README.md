@@ -1,6 +1,7 @@
 # Table of Contents
 
 [Introduction](#introduction)<br/>
+[Acknowledgements](#acknowledgements)<br/>
 
 <br/>
 <br/>
