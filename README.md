@@ -1,7 +1,7 @@
 # Table of Contents
 
 [Introduction](#introduction)<br/>
-[Getting Started](#getting-started)<br/>
+[Structure](#structure)<br/>
 [Acknowledgements](#acknowledgements)<br/>
 
 <br/>
@@ -16,9 +16,9 @@ Little Blue is made up of a variety of devices (TODO: Link to wire/device/networ
 <br/>
 <br/>
 
-# Getting Started
+# Structure
 
-It is recommended to follow the documentation in the doc folder by starting [here](doc/01_environment_setup.md).
+The root of this repository contains folders related to a concept of Little Blue. Each directory will have a README.md explaining what is contained within it and other useful documentation.
 
 <br/>
 <br/>
