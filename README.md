@@ -2,6 +2,7 @@
 
 [Introduction](#introduction)<br/>
 [Structure](#structure)<br/>
+[Getting Started](#getting-started)<br/>
 [Acknowledgements](#acknowledgements)<br/>
 
 <br/>
@@ -19,6 +20,13 @@ Little Blue is made up of a variety of devices (TODO: Link to wire/device/networ
 # Structure
 
 The root of this repository contains folders related to a concept of Little Blue. Each directory will have a README.md explaining what is contained within it and other useful documentation.
+
+<br/>
+<br/>
+
+# Getting Started
+
+It's recommended to start in [System](./system/README.md) and check out the photos of Little Blue, wire diagrams, and network maps.
 
 <br/>
 <br/>
