@@ -75,7 +75,7 @@ git clone git@github.com:GMeulendyks/intelligent-ground-vehicle.git
 ```
 8. Change directories to the `gazebo_classic_ros2_ws` folder.
 ```bash
-cd intelligent-ground-vehicle/gazebo_classic_ros2_ws/ros2_ws
+cd intelligent-ground-vehicle/simulation/gazebo_classic_ros2_ws/ros2_ws
 ```
 9. Use the ROS terminal
 ```bash
