@@ -93,18 +93,3 @@ colcon build --symlink-install
 
 source install/setup.bash
 ```
-11. Open 3 separate terminals and run this command in each of them.
-```bash
-source /opt/ros/iron/setup.bash && source install/setup.bash
-```
-12. Run the applications in each of the terminals
-```bash
-# Terminal 1
-ros2 launch skid_steer_robot small_course.launch.py
-
-# Terminal 2
-rviz2 -d src/skid_steer_robot/config/robot_config.rviz
-
-# Terminal 3
-ros2 run teleop_twist_keyboard teleop_twist_keyboard
-```
