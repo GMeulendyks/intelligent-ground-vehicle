@@ -41,7 +41,9 @@ sudo apt install -y \
   xterm \
   python3 \
   python3-colcon-common-extensions \
-  python3-rosdep
+  python3-rosdep \
+  docker \
+  docker-cli
 ```
 5. Prepare some of the packages after installation.
 ```bash
