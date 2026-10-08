@@ -27,6 +27,7 @@ Each device on Little Blue has an associated folder at the root of this reposito
 # Getting Started
 
 It's recommended to start in [little-blue](./little-blue/) and check out the photos of Little Blue as well as each device's purpose and properties.
+Afterwards, developers should set up their environments using the guide in [dev-env-setup](./dev-env-setup/)
 
 <br/>
 <br/>
