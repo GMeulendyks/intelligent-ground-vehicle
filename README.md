@@ -12,28 +12,29 @@
 
 Old Dominion University has an intelligent ground vehicle known as Little Blue. In this repository, we store all the software that will run on Little Blue as well as a simulation environment.
 
-Little Blue is made up of a variety of devices (TODO: Link to wire/device/network diagram). The software for each of the devices will be placed in separate folders.
-
 <br/>
 <br/>
 
 # Structure
 
-The root of this repository contains folders related to a concept of Little Blue. Each directory will have a README.md explaining what is contained within it and other useful documentation.
+Little Blue is made up of a variety of devices. Each device's purpose and properties can be found in [little-blue](./little-blue/).
+
+Each device on Little Blue has an associated folder at the root of this repository. These folders will contain all the software that runs on the associated device.
 
 <br/>
 <br/>
 
 # Getting Started
 
-It's recommended to start in [System](./system/README.md) and check out the photos of Little Blue, wire diagrams, and network maps.
+It's recommended to start in [little-blue](./little-blue/) and check out the photos of Little Blue as well as each device's purpose and properties.
+Afterwards, developers should set up their environments using the guide in [dev-env-setup](./dev-env-setup/)
 
 <br/>
 <br/>
 
 # Acknowledgements
 
-This repository and all its contents are based on Andrew Duguay's (and contributors) repository here: https://github.com/Andrew-Duguay/IGVC
+Little Blue has worked on for over 20 years by many students completing their capstone project. The contents of this repository are not solely my own and is the product of all predecessors that worked on Little Blue.
 
 <br/>
 <br/>
