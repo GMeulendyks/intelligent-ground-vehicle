@@ -10,6 +10,10 @@
 &emsp;[IMU](#imu)<br/>
 &emsp;[Gamepad](#gamepad)<br/>
 &emsp;[LIDAR](#lidar)<br/>
+&emsp;[Network Hub](#network-hub)<br/>
+&emsp;[Power Inverter](#power-inverter)<br/>
+&emsp;[Motor Driver](#motor-driver)<br/>
+&emsp;[DC Step Converter](#dc-step-converter)<br/>
 &emsp;[Docker Container ubuntu_ros2_iron r11](#docker-container-ubuntu_ros2_iron-r11)<br/>
 &emsp;[Docker Container ubuntu_ros2_iron r6](#docker-container-ubuntu_ros2_iron-r6)<br/>
 
@@ -62,7 +66,7 @@ This page contains documentation on each of Little Blue's components.
 <br/>
 <br/>
 
-# Arduino
+## Arduino
 
 **Purpose:** The main communicator between the Raspberry PI and the motor driver.
 
@@ -95,7 +99,7 @@ This page contains documentation on each of Little Blue's components.
 <br/>
 <br/>
 
-# GPS
+## GPS
 
 **Purpose:** Gather top down information for Little Blue to identify obstacles and position.
 
@@ -110,7 +114,7 @@ This page contains documentation on each of Little Blue's components.
 <br/>
 <br/>
 
-# IMU
+## IMU
 
 **Purpose:** Gather force, angular velocity, and orientation information for Little Blue.
 
@@ -125,7 +129,7 @@ This page contains documentation on each of Little Blue's components.
 <br/>
 <br/>
 
-# Gamepad
+## Gamepad
 
 **Purpose:** Provide a manual input interface to Little Blue for movement and enabling autonomous mode.
 
@@ -140,7 +144,7 @@ This page contains documentation on each of Little Blue's components.
 <br/>
 <br/>
 
-# LIDAR
+## LIDAR
 
 **Purpose:** Determine distances from Little Blue to objects in a 360 degree radius.
 
@@ -153,6 +157,66 @@ This page contains documentation on each of Little Blue's components.
 | SDK Interface      | [Available Here](https://bucket-download.slamtec.com/6957283725b66750890024d1f0d12940fa079e06/LR002_SLAMTEC_rplidar_sdk_v2.0_en.pdf)           |
 | Interfaces         | TTL UART                                                                                                                                       |
 | Range              | 70% Reflectivity = 12m, 10% Reflectivity = 6m                                                                                                  |
+
+<br/>
+<br/>
+
+## Network Hub
+
+**Purpose:** A switchs that connect over ethernet.
+
+**Properties:**
+| Property            | Value                                                                                                                                          |
+| :------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------- |
+| Model               | GS308EP                                                                                                                                        |
+| Datasheet           | [Available Here](https://www.downloads.netgear.com/files/GDC/GS305EP/GS305EP_GS305EPP_GS308EP_GS308EPP_GS316EP_GS316EPP_DS.pdf)                |
+| Interfaces          | 8 Port RJ45 Gigabit Ethernet                                                                                                                   |
+| Power Over Ethernet | Yes                                                                                                                                            |
+
+<br/>
+<br/>
+
+## Power Inverter
+
+**Purpose:** Changes DC current to AC current and provides it to Little Blue.
+
+**Properties:**
+| Property            | Value                                                                                                                                          |
+| :------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------- |
+| Model               | AIMS PWRI60012120S                                                                                                                             |
+| Datasheet           | [Available Here](https://www.aimscorp.net/wp-content/uploads/2011/02/PWRI60012120S-022026.pdf)                                                 |
+| Input               | 12V DC                                                                                                                                         |
+| USB Output          | 5V DC                                                                                                                                          |
+
+<br/>
+<br/>
+
+## Motor Driver
+
+**Purpose:** The interface between the arduino and the motor.
+
+**Properties:**
+| Property            | Value                                                                                                                                          |
+| :------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------- |
+| Model               | Sabertooth 2x60                                                                                                                                |
+| Documentation       | [Available Here](https://www.dimensionengineering.com/datasheets/Sabertooth2x60.pdf)                                                           |
+| Interface           | RS-232 TTL 9600 Baud                                                                                                                           |
+| Analog Input        | 0V-5V                                                                                                                                          |
+
+<br/>
+<br/>
+
+## DC Step Converter
+
+**Purpose:** Converts 24V input to 12V output.
+
+**Properties:**
+| Property            | Value                                                                                                                                          |
+| :------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------- |
+| Model               | TOBSUN FA120                                                                                                                                   |
+| Documentation       | TODO                                                                                                                                           |
+| Input               | 24V Nominal                                                                                                                                    |
+| Output              | 12V                                                                                                                                            |
 
 <br/>
 <br/>
