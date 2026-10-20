@@ -1,0 +1,499 @@
+[INFO] [launch]: All log files can be found below /home/igvc/.ros/log/2026-04-25-11-34-49-421042-igvc-desktop-6826
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [robot_state_publisher-1]: process started with pid [6830]
+[INFO] [ekf_node-2]: process started with pid [6832]
+[INFO] [ekf_node-3]: process started with pid [6834]
+[INFO] [navsat_transform_node-4]: process started with pid [6836]
+[INFO] [world_pose_from_ekf.py-5]: process started with pid [6838]
+[INFO] [cmd_vel_to_joy_node-6]: process started with pid [6840]
+[INFO] [lane_follower_node-7]: process started with pid [6842]
+[INFO] [lane_candidate_node-8]: process started with pid [6846]
+[INFO] [lane_candidate_node-9]: process started with pid [6848]
+[INFO] [lane_accumulator_node-10]: process started with pid [6852]
+[INFO] [lidar_obstacle_node-11]: process started with pid [6865]
+[INFO] [yolo_trt_node-12]: process started with pid [6867]
+[INFO] [yolo_trt_node-13]: process started with pid [6870]
+[INFO] [obstacle_projector_node-14]: process started with pid [6882]
+[INFO] [obstacle_projector_node-15]: process started with pid [6885]
+[robot_state_publisher-1] [INFO] [1777131290.320737248] [robot_state_publisher]: got segment base_footprint
+[robot_state_publisher-1] [INFO] [1777131290.321079840] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-1] [INFO] [1777131290.321150336] [robot_state_publisher]: got segment caster_link
+[robot_state_publisher-1] [INFO] [1777131290.321205312] [robot_state_publisher]: got segment gps_link
+[robot_state_publisher-1] [INFO] [1777131290.321254688] [robot_state_publisher]: got segment imu_link
+[robot_state_publisher-1] [INFO] [1777131290.321294400] [robot_state_publisher]: got segment left_camera_link
+[robot_state_publisher-1] [INFO] [1777131290.321335808] [robot_state_publisher]: got segment left_camera_optical_link
+[robot_state_publisher-1] [INFO] [1777131290.321373344] [robot_state_publisher]: got segment left_depth_camera_link
+[robot_state_publisher-1] [INFO] [1777131290.321414528] [robot_state_publisher]: got segment left_depth_camera_optical_link
+[robot_state_publisher-1] [INFO] [1777131290.321456192] [robot_state_publisher]: got segment left_wheel_link
+[robot_state_publisher-1] [INFO] [1777131290.321494560] [robot_state_publisher]: got segment lidar_link
+[robot_state_publisher-1] [INFO] [1777131290.321531744] [robot_state_publisher]: got segment rear_electronics_link
+[robot_state_publisher-1] [INFO] [1777131290.321741056] [robot_state_publisher]: got segment right_camera_link
+[robot_state_publisher-1] [INFO] [1777131290.321852864] [robot_state_publisher]: got segment right_camera_optical_link
+[robot_state_publisher-1] [INFO] [1777131290.321987168] [robot_state_publisher]: got segment right_depth_camera_link
+[robot_state_publisher-1] [INFO] [1777131290.322126016] [robot_state_publisher]: got segment right_depth_camera_optical_link
+[robot_state_publisher-1] [INFO] [1777131290.322207808] [robot_state_publisher]: got segment right_wheel_link
+[obstacle_projector_node-14] 
+[obstacle_projector_node-14] A module that was compiled using NumPy 1.x cannot be run in
+[obstacle_projector_node-14] NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+[obstacle_projector_node-14] versions of NumPy, modules must be compiled with NumPy 2.0.
+[obstacle_projector_node-14] Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+[obstacle_projector_node-14] 
+[obstacle_projector_node-14] If you are a user of the module, the easiest solution will be to
+[obstacle_projector_node-14] downgrade to 'numpy<2' or try to upgrade the affected module.
+[obstacle_projector_node-14] We expect that some modules will need time to support NumPy 2.
+[obstacle_projector_node-14] 
+[obstacle_projector_node-14] Traceback (most recent call last):  File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/littleblue_vision/obstacle_projector_node", line 33, in <module>
+[obstacle_projector_node-14]     sys.exit(load_entry_point('littleblue_vision==0.0.1', 'console_scripts', 'obstacle_projector_node')())
+[obstacle_projector_node-14]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/littleblue_vision/obstacle_projector_node", line 25, in importlib_load_entry_point
+[obstacle_projector_node-14]     return next(matches).load()
+[obstacle_projector_node-14]   File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 171, in load
+[obstacle_projector_node-14]     module = import_module(match.group('module'))
+[obstacle_projector_node-14]   File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+[obstacle_projector_node-14]     return _bootstrap._gcd_import(name[level:], package, level)
+[obstacle_projector_node-14]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/python3.10/site-packages/littleblue_vision/obstacle_projector_node.py", line 9, in <module>
+[obstacle_projector_node-14]     from cv_bridge import CvBridge
+[obstacle_projector_node-14]   File "/opt/ros/iron/lib/python3.10/site-packages/cv_bridge/__init__.py", line 6, in <module>
+[obstacle_projector_node-14]     from cv_bridge.boost.cv_bridge_boost import cvtColorForDisplay, getCvType
+[obstacle_projector_node-14] AttributeError: _ARRAY_API not found
+[obstacle_projector_node-15] 
+[obstacle_projector_node-15] A module that was compiled using NumPy 1.x cannot be run in
+[obstacle_projector_node-15] NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+[obstacle_projector_node-15] versions of NumPy, modules must be compiled with NumPy 2.0.
+[obstacle_projector_node-15] Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+[obstacle_projector_node-15] 
+[obstacle_projector_node-15] If you are a user of the module, the easiest solution will be to
+[obstacle_projector_node-15] downgrade to 'numpy<2' or try to upgrade the affected module.
+[obstacle_projector_node-15] We expect that some modules will need time to support NumPy 2.
+[obstacle_projector_node-15] 
+[obstacle_projector_node-15] Traceback (most recent call last):  File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/littleblue_vision/obstacle_projector_node", line 33, in <module>
+[obstacle_projector_node-15]     sys.exit(load_entry_point('littleblue_vision==0.0.1', 'console_scripts', 'obstacle_projector_node')())
+[obstacle_projector_node-15]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/littleblue_vision/obstacle_projector_node", line 25, in importlib_load_entry_point
+[obstacle_projector_node-15]     return next(matches).load()
+[obstacle_projector_node-15]   File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 171, in load
+[obstacle_projector_node-15]     module = import_module(match.group('module'))
+[obstacle_projector_node-15]   File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+[obstacle_projector_node-15]     return _bootstrap._gcd_import(name[level:], package, level)
+[obstacle_projector_node-15]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/python3.10/site-packages/littleblue_vision/obstacle_projector_node.py", line 9, in <module>
+[obstacle_projector_node-15]     from cv_bridge import CvBridge
+[obstacle_projector_node-15]   File "/opt/ros/iron/lib/python3.10/site-packages/cv_bridge/__init__.py", line 6, in <module>
+[obstacle_projector_node-15]     from cv_bridge.boost.cv_bridge_boost import cvtColorForDisplay, getCvType
+[obstacle_projector_node-15] AttributeError: _ARRAY_API not found
+[yolo_trt_node-13] 
+[yolo_trt_node-13] A module that was compiled using NumPy 1.x cannot be run in
+[yolo_trt_node-13] NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+[yolo_trt_node-13] versions of NumPy, modules must be compiled with NumPy 2.0.
+[yolo_trt_node-13] Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+[yolo_trt_node-13] 
+[yolo_trt_node-13] If you are a user of the module, the easiest solution will be to
+[yolo_trt_node-13] downgrade to 'numpy<2' or try to upgrade the affected module.
+[yolo_trt_node-13] We expect that some modules will need time to support NumPy 2.
+[yolo_trt_node-13] 
+[yolo_trt_node-13] Traceback (most recent call last):  File "/home/igvc/IGVC/ros2_ws/install/yolo_trt_ros2/lib/yolo_trt_ros2/yolo_trt_node", line 33, in <module>
+[yolo_trt_node-13]     sys.exit(load_entry_point('yolo_trt_ros2==0.0.1', 'console_scripts', 'yolo_trt_node')())
+[yolo_trt_node-13]   File "/home/igvc/IGVC/ros2_ws/install/yolo_trt_ros2/lib/yolo_trt_ros2/yolo_trt_node", line 25, in importlib_load_entry_point
+[yolo_trt_node-13]     return next(matches).load()
+[yolo_trt_node-13]   File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 171, in load
+[yolo_trt_node-13]     module = import_module(match.group('module'))
+[yolo_trt_node-13]   File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+[yolo_trt_node-13]     return _bootstrap._gcd_import(name[level:], package, level)
+[yolo_trt_node-13]   File "/home/igvc/IGVC/ros2_ws/install/yolo_trt_ros2/lib/python3.10/site-packages/yolo_trt_ros2/yolo_trt_node.py", line 9, in <module>
+[yolo_trt_node-13]     from cv_bridge import CvBridge
+[yolo_trt_node-13]   File "/opt/ros/iron/lib/python3.10/site-packages/cv_bridge/__init__.py", line 6, in <module>
+[yolo_trt_node-13]     from cv_bridge.boost.cv_bridge_boost import cvtColorForDisplay, getCvType
+[cmd_vel_to_joy_node-6] 
+[cmd_vel_to_joy_node-6] A module that was compiled using NumPy 1.x cannot be run in
+[cmd_vel_to_joy_node-6] NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+[cmd_vel_to_joy_node-6] versions of NumPy, modules must be compiled with NumPy 2.0.
+[cmd_vel_to_joy_node-6] Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+[cmd_vel_to_joy_node-6] 
+[cmd_vel_to_joy_node-6] If you are a user of the module, the easiest solution will be to
+[cmd_vel_to_joy_node-6] downgrade to 'numpy<2' or try to upgrade the affected module.
+[cmd_vel_to_joy_node-6] We expect that some modules will need time to support NumPy 2.
+[cmd_vel_to_joy_node-6] 
+[cmd_vel_to_joy_node-6] Traceback (most recent call last):  File "/home/igvc/IGVC/ros2_ws/install/littleblue_autonomy/lib/littleblue_autonomy/cmd_vel_to_joy_node", line 33, in <module>
+[cmd_vel_to_joy_node-6]     sys.exit(load_entry_point('littleblue_autonomy==0.0.1', 'console_scripts', 'cmd_vel_to_joy_node')())
+[cmd_vel_to_joy_node-6]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_autonomy/lib/littleblue_autonomy/cmd_vel_to_joy_node", line 25, in importlib_load_entry_point
+[cmd_vel_to_joy_node-6]     return next(matches).load()
+[cmd_vel_to_joy_node-6]   File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 171, in load
+[cmd_vel_to_joy_node-6]     module = import_module(match.group('module'))
+[cmd_vel_to_joy_node-6]   File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+[cmd_vel_to_joy_node-6]     return _bootstrap._gcd_import(name[level:], package, level)
+[cmd_vel_to_joy_node-6]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_autonomy/lib/python3.10/site-packages/littleblue_autonomy/cmd_vel_to_joy_node.py", line 33, in <module>
+[cmd_vel_to_joy_node-6]     from cv_bridge import CvBridge
+[cmd_vel_to_joy_node-6]   File "/opt/ros/iron/lib/python3.10/site-packages/cv_bridge/__init__.py", line 6, in <module>
+[cmd_vel_to_joy_node-6]     from cv_bridge.boost.cv_bridge_boost import cvtColorForDisplay, getCvType
+[yolo_trt_node-13] AttributeError: _ARRAY_API not found
+[lidar_obstacle_node-11] [INFO] [1777131296.732296352] [lidar_obstacle_node]: LiDAR obstacle detector started
+[yolo_trt_node-12] 
+[yolo_trt_node-12] A module that was compiled using NumPy 1.x cannot be run in
+[yolo_trt_node-12] NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+[yolo_trt_node-12] versions of NumPy, modules must be compiled with NumPy 2.0.
+[yolo_trt_node-12] Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+[yolo_trt_node-12] 
+[yolo_trt_node-12] If you are a user of the module, the easiest solution will be to
+[yolo_trt_node-12] downgrade to 'numpy<2' or try to upgrade the affected module.
+[yolo_trt_node-12] We expect that some modules will need time to support NumPy 2.
+[yolo_trt_node-12] 
+[yolo_trt_node-12] Traceback (most recent call last):  File "/home/igvc/IGVC/ros2_ws/install/yolo_trt_ros2/lib/yolo_trt_ros2/yolo_trt_node", line 33, in <module>
+[yolo_trt_node-12]     sys.exit(load_entry_point('yolo_trt_ros2==0.0.1', 'console_scripts', 'yolo_trt_node')())
+[yolo_trt_node-12]   File "/home/igvc/IGVC/ros2_ws/install/yolo_trt_ros2/lib/yolo_trt_ros2/yolo_trt_node", line 25, in importlib_load_entry_point
+[yolo_trt_node-12]     return next(matches).load()
+[yolo_trt_node-12]   File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 171, in load
+[yolo_trt_node-12]     module = import_module(match.group('module'))
+[yolo_trt_node-12]   File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+[yolo_trt_node-12]     return _bootstrap._gcd_import(name[level:], package, level)
+[yolo_trt_node-12]   File "/home/igvc/IGVC/ros2_ws/install/yolo_trt_ros2/lib/python3.10/site-packages/yolo_trt_ros2/yolo_trt_node.py", line 9, in <module>
+[yolo_trt_node-12]     from cv_bridge import CvBridge
+[yolo_trt_node-12]   File "/opt/ros/iron/lib/python3.10/site-packages/cv_bridge/__init__.py", line 6, in <module>
+[yolo_trt_node-12]     from cv_bridge.boost.cv_bridge_boost import cvtColorForDisplay, getCvType
+[cmd_vel_to_joy_node-6] AttributeError: _ARRAY_API not found
+[yolo_trt_node-12] AttributeError: _ARRAY_API not found
+[lane_accumulator_node-10] [INFO] [1777131297.542121248] [lane_accumulator_node]: Lane accumulator started (mode=accumulate, grid=0.05m)
+[lane_candidate_node-8] 
+[lane_candidate_node-8] A module that was compiled using NumPy 1.x cannot be run in
+[lane_candidate_node-8] NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+[lane_candidate_node-8] versions of NumPy, modules must be compiled with NumPy 2.0.
+[lane_candidate_node-8] Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+[lane_candidate_node-8] 
+[lane_candidate_node-8] If you are a user of the module, the easiest solution will be to
+[lane_candidate_node-8] downgrade to 'numpy<2' or try to upgrade the affected module.
+[lane_candidate_node-8] We expect that some modules will need time to support NumPy 2.
+[lane_candidate_node-8] 
+[lane_candidate_node-8] Traceback (most recent call last):  File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/littleblue_vision/lane_candidate_node", line 33, in <module>
+[lane_candidate_node-8]     sys.exit(load_entry_point('littleblue_vision==0.0.1', 'console_scripts', 'lane_candidate_node')())
+[lane_candidate_node-8]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/littleblue_vision/lane_candidate_node", line 25, in importlib_load_entry_point
+[lane_candidate_node-8]     return next(matches).load()
+[lane_candidate_node-8]   File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 171, in load
+[lane_candidate_node-8]     module = import_module(match.group('module'))
+[lane_candidate_node-8]   File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+[lane_candidate_node-8]     return _bootstrap._gcd_import(name[level:], package, level)
+[lane_candidate_node-8]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/python3.10/site-packages/littleblue_vision/lane_detector_candidates.py", line 27, in <module>
+[lane_candidate_node-8]     from cv_bridge import CvBridge
+[lane_candidate_node-8]   File "/opt/ros/iron/lib/python3.10/site-packages/cv_bridge/__init__.py", line 6, in <module>
+[lane_candidate_node-8]     from cv_bridge.boost.cv_bridge_boost import cvtColorForDisplay, getCvType
+[lane_candidate_node-9] 
+[lane_candidate_node-9] A module that was compiled using NumPy 1.x cannot be run in
+[lane_candidate_node-9] NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+[lane_candidate_node-9] versions of NumPy, modules must be compiled with NumPy 2.0.
+[lane_candidate_node-9] Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+[lane_candidate_node-9] 
+[lane_candidate_node-9] If you are a user of the module, the easiest solution will be to
+[lane_candidate_node-9] downgrade to 'numpy<2' or try to upgrade the affected module.
+[lane_candidate_node-9] We expect that some modules will need time to support NumPy 2.
+[lane_candidate_node-9] 
+[lane_candidate_node-9] Traceback (most recent call last):  File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/littleblue_vision/lane_candidate_node", line 33, in <module>
+[lane_candidate_node-9]     sys.exit(load_entry_point('littleblue_vision==0.0.1', 'console_scripts', 'lane_candidate_node')())
+[lane_candidate_node-9]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/littleblue_vision/lane_candidate_node", line 25, in importlib_load_entry_point
+[lane_candidate_node-9]     return next(matches).load()
+[lane_candidate_node-9]   File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 171, in load
+[lane_candidate_node-9]     module = import_module(match.group('module'))
+[lane_candidate_node-9]   File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+[lane_candidate_node-9]     return _bootstrap._gcd_import(name[level:], package, level)
+[lane_candidate_node-9]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/python3.10/site-packages/littleblue_vision/lane_detector_candidates.py", line 27, in <module>
+[lane_candidate_node-9]     from cv_bridge import CvBridge
+[lane_candidate_node-9]   File "/opt/ros/iron/lib/python3.10/site-packages/cv_bridge/__init__.py", line 6, in <module>
+[lane_candidate_node-9]     from cv_bridge.boost.cv_bridge_boost import cvtColorForDisplay, getCvType
+[lane_follower_node-7] [INFO] [1777131298.009509408] [lane_follower_node]: Lane follower started (A* waypoint graph, approach=A)
+[lane_candidate_node-8] AttributeError: _ARRAY_API not found
+[lane_candidate_node-9] AttributeError: _ARRAY_API not found
+[obstacle_projector_node-14] [INFO] [1777131298.649411456] [left_obstacle_projector]: Obstacle projector node started
+[lane_follower_node-7] [INFO] [1777131299.107006016] [lane_follower_node]: Waiting for lane data (n=0, age=1.5s)...
+[obstacle_projector_node-15] [INFO] [1777131300.089261408] [right_obstacle_projector]: Obstacle projector node started
+[cmd_vel_to_joy_node-6] [INFO] [1777131300.480348480] [cmd_vel_to_joy_node]: CmdVel->Joy bridge started (max_lin=1.0, max_ang=2.0)
+[cmd_vel_to_joy_node-6] Traceback (most recent call last):
+[cmd_vel_to_joy_node-6]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_autonomy/lib/littleblue_autonomy/cmd_vel_to_joy_node", line 33, in <module>
+[cmd_vel_to_joy_node-6]     sys.exit(load_entry_point('littleblue_autonomy==0.0.1', 'console_scripts', 'cmd_vel_to_joy_node')())
+[cmd_vel_to_joy_node-6]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_autonomy/lib/python3.10/site-packages/littleblue_autonomy/cmd_vel_to_joy_node.py", line 326, in main
+[cmd_vel_to_joy_node-6]     rclpy.spin(node)
+[cmd_vel_to_joy_node-6]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/__init__.py", line 232, in spin
+[cmd_vel_to_joy_node-6]     executor.spin_once()
+[cmd_vel_to_joy_node-6]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/executors.py", line 787, in spin_once
+[cmd_vel_to_joy_node-6]     self._spin_once_impl(timeout_sec)
+[cmd_vel_to_joy_node-6]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/executors.py", line 784, in _spin_once_impl
+[cmd_vel_to_joy_node-6]     raise handler.exception()
+[cmd_vel_to_joy_node-6]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/task.py", line 239, in __call__
+[cmd_vel_to_joy_node-6]     self._handler.send(None)
+[cmd_vel_to_joy_node-6]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/executors.py", line 489, in handler
+[cmd_vel_to_joy_node-6]     await call_coroutine()
+[cmd_vel_to_joy_node-6]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/executors.py", line 353, in _execute
+[cmd_vel_to_joy_node-6]     await await_or_execute(tmr.callback)
+[cmd_vel_to_joy_node-6]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/executors.py", line 108, in await_or_execute
+[cmd_vel_to_joy_node-6]     return callback(*args)
+[cmd_vel_to_joy_node-6]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_autonomy/lib/python3.10/site-packages/littleblue_autonomy/cmd_vel_to_joy_node.py", line 127, in _publish
+[cmd_vel_to_joy_node-6]     self.MotorControl_pub.publish(MotorControl)
+[cmd_vel_to_joy_node-6]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/publisher.py", line 74, in publish
+[cmd_vel_to_joy_node-6]     raise TypeError('Expected {}, got {}'.format(self.msg_type, type(msg)))
+[cmd_vel_to_joy_node-6] TypeError: Expected <class 'packager_msgs.msg._motor_control.MotorControl'>, got <class 'packager_msgs.msg._motor_control.Metaclass_MotorControl'>
+[lane_follower_node-7] [INFO] [1777131300.548970464] [lane_follower_node]: Waiting for lane data (n=0, age=3.0s)...
+[lane_candidate_node-8] [INFO] [1777131301.023226304] [left_lane_candidate]: Lane candidate node started (method=hsv_threshold)
+[lane_candidate_node-9] [INFO] [1777131301.345528544] [right_lane_candidate]: Lane candidate node started (method=hsv_threshold)
+[lidar_obstacle_node-11] [INFO] [1777131301.394751904] [lidar_obstacle_node]: LiDAR: 92 returns, 5 clusters, 5 obstacles
+[lane_candidate_node-8] 
+[lane_candidate_node-8] A module that was compiled using NumPy 1.x cannot be run in
+[lane_candidate_node-8] NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+[lane_candidate_node-8] versions of NumPy, modules must be compiled with NumPy 2.0.
+[lane_candidate_node-8] Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+[lane_candidate_node-8] 
+[lane_candidate_node-8] If you are a user of the module, the easiest solution will be to
+[lane_candidate_node-8] downgrade to 'numpy<2' or try to upgrade the affected module.
+[lane_candidate_node-8] We expect that some modules will need time to support NumPy 2.
+[lane_candidate_node-8] 
+[lane_candidate_node-8] Traceback (most recent call last):  File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/littleblue_vision/lane_candidate_node", line 33, in <module>
+[lane_candidate_node-8]     sys.exit(load_entry_point('littleblue_vision==0.0.1', 'console_scripts', 'lane_candidate_node')())
+[lane_candidate_node-8]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/python3.10/site-packages/littleblue_vision/lane_detector_candidates.py", line 431, in main
+[lane_candidate_node-8]     rclpy.spin(node)
+[lane_candidate_node-8]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/__init__.py", line 232, in spin
+[lane_candidate_node-8]     executor.spin_once()
+[lane_candidate_node-8]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/executors.py", line 787, in spin_once
+[lane_candidate_node-8]     self._spin_once_impl(timeout_sec)
+[lane_candidate_node-8]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/executors.py", line 782, in _spin_once_impl
+[lane_candidate_node-8]     handler()
+[lane_candidate_node-8]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/task.py", line 239, in __call__
+[lane_candidate_node-8]     self._handler.send(None)
+[lane_candidate_node-8]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/executors.py", line 489, in handler
+[lane_candidate_node-8]     await call_coroutine()
+[lane_candidate_node-8]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/executors.py", line 377, in _execute
+[lane_candidate_node-8]     await await_or_execute(sub.callback, *msg_tuple)
+[lane_candidate_node-8]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/executors.py", line 108, in await_or_execute
+[lane_candidate_node-8]     return callback(*args)
+[lane_candidate_node-8]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/python3.10/site-packages/littleblue_vision/lane_detector_candidates.py", line 108, in _image_cb
+[lane_candidate_node-8]     bgr = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
+[lane_candidate_node-8]   File "/opt/ros/iron/lib/python3.10/site-packages/cv_bridge/core.py", line 194, in imgmsg_to_cv2
+[lane_candidate_node-8]     res = cvtColor2(im, img_msg.encoding, desired_encoding)
+[lane_candidate_node-8] AttributeError: _ARRAY_API not found
+[lane_follower_node-7] [INFO] [1777131301.555910624] [lane_follower_node]: Waiting for lane data (n=0, age=3.9s)...
+[ERROR] [lane_candidate_node-8]: process has died [pid 6846, exit code -11, cmd '/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/littleblue_vision/lane_candidate_node --ros-args -r __node:=left_lane_candidate --params-file /home/igvc/IGVC/ros2_ws/install/startup_robot/share/startup_robot/config/course.yaml --params-file /tmp/launch_params_ok6hwnbo'].
+[yolo_trt_node-13] 
+[yolo_trt_node-13] A module that was compiled using NumPy 1.x cannot be run in
+[yolo_trt_node-13] NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+[yolo_trt_node-13] versions of NumPy, modules must be compiled with NumPy 2.0.
+[yolo_trt_node-13] Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+[yolo_trt_node-13] 
+[yolo_trt_node-13] If you are a user of the module, the easiest solution will be to
+[yolo_trt_node-13] downgrade to 'numpy<2' or try to upgrade the affected module.
+[yolo_trt_node-13] We expect that some modules will need time to support NumPy 2.
+[yolo_trt_node-13] 
+[yolo_trt_node-13] Traceback (most recent call last):  File "/home/igvc/IGVC/ros2_ws/install/yolo_trt_ros2/lib/yolo_trt_ros2/yolo_trt_node", line 33, in <module>
+[yolo_trt_node-13]     sys.exit(load_entry_point('yolo_trt_ros2==0.0.1', 'console_scripts', 'yolo_trt_node')())
+[yolo_trt_node-13]   File "/home/igvc/IGVC/ros2_ws/install/yolo_trt_ros2/lib/yolo_trt_ros2/yolo_trt_node", line 25, in importlib_load_entry_point
+[yolo_trt_node-13]     return next(matches).load()
+[yolo_trt_node-13]   File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 171, in load
+[yolo_trt_node-13]     module = import_module(match.group('module'))
+[yolo_trt_node-13]   File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+[yolo_trt_node-13]     return _bootstrap._gcd_import(name[level:], package, level)
+[yolo_trt_node-13]   File "/home/igvc/IGVC/ros2_ws/install/yolo_trt_ros2/lib/python3.10/site-packages/yolo_trt_ros2/yolo_trt_node.py", line 11, in <module>
+[yolo_trt_node-13]     from ultralytics import YOLO
+[yolo_trt_node-13]   File "/home/igvc/.local/lib/python3.10/site-packages/ultralytics/__init__.py", line 13, in <module>
+[yolo_trt_node-13]     from ultralytics.utils import ASSETS, SETTINGS
+[yolo_trt_node-13]   File "/home/igvc/.local/lib/python3.10/site-packages/ultralytics/utils/__init__.py", line 26, in <module>
+[yolo_trt_node-13]     import torch
+[yolo_trt_node-13]   File "/home/igvc/.local/lib/python3.10/site-packages/torch/__init__.py", line 1382, in <module>
+[yolo_trt_node-13]     from .functional import *  # noqa: F403
+[yolo_trt_node-13]   File "/home/igvc/.local/lib/python3.10/site-packages/torch/functional.py", line 7, in <module>
+[yolo_trt_node-13]     import torch.nn.functional as F
+[yolo_trt_node-13]   File "/home/igvc/.local/lib/python3.10/site-packages/torch/nn/__init__.py", line 1, in <module>
+[yolo_trt_node-13]     from .modules import *  # noqa: F403
+[yolo_trt_node-13]   File "/home/igvc/.local/lib/python3.10/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+[yolo_trt_node-13]     from .transformer import TransformerEncoder, TransformerDecoder, \
+[yolo_trt_node-13]   File "/home/igvc/.local/lib/python3.10/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+[yolo_trt_node-13]     device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+[yolo_trt_node-13] /home/igvc/.local/lib/python3.10/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+[yolo_trt_node-13]   device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+[ERROR] [cmd_vel_to_joy_node-6]: process has died [pid 6840, exit code 1, cmd '/home/igvc/IGVC/ros2_ws/install/littleblue_autonomy/lib/littleblue_autonomy/cmd_vel_to_joy_node --ros-args -r __node:=cmd_vel_to_joy_node --params-file /tmp/launch_params_h1gd731k'].
+[yolo_trt_node-12] 
+[yolo_trt_node-12] A module that was compiled using NumPy 1.x cannot be run in
+[yolo_trt_node-12] NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+[yolo_trt_node-12] versions of NumPy, modules must be compiled with NumPy 2.0.
+[yolo_trt_node-12] Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+[yolo_trt_node-12] 
+[yolo_trt_node-12] If you are a user of the module, the easiest solution will be to
+[yolo_trt_node-12] downgrade to 'numpy<2' or try to upgrade the affected module.
+[yolo_trt_node-12] We expect that some modules will need time to support NumPy 2.
+[yolo_trt_node-12] 
+[yolo_trt_node-12] Traceback (most recent call last):  File "/home/igvc/IGVC/ros2_ws/install/yolo_trt_ros2/lib/yolo_trt_ros2/yolo_trt_node", line 33, in <module>
+[yolo_trt_node-12]     sys.exit(load_entry_point('yolo_trt_ros2==0.0.1', 'console_scripts', 'yolo_trt_node')())
+[yolo_trt_node-12]   File "/home/igvc/IGVC/ros2_ws/install/yolo_trt_ros2/lib/yolo_trt_ros2/yolo_trt_node", line 25, in importlib_load_entry_point
+[yolo_trt_node-12]     return next(matches).load()
+[yolo_trt_node-12]   File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 171, in load
+[yolo_trt_node-12]     module = import_module(match.group('module'))
+[yolo_trt_node-12]   File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+[yolo_trt_node-12]     return _bootstrap._gcd_import(name[level:], package, level)
+[yolo_trt_node-12]   File "/home/igvc/IGVC/ros2_ws/install/yolo_trt_ros2/lib/python3.10/site-packages/yolo_trt_ros2/yolo_trt_node.py", line 11, in <module>
+[yolo_trt_node-12]     from ultralytics import YOLO
+[yolo_trt_node-12]   File "/home/igvc/.local/lib/python3.10/site-packages/ultralytics/__init__.py", line 13, in <module>
+[yolo_trt_node-12]     from ultralytics.utils import ASSETS, SETTINGS
+[yolo_trt_node-12]   File "/home/igvc/.local/lib/python3.10/site-packages/ultralytics/utils/__init__.py", line 26, in <module>
+[yolo_trt_node-12]     import torch
+[yolo_trt_node-12]   File "/home/igvc/.local/lib/python3.10/site-packages/torch/__init__.py", line 1382, in <module>
+[yolo_trt_node-12]     from .functional import *  # noqa: F403
+[yolo_trt_node-12]   File "/home/igvc/.local/lib/python3.10/site-packages/torch/functional.py", line 7, in <module>
+[yolo_trt_node-12]     import torch.nn.functional as F
+[yolo_trt_node-12]   File "/home/igvc/.local/lib/python3.10/site-packages/torch/nn/__init__.py", line 1, in <module>
+[yolo_trt_node-12]     from .modules import *  # noqa: F403
+[yolo_trt_node-12]   File "/home/igvc/.local/lib/python3.10/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+[yolo_trt_node-12]     from .transformer import TransformerEncoder, TransformerDecoder, \
+[yolo_trt_node-12]   File "/home/igvc/.local/lib/python3.10/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+[yolo_trt_node-12]     device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+[yolo_trt_node-12] /home/igvc/.local/lib/python3.10/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+[yolo_trt_node-12]   device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+[lane_follower_node-7] [INFO] [1777131302.537832704] [lane_follower_node]: Waiting for lane data (n=0, age=4.9s)...
+[lane_candidate_node-9] 
+[lane_candidate_node-9] A module that was compiled using NumPy 1.x cannot be run in
+[lane_candidate_node-9] NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+[lane_candidate_node-9] versions of NumPy, modules must be compiled with NumPy 2.0.
+[lane_candidate_node-9] Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+[lane_candidate_node-9] 
+[lane_candidate_node-9] If you are a user of the module, the easiest solution will be to
+[lane_candidate_node-9] downgrade to 'numpy<2' or try to upgrade the affected module.
+[lane_candidate_node-9] We expect that some modules will need time to support NumPy 2.
+[lane_candidate_node-9] 
+[lane_candidate_node-9] Traceback (most recent call last):  File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/littleblue_vision/lane_candidate_node", line 33, in <module>
+[lane_candidate_node-9]     sys.exit(load_entry_point('littleblue_vision==0.0.1', 'console_scripts', 'lane_candidate_node')())
+[lane_candidate_node-9]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/python3.10/site-packages/littleblue_vision/lane_detector_candidates.py", line 431, in main
+[lane_candidate_node-9]     rclpy.spin(node)
+[lane_candidate_node-9]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/__init__.py", line 232, in spin
+[lane_candidate_node-9]     executor.spin_once()
+[lane_candidate_node-9]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/executors.py", line 787, in spin_once
+[lane_candidate_node-9]     self._spin_once_impl(timeout_sec)
+[lane_candidate_node-9]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/executors.py", line 782, in _spin_once_impl
+[lane_candidate_node-9]     handler()
+[lane_candidate_node-9]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/task.py", line 239, in __call__
+[lane_candidate_node-9]     self._handler.send(None)
+[lane_candidate_node-9]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/executors.py", line 489, in handler
+[lane_candidate_node-9]     await call_coroutine()
+[lane_candidate_node-9]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/executors.py", line 377, in _execute
+[lane_candidate_node-9]     await await_or_execute(sub.callback, *msg_tuple)
+[lane_candidate_node-9]   File "/opt/ros/iron/lib/python3.10/site-packages/rclpy/executors.py", line 108, in await_or_execute
+[lane_candidate_node-9]     return callback(*args)
+[lane_candidate_node-9]   File "/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/python3.10/site-packages/littleblue_vision/lane_detector_candidates.py", line 108, in _image_cb
+[lane_candidate_node-9]     bgr = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
+[lane_candidate_node-9]   File "/opt/ros/iron/lib/python3.10/site-packages/cv_bridge/core.py", line 194, in imgmsg_to_cv2
+[lane_candidate_node-9]     res = cvtColor2(im, img_msg.encoding, desired_encoding)
+[lane_candidate_node-9] AttributeError: _ARRAY_API not found
+[lane_follower_node-7] [WARN] [1777131302.648630976] [lane_follower_node]: No lane data for 5.0s, stopping
+[lane_follower_node-7] [WARN] [1777131302.710695424] [lane_follower_node]: No lane data for 5.1s, stopping
+[lane_follower_node-7] [WARN] [1777131302.745469120] [lane_follower_node]: No lane data for 5.1s, stopping
+[lane_follower_node-7] [WARN] [1777131302.788299584] [lane_follower_node]: No lane data for 5.2s, stopping
+[lane_follower_node-7] [WARN] [1777131302.846104608] [lane_follower_node]: No lane data for 5.2s, stopping
+[lane_follower_node-7] [WARN] [1777131302.890699584] [lane_follower_node]: No lane data for 5.3s, stopping
+[ERROR] [lane_candidate_node-9]: process has died [pid 6848, exit code -11, cmd '/home/igvc/IGVC/ros2_ws/install/littleblue_vision/lib/littleblue_vision/lane_candidate_node --ros-args -r __node:=right_lane_candidate --params-file /home/igvc/IGVC/ros2_ws/install/startup_robot/share/startup_robot/config/course.yaml --params-file /tmp/launch_params_yevstefk'].
+[lane_follower_node-7] [WARN] [1777131302.941927808] [lane_follower_node]: No lane data for 5.3s, stopping
+[lane_follower_node-7] [WARN] [1777131303.007760768] [lane_follower_node]: No lane data for 5.4s, stopping
+[lane_follower_node-7] [WARN] [1777131303.045133664] [lane_follower_node]: No lane data for 5.4s, stopping
+[lane_follower_node-7] [WARN] [1777131303.093295168] [lane_follower_node]: No lane data for 5.5s, stopping
+[lane_follower_node-7] [WARN] [1777131303.149895584] [lane_follower_node]: No lane data for 5.5s, stopping
+[lane_follower_node-7] [WARN] [1777131303.188711168] [lane_follower_node]: No lane data for 5.6s, stopping
+[lane_follower_node-7] [WARN] [1777131303.241180224] [lane_follower_node]: No lane data for 5.6s, stopping
+[lane_follower_node-7] [WARN] [1777131303.287381664] [lane_follower_node]: No lane data for 5.7s, stopping
+[lane_follower_node-7] [WARN] [1777131303.337388704] [lane_follower_node]: No lane data for 5.7s, stopping
+[lane_follower_node-7] [WARN] [1777131303.387768512] [lane_follower_node]: No lane data for 5.8s, stopping
+[lane_follower_node-7] [WARN] [1777131303.439580544] [lane_follower_node]: No lane data for 5.8s, stopping
+[lane_follower_node-7] [WARN] [1777131303.489530752] [lane_follower_node]: No lane data for 5.9s, stopping
+[lane_follower_node-7] [WARN] [1777131303.539270208] [lane_follower_node]: No lane data for 5.9s, stopping
+[lane_follower_node-7] [WARN] [1777131303.588001120] [lane_follower_node]: No lane data for 6.0s, stopping
+[lane_follower_node-7] [WARN] [1777131303.637880704] [lane_follower_node]: No lane data for 6.0s, stopping
+[lane_follower_node-7] [WARN] [1777131303.693944704] [lane_follower_node]: No lane data for 6.1s, stopping
+[lane_follower_node-7] [WARN] [1777131303.739381568] [lane_follower_node]: No lane data for 6.1s, stopping
+[lane_follower_node-7] [WARN] [1777131303.787598112] [lane_follower_node]: No lane data for 6.2s, stopping
+[lane_follower_node-7] [WARN] [1777131303.837869056] [lane_follower_node]: No lane data for 6.2s, stopping
+[lane_follower_node-7] [WARN] [1777131303.887796096] [lane_follower_node]: No lane data for 6.3s, stopping
+[lane_follower_node-7] [WARN] [1777131303.937296928] [lane_follower_node]: No lane data for 6.3s, stopping
+[lane_follower_node-7] [WARN] [1777131303.987614496] [lane_follower_node]: No lane data for 6.4s, stopping
+[lane_follower_node-7] [WARN] [1777131304.038390048] [lane_follower_node]: No lane data for 6.4s, stopping
+[lane_follower_node-7] [WARN] [1777131304.087690112] [lane_follower_node]: No lane data for 6.5s, stopping
+[lane_follower_node-7] [WARN] [1777131304.137719680] [lane_follower_node]: No lane data for 6.5s, stopping
+[lane_follower_node-7] [WARN] [1777131304.193560896] [lane_follower_node]: No lane data for 6.6s, stopping
+[lane_follower_node-7] [WARN] [1777131304.245074592] [lane_follower_node]: No lane data for 6.6s, stopping
+[lane_follower_node-7] [WARN] [1777131304.290850016] [lane_follower_node]: No lane data for 6.7s, stopping
+[lane_follower_node-7] [WARN] [1777131304.339715520] [lane_follower_node]: No lane data for 6.7s, stopping
+[lane_follower_node-7] [WARN] [1777131304.392474368] [lane_follower_node]: No lane data for 6.8s, stopping
+[lane_follower_node-7] [WARN] [1777131304.437622240] [lane_follower_node]: No lane data for 6.8s, stopping
+[lane_follower_node-7] [WARN] [1777131304.488855904] [lane_follower_node]: No lane data for 6.9s, stopping
+[lane_follower_node-7] [WARN] [1777131304.537398464] [lane_follower_node]: No lane data for 6.9s, stopping
+[lane_follower_node-7] [WARN] [1777131304.587305024] [lane_follower_node]: No lane data for 7.0s, stopping
+[lane_follower_node-7] [WARN] [1777131304.637577344] [lane_follower_node]: No lane data for 7.0s, stopping
+[lane_follower_node-7] [WARN] [1777131304.689390464] [lane_follower_node]: No lane data for 7.1s, stopping
+[lane_follower_node-7] [WARN] [1777131304.738050112] [lane_follower_node]: No lane data for 7.1s, stopping
+[lane_follower_node-7] [WARN] [1777131304.787654112] [lane_follower_node]: No lane data for 7.2s, stopping
+[lane_follower_node-7] [WARN] [1777131304.843212064] [lane_follower_node]: No lane data for 7.2s, stopping
+[lane_follower_node-7] [WARN] [1777131304.892355936] [lane_follower_node]: No lane data for 7.3s, stopping
+[lane_follower_node-7] [WARN] [1777131304.937392128] [lane_follower_node]: No lane data for 7.3s, stopping
+[lane_follower_node-7] [WARN] [1777131304.987366688] [lane_follower_node]: No lane data for 7.4s, stopping
+[lane_follower_node-7] [WARN] [1777131305.044960256] [lane_follower_node]: No lane data for 7.4s, stopping
+[lane_follower_node-7] [WARN] [1777131305.096923488] [lane_follower_node]: No lane data for 7.5s, stopping
+[lane_follower_node-7] [WARN] [1777131305.138652672] [lane_follower_node]: No lane data for 7.5s, stopping
+[lane_follower_node-7] [WARN] [1777131305.188929952] [lane_follower_node]: No lane data for 7.6s, stopping
+[lane_follower_node-7] [WARN] [1777131305.248341280] [lane_follower_node]: No lane data for 7.6s, stopping
+[lane_follower_node-7] [WARN] [1777131305.289928672] [lane_follower_node]: No lane data for 7.7s, stopping
+[lane_follower_node-7] [WARN] [1777131305.345851904] [lane_follower_node]: No lane data for 7.7s, stopping
+[lane_follower_node-7] [WARN] [1777131305.395522304] [lane_follower_node]: No lane data for 7.8s, stopping
+[lane_follower_node-7] [WARN] [1777131305.437374816] [lane_follower_node]: No lane data for 7.8s, stopping
+[lane_follower_node-7] [WARN] [1777131305.487902816] [lane_follower_node]: No lane data for 7.9s, stopping
+[lane_follower_node-7] [WARN] [1777131305.538477824] [lane_follower_node]: No lane data for 7.9s, stopping
+[lane_follower_node-7] [WARN] [1777131305.602286880] [lane_follower_node]: No lane data for 8.0s, stopping
+[lane_follower_node-7] [WARN] [1777131305.637439712] [lane_follower_node]: No lane data for 8.0s, stopping
+[lane_follower_node-7] [WARN] [1777131305.687366784] [lane_follower_node]: No lane data for 8.1s, stopping
+[lane_follower_node-7] [WARN] [1777131305.737671904] [lane_follower_node]: No lane data for 8.1s, stopping
+[lane_follower_node-7] [WARN] [1777131305.789064416] [lane_follower_node]: No lane data for 8.2s, stopping
+[lane_follower_node-7] [WARN] [1777131305.839533664] [lane_follower_node]: No lane data for 8.2s, stopping
+[lane_follower_node-7] [WARN] [1777131305.887419136] [lane_follower_node]: No lane data for 8.3s, stopping
+[lane_follower_node-7] [WARN] [1777131305.937527680] [lane_follower_node]: No lane data for 8.3s, stopping
+[lane_follower_node-7] [WARN] [1777131305.989686912] [lane_follower_node]: No lane data for 8.4s, stopping
+[lane_follower_node-7] [WARN] [1777131306.041753280] [lane_follower_node]: No lane data for 8.4s, stopping
+[lane_follower_node-7] [WARN] [1777131306.087437312] [lane_follower_node]: No lane data for 8.5s, stopping
+[lane_follower_node-7] [WARN] [1777131306.149414528] [lane_follower_node]: No lane data for 8.5s, stopping
+[lane_follower_node-7] [WARN] [1777131306.188325920] [lane_follower_node]: No lane data for 8.6s, stopping
+[lane_follower_node-7] [WARN] [1777131306.237707552] [lane_follower_node]: No lane data for 8.6s, stopping
+[lane_follower_node-7] [WARN] [1777131306.287382496] [lane_follower_node]: No lane data for 8.7s, stopping
+[lane_follower_node-7] [WARN] [1777131306.340470624] [lane_follower_node]: No lane data for 8.7s, stopping
+[lane_follower_node-7] [WARN] [1777131306.387558144] [lane_follower_node]: No lane data for 8.8s, stopping
+[lidar_obstacle_node-11] [INFO] [1777131306.392465248] [lidar_obstacle_node]: LiDAR: 97 returns, 6 clusters, 6 obstacles
+[lane_follower_node-7] [WARN] [1777131306.437580832] [lane_follower_node]: No lane data for 8.8s, stopping
+[lane_follower_node-7] [WARN] [1777131306.487909664] [lane_follower_node]: No lane data for 8.9s, stopping
+[lane_follower_node-7] [WARN] [1777131306.537902816] [lane_follower_node]: No lane data for 8.9s, stopping
+[lane_follower_node-7] [WARN] [1777131306.587551040] [lane_follower_node]: No lane data for 9.0s, stopping
+[lane_follower_node-7] [WARN] [1777131306.639257888] [lane_follower_node]: No lane data for 9.0s, stopping
+[lane_follower_node-7] [WARN] [1777131306.687529280] [lane_follower_node]: No lane data for 9.1s, stopping
+[lane_follower_node-7] [WARN] [1777131306.737446976] [lane_follower_node]: No lane data for 9.1s, stopping
+[lane_follower_node-7] [WARN] [1777131306.788733568] [lane_follower_node]: No lane data for 9.2s, stopping
+[lane_follower_node-7] [WARN] [1777131306.852964320] [lane_follower_node]: No lane data for 9.3s, stopping
+[lane_follower_node-7] [WARN] [1777131306.887213472] [lane_follower_node]: No lane data for 9.3s, stopping
+[lane_follower_node-7] [WARN] [1777131306.937535520] [lane_follower_node]: No lane data for 9.3s, stopping
+[lane_follower_node-7] [WARN] [1777131306.987699200] [lane_follower_node]: No lane data for 9.4s, stopping
+[lane_follower_node-7] [WARN] [1777131307.037394880] [lane_follower_node]: No lane data for 9.4s, stopping
+[lane_follower_node-7] [WARN] [1777131307.096159136] [lane_follower_node]: No lane data for 9.5s, stopping
+[lane_follower_node-7] [WARN] [1777131307.137529632] [lane_follower_node]: No lane data for 9.5s, stopping
+[lane_follower_node-7] [WARN] [1777131307.189805056] [lane_follower_node]: No lane data for 9.6s, stopping
+[lane_follower_node-7] [WARN] [1777131307.237359648] [lane_follower_node]: No lane data for 9.6s, stopping
+[lane_follower_node-7] [WARN] [1777131307.287951840] [lane_follower_node]: No lane data for 9.7s, stopping
+[lane_follower_node-7] [WARN] [1777131307.338721376] [lane_follower_node]: No lane data for 9.7s, stopping
+[lane_follower_node-7] [WARN] [1777131307.388149568] [lane_follower_node]: No lane data for 9.8s, stopping
+[lane_follower_node-7] [WARN] [1777131307.438023264] [lane_follower_node]: No lane data for 9.8s, stopping
+[lane_follower_node-7] [WARN] [1777131307.487658144] [lane_follower_node]: No lane data for 9.9s, stopping
+[lane_follower_node-7] [WARN] [1777131307.538019040] [lane_follower_node]: No lane data for 9.9s, stopping
+[lane_follower_node-7] [WARN] [1777131307.587594848] [lane_follower_node]: No lane data for 10.0s, stopping
+[lane_follower_node-7] [WARN] [1777131307.637932992] [lane_follower_node]: No lane data for 10.0s, stopping
+[lane_follower_node-7] [WARN] [1777131307.687526688] [lane_follower_node]: No lane data for 10.1s, stopping
+[lane_follower_node-7] [WARN] [1777131307.743682016] [lane_follower_node]: No lane data for 10.1s, stopping
+[lane_follower_node-7] [WARN] [1777131307.787803680] [lane_follower_node]: No lane data for 10.2s, stopping
+[lane_follower_node-7] [WARN] [1777131307.837920512] [lane_follower_node]: No lane data for 10.2s, stopping
+[lane_follower_node-7] [WARN] [1777131307.889829632] [lane_follower_node]: No lane data for 10.3s, stopping
+[lane_follower_node-7] [WARN] [1777131307.942398720] [lane_follower_node]: No lane data for 10.3s, stopping
+[lane_follower_node-7] [WARN] [1777131307.987628192] [lane_follower_node]: No lane data for 10.4s, stopping
+[lane_follower_node-7] [WARN] [1777131308.037439776] [lane_follower_node]: No lane data for 10.4s, stopping
+[lane_follower_node-7] [WARN] [1777131308.090407680] [lane_follower_node]: No lane data for 10.5s, stopping
+[lane_follower_node-7] [WARN] [1777131308.137387584] [lane_follower_node]: No lane data for 10.5s, stopping
+[lane_follower_node-7] [WARN] [1777131308.193271904] [lane_follower_node]: No lane data for 10.6s, stopping
+[lane_follower_node-7] [WARN] [1777131308.237630976] [lane_follower_node]: No lane data for 10.6s, stopping
+[lane_follower_node-7] [WARN] [1777131308.296297440] [lane_follower_node]: No lane data for 10.7s, stopping
+[lane_follower_node-7] [WARN] [1777131308.339951584] [lane_follower_node]: No lane data for 10.7s, stopping
+[lane_follower_node-7] [WARN] [1777131308.391386624] [lane_follower_node]: No lane data for 10.8s, stopping
+[lane_follower_node-7] [WARN] [1777131308.440164480] [lane_follower_node]: No lane data for 10.8s, stopping
+[lane_follower_node-7] [WARN] [1777131308.488800384] [lane_follower_node]: No lane data for 10.9s, stopping
+[lane_follower_node-7] [WARN] [1777131308.544383200] [lane_follower_node]: No lane data for 10.9s, stopping
+[lane_follower_node-7] [WARN] [1777131308.587463456] [lane_follower_node]: No lane data for 11.0s, stopping
+[lane_follower_node-7] [WARN] [1777131308.638048160] [lane_follower_node]: No lane data for 11.0s, stopping
+[lane_follower_node-7] [WARN] [1777131308.690037664] [lane_follower_node]: No lane data for 11.1s, stopping
+[lane_follower_node-7] [WARN] [1777131308.737695296] [lane_follower_node]: No lane data for 11.1s, stopping
+[lane_follower_node-7] [WARN] [1777131308.787563936] [lane_follower_node]: No lane data for 11.2s, stopping
+[lane_follower_node-7] [WARN] [1777131308.838976448] [lane_follower_node]: No lane data for 11.2s, stopping

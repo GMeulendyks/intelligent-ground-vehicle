@@ -1,0 +1,5 @@
+set(DEFAULT_CONFIG_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../config/default.yaml")
+ament_add_gtest(${PROJECT_NAME}_test TestMain.cpp)
+target_include_directories(${PROJECT_NAME}_test PUBLIC ../include)
+target_link_libraries(${PROJECT_NAME}_test PackagerLib)
+target_compile_definitions(${PROJECT_NAME}_test PRIVATE CONF_FP=\"${DEFAULT_CONFIG_PATH}\")

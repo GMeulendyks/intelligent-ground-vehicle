@@ -1,0 +1,23 @@
+/**:
+  ros__parameters:
+    auto_white_balance: true
+    autoexposure: true
+    autofocus: false
+    av_device_format: YUV422P
+    brightness: -1
+    camera_info_url: package://usb_cam/config/camera_info.yaml
+    camera_name: test_camera
+    contrast: -1
+    exposure: 100
+    focus: -1
+    frame_id: camera
+    framerate: 30.0
+    gain: -1
+    image_height: 240
+    image_width: 320
+    io_method: mmap
+    pixel_format: mjpeg2rgb
+    saturation: -1
+    sharpness: -1
+    video_device: /dev/video0
+    white_balance: 4000

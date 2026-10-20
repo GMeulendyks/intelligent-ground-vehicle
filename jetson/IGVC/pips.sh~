@@ -1,0 +1,27 @@
+ 1926  pip3 install ultralytics
+ 1975  pip3 install ultralytics
+ 2013  pip3 remove torch-2.11.0+cu130
+ 2014  pip3 uninstall torch-2.11.0+cu130
+ 2015  pip3 list
+ 2016  pip3 list | grep torch
+ 2017  pip3 uninstall torch-2.11.0
+ 2018  pip3 uninstall torch-2.11
+ 2019  pip3 uninstall torch
+ 2020  pip uninstall torchvision
+ 2021  pip3 install --index-url https://pypi.jetson-ai-lab.io/jp6/cu126 torch==2.11.0 torchvision==0.26.0
+ 2028  history | grep pip
+ 2030  history | grep pip
+ 2031  history | grep pip > pips.txt
+ 1926  pip3 install ultralytics
+ 1975  pip3 install ultralytics
+ 1998  history | grep pip
+ 1999  history | grep pip >> IGVC/pips.txt
+ 1926  pip3 install ultralytics
+ 1975  pip3 install ultralytics
+ 2053  pip3 install tensorRT
+ 2055  pip3 install tensorRT_cu126
+ 2056  pip3 install tensorRT_cu12
+ 2057  pip uninstall tensorrt
+ 2058  pip3 install tensorRT_cu12
+ 2061  history | grep pip
+ 2062  history | grep pip >> pips.txt
