@@ -1,0 +1,38 @@
+# Stable device names for LittleBlue sensors. Without these, USB
+# enumeration order determines /dev/video0 vs /dev/video1, /dev/ttyUSB0
+# vs /dev/ttyUSB1, etc., and the deploy launch breaks on reboot.
+#
+# Install with:
+#   sudo cp 99-littleblue.rules /etc/udev/rules.d/
+#   sudo udevadm control --reload-rules && sudo udevadm trigger
+#
+# After installing, each sensor lives at a predictable symlink under
+# /dev/ regardless of plug order.
+#
+# YOU MUST UPDATE the ATTRS values below to match this robot's actual
+# hardware. Find them with:
+#   udevadm info -a -n /dev/ttyUSB0 | grep -E "idVendor|idProduct|serial"
+#   udevadm info -a -n /dev/video0  | grep -E "idVendor|idProduct|serial"
+# and paste the values into the matching rule.
+
+# --- LiDAR (RPLIDAR A2M8, typical CP210x USB-serial) ---
+SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", \
+  ATTRS{serial}=="REPLACE_WITH_LIDAR_SERIAL", SYMLINK+="lidar", MODE="0666"
+
+# --- GPS (u-blox / generic USB-serial) ---
+SUBSYSTEM=="tty", ATTRS{idVendor}=="REPLACE", ATTRS{idProduct}=="REPLACE", \
+  ATTRS{serial}=="REPLACE_WITH_GPS_SERIAL", SYMLINK+="gps", MODE="0666"
+
+# --- IMU (example: FTDI or USB-CDC) ---
+SUBSYSTEM=="tty", ATTRS{idVendor}=="REPLACE", ATTRS{idProduct}=="REPLACE", \
+  ATTRS{serial}=="REPLACE_WITH_IMU_SERIAL", SYMLINK+="imu", MODE="0666"
+
+# --- Motor controller (Arduino on USB-ACM) ---
+SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", \
+  ATTRS{serial}=="REPLACE_WITH_ARDUINO_SERIAL", SYMLINK+="motor", MODE="0666"
+
+# Cameras intentionally omitted. Basler/RealSense/ZED drivers
+# identify devices by serial number from inside their own launch
+# files, so udev symlinks aren't needed. If you ever drop back to
+# a UVC webcam, add a `SYMLINK+="camera_left"` / `camera_right`
+# rule matched by KERNELS (USB port path) or ATTRS{serial}.

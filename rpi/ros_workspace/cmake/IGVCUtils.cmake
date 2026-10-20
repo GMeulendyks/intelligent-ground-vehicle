@@ -1,0 +1,8 @@
+function(msg_targets out_var)
+    list(SUBLIST ARGV 1 -1 pkgs)
+    set(tmp)
+    foreach(pkg IN LISTS pkgs)
+        list(APPEND tmp ${${pkg}_TARGETS})
+    endforeach()
+    set(${out_var} ${tmp} PARENT_SCOPE) 
+endfunction()

@@ -1,0 +1,7 @@
+cameraIDs:
+  leftCamera:
+    vendor_id: "0c45"
+    model_id: "6366"
+  rightCamera:
+    vendor_id: "0c45"
+    model_id: "6366"
