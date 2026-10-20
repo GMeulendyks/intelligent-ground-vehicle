@@ -1,0 +1,177 @@
+import serial
+from glob import glob
+import rclpy
+from rclpy.node import Node
+import math
+import queue
+import socket
+from sensor_msgs.msg import Joy
+from packager_msgs.msg import MotorControl, Gps
+
+import sys
+
+
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
+
+
+class WriterWrapper:
+    def __init__(self, writer, writer_cb):
+        self.writer = writer
+        self.writer_cb = writer_cb
+
+    def __call__(self, input):
+        return self.writer_cb(input)
+
+
+class MinimalSubscriber(Node):
+    reversing = 1  # B button
+    auto_button = 0  # A button
+    throttle = 5  # RT
+    steering = 0  # left stick horizontal axis
+    gps_button = 2
+
+    def __init__(self):
+        super().__init__("arduino_control")
+        self.joy = self.create_subscription(Joy, "joy", self.listener_callback, 1)
+        self.joy
+        self.motor_control = self.create_subscription(
+            MotorControl, "motor_control", self.motor_control_callback, 1
+        )
+        self.gps_sub = self.create_subscription(
+            Gps, "gps", self.gps_callback, 1
+        )
+        self.declare_parameter("testing", "false")
+        self.testing_timer = self.create_timer(1, self.check_params)
+        self.joy
+        self.ser = serial.Serial("/dev/arduino", 115200, timeout=0)
+        self.auto = False
+        self.gps = False
+        self.prev_auto_button = False
+        self.prev_gps_button = False
+
+    def check_params(self):
+        if self.get_parameter("testing").get_parameter_value().string_value == "true":
+            self.auto = True
+            
+        self.testing_timer.cancel()
+
+
+    def getMotor0(self, throttle, steering, reversing):
+        # Convert values to match equation notation
+        a = -(throttle - 1.0) / 2 * (-2 * reversing + 1)
+        b = -steering
+
+        result = (-(a / 4) * (b + math.sqrt(b * b)) * b) + ((a + 1) / 2)
+        return result * 100  # percentage
+
+    def getMotor1(self, throttle, steering, reversing):
+        # Convert values to match equation notation
+        a = -(throttle - 1.0) / 2 * (-2 * reversing + 1)
+        b = -steering
+
+        result = (-(a / 4) * (b - math.sqrt(b * b)) * b) + ((a + 1) / 2)
+        return result * 100  # percentage
+
+    @staticmethod
+    def get_serial():
+        try:
+            return serial.Serial("/dev/arduino", 115200)
+        except:
+            eprint("Could not find serial port. Exiting.")
+            exit(-1)
+
+    def get_writer(self):
+        if self.get_parameter("testing").get_parameter_value().string_value == "false":
+            ser = MinimalSubscriber.get_serial()
+            return WriterWrapper(ser, ser.write)
+        else:
+            self.auto = True
+            return WriterWrapper(None, eprint)
+
+    def driveMotors(self, dutyCycle_M0, dutyCycle_M1):
+        try:
+            eprint("Connecting to device...")
+            writer = self.get_writer()
+            #ser = serial.Serial('/dev/arduino', 115200)
+            dutyCycle_M0 = int(dutyCycle_M0)
+            dutyCycle_M1 = int(dutyCycle_M1)
+
+            message = "<motor, " + str(dutyCycle_M0) + ", " + str(dutyCycle_M1) + ">"
+            eprint(f"Sending message: {message}")
+            #ser.write(message.encode("UTF-8"))
+            writer(message.encode("UTF-8"))
+            line = serial.Serial("/dev/arduino", 115200).readline().decode('utf-8').rstrip()
+            print(line)
+            print("\n")
+
+        except Exception as e:
+            eprint(f"Error with sending motor values {e}")
+
+    def gps_callback(self, gps):
+        if self.gps:
+            throttle = self.gps.throttle
+            steering = self.gps.steering
+            dutyCycle_M0 = int(self.getMotor0(throttle, steering, False))
+            dutyCycle_M1 = int(self.getMotor1(throttle, steering, False))
+
+            self.driveMotors(dutyCycle_M0, dutyCycle_M1)
+
+    def motor_control_callback(self, controls):
+        if self.auto:
+            eprint('Running motor control callback...')
+            a = controls.throttle
+            b = controls.steering
+            eprint(f'Got: {a}, {b}')
+            m0 = (-(a / 4) * (b + math.sqrt(b * b)) * b) + ((a + 1) / 2)
+            m1 = (-(a / 4) * (b - math.sqrt(b * b)) * b) + ((a + 1) / 2)
+            dutyCycle_M0 = int(m0 * 100)
+            dutyCycle_M1 = int(m1 * 100)
+
+            self.driveMotors(dutyCycle_M0, dutyCycle_M1)
+
+    def listener_callback(self, controls):
+        eprint("Callback called")
+        # if button is pressed
+        if controls.buttons[self.auto_button]:
+            self.prev_auto_button = True
+        # once button is released
+        elif self.prev_auto_button == True and not controls.buttons[self.auto_button]:
+            self.auto = not self.auto
+            self.prev_auto_button = False
+
+        # if button is pressed
+        if controls.buttons[self.gps_button]:
+            self.prev_gps_button = True
+        # once button is released
+        elif self.prev_gps_button == True and not controls.buttons[self.gps_button]:
+            self.gps = not self.gps
+            self.prev_gps_button = False
+
+        if not self.auto and not self.gps:
+            throttle = controls.axes[self.throttle]
+            steering = controls.axes[self.steering]
+            reverse = controls.buttons[self.reversing]
+            dutyCycle_M0 = int(self.getMotor0(throttle, steering, reverse))
+            dutyCycle_M1 = int(self.getMotor1(throttle, steering, reverse))
+            eprint(f"Sending duty cycles: {dutyCycle_M0}, {dutyCycle_M1}")
+
+            self.driveMotors(dutyCycle_M0, dutyCycle_M1)
+
+
+def main(args=None):
+    rclpy.init(args=args)
+
+    minimal_subscriber = MinimalSubscriber()
+
+    rclpy.spin(minimal_subscriber)
+
+    # Destroy the node explicitly
+    # (optional - otherwise it will be done automatically
+    # when the garbage collector destroys the node object)
+    minimal_subscriber.destroy_node()
+    rclpy.shutdown()
+
+
+if __name__ == "__main__":
+    main()

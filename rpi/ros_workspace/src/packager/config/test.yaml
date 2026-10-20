@@ -1,0 +1,5 @@
+topics:
+  cam0: "cam0_test"
+  cam1: "cam1_test"
+  imu: "imu_test"
+  lidar: "lidar_test"

@@ -1,0 +1,2059 @@
+    1  l
+    2  mkdir IGVCDev2
+    3  cd ..
+    4  tar -xzf IGVCDev2_archive.tar.gz -C ./littleblue/IGVCDev2
+    5  ls
+    6  cd littleblue/
+    7  ls
+    8  df
+    9  ls
+   10  ls -lt | head
+   11  cd archive
+   12  ls
+   13  ls -lt
+   14  cd *
+   15  ls
+   16  ls -lt
+   17  ls ros2_ws
+   18  ls
+   19  cd ros2_ws
+   20  ls
+   21  ls src
+   22  cd ..
+   23  cd
+   24  ls
+   25  cd IGVCDev
+   26  ls
+   27  ls -lt
+   28  cd ros_workspace
+   29  ls
+   30  ls src
+   31  ls src/data_transformers
+   32  ls src/data_transformers/src
+   33  ls src/data_transformers/src/img_transformer
+   34  ls -lt src/data_transformers/src/img_transformer
+   35  cd ..
+   36  ls
+   37  locate auto.py
+   38  locate IGVCDev | grep little
+   39  cd /ssd/igvc
+   40  cd IGVCDev-master
+   41  ls
+   42  ls -lt 
+   43  cd 
+   44  cd archive
+   45  ls
+   46  cd *
+   47  ls
+   48  cd ros2_sensors_combined
+   49  ls
+   50  cd src
+   51  ls
+   52  cd ..
+   53  ls ~
+   54  cp -a ros2_sensors_combined ~
+   55  cd
+   56  cd ros2_sensors_combines
+   57  cd ros2_sensors_combined
+   58  ls
+   59  rm -rf build install
+   60  colcon build
+   61  ls
+   62  cd src
+   63  ls
+   64  cd ub*
+   65  ls
+   66  cd *
+   67  ls
+   68  cd *
+   69  ls
+   70  find . -name *.txt -print
+   71  vi ./ublox_serialization/CMakeLists.txt
+   72  cmake --version
+   73  vi ./ublox_serialization/CMakeLists.txt
+   74  locate ament_cmake
+   75  locate ament_cmake | more
+   76  locate ament_cmake | more | grep -v igvc
+   77  locate ament_cmake | more | grep -v igvc  | grep -v iron
+   78  sudo bash
+   79  cd ../..
+   80  cd ..
+   81  colcon build
+   82  locate rclcppConfig
+   83  ls /ros/iron
+   84  ls /opt/ros/iron
+   85  source /opt/ros/iron/setup.bash
+   86  colcon build
+   87  ls
+   88  ros2
+   89  source /opt/ros/iron/setup.bash
+   90  ros2 topic lisyt
+   91  ros2 topic list
+   92  ros2 topic echo joy
+   93  sudo vim /etc/udev/rules.d/
+   94  sudo rm /dev/rplidar 
+   95  sudo udevadm trigger
+   96  ls /dev/
+   97  ls -l /dev/rplidar 
+   98  cd /ssd/xavier_transfer/littleblue/
+   99  ls
+  100  cd IGVCDev2/
+  101  ls
+  102  cd IGVCDev2/
+  103  ls
+  104  nmtui
+  105  ls
+  106  cd ros_workspace/src/
+  107  ls
+  108  cd packager
+  109  ls
+  110  firefox
+  111  sudo firefox
+  112  firefox
+  113  sudo su belfore
+  114  sudo -E firefox
+  115  sudo apt install chromium
+  116  sudo apt install chromium-browser
+  117  chromium
+  118  flatpak
+  119  gitr
+  120  git
+  121  cd ~
+  122  git clone https://github.com/geographiclib/geographiclib
+  123  cd geographiclib/
+  124  ls
+  125  mkdir build
+  126  cd build
+  127  cmake ..
+  128  cmake .. -DBUILD_BOTH_LIBS=ON
+  129  nproc
+  130  make -j$(nproc)
+  131  sudo make install
+  132  cd ../
+  133  cd /ssd/xavier_transfer/littleblue/IGVCDev2/IGVCDev2/
+  134  cd ros_workspace
+  135  vim src/packager
+  136  vim src/gps_node/
+  137  colcon build
+  138  source /opt/ros/iron/setup.bash 
+  139  colcon build
+  140  vim src/gps_node/
+  141  colcon build
+  142  vim src/gps_node/
+  143  colcon build
+  144  ls /dev
+  145  ls
+  146  python3 run_jetson.py 
+  147  ps
+  148  pkill usb_cam_node_ex 
+  149  ls
+  150  vim /etc/passwd
+  151  vim /etc/shadow
+  152  sudo vim /etc/shadow
+  153  ls ../../../
+  154  ls ../../../software/
+  155  ls ../../../ros2_sensors
+  156  cd ../../../ros2_sensors/xsens_ws/
+  157  ls
+  158  colcon build
+  159  rm -r build
+  160  colcon build
+  161  source install/setup.bash 
+  162  cd ../
+  163  cd sllidar_ws/
+  164  ls
+  165  rm -r build
+  166  colcon build
+  167  source install/setup.bash 
+  168  cd ../../IGVCDev2/IGVCDev2/ros_workspace
+  169  python3 run_jetson.py 
+  170  ls ../../../
+  171  cd ../../../
+  172  vim ublox.rules 
+  173  sudo cp ublox.rules /etc/udev/rules.d/
+  174  sudo cp xsens.rules /etc/udev/rules.d/
+  175  ls /etc/udev/rules.d/
+  176  sudo udevadm trigger
+  177  ls /dev | grep ub
+  178  ls /dev | grep xsens.rules 
+  179  ls /dev | grep xsens
+  180  ps
+  181  pkill usb_cam_node_ex 
+  182  cd IGVCDev2/IGVCDev2/ros_workspace
+  183  python3 run_jetson.py 
+  184  ps
+  185  pkill usb
+  186  pkill xsens_mti_node 
+  187  ps
+  188  ls /dev | grep videio
+  189  ls /dev | grep video
+  190  vim src/packager/config/
+  191  python3 run_jetson.py 
+  192  ls /dev | grep xsens
+  193  ps
+  194  pkill usb
+  195  ps
+  196  python3 run_jetson.py 
+  197  ps
+  198  pkill usb
+  199  pkill xsens_mti_node 
+  200  source install/setup.bash 
+  201  python3 run_jetson.py 
+  202  ps
+  203  ros2 run sllidar_ros2 sllidar_node 
+  204  ps
+  205  ros2 run sllidar_ros2 sllidar_node 
+  206  ls /dev | grep 
+  207  ls /dev | grep sll
+  208  ls /dev | grep s
+  209  ls /dev | grep lidar
+  210  ls
+  211  ps
+  212  pkill usb_cam_node_ex 
+  213  pkill xs
+  214  pkill Pack
+  215  pkill node
+  216  pkill Data
+  217  ps
+  218  python3 run_jetson.py 
+  219  ps
+  220  pkill usb
+  221  python3 run_jetson.py 
+  222  ls /dev | grep ttyUSB
+  223  sudo chmod 666 /dev/ttyUSB0
+  224  sudo chmod 666 /dev/ttyUSB1
+  225  ps
+  226  pkill usb
+  227  pkill xsen
+  228  pkill Pack
+  229  pkill node
+  230  pkill Dat
+  231  python3 run_jetson.py 
+  232  ls src/packager/config/
+  233  vim src/packager/config/default.yaml 
+  234  vim src/test_data_providers/
+  235  colcon build --help
+  236  colcon build --packages-select test_data_providers
+  237  ros2 run test_data_providers LidarNodeMain &
+  238  .[ls
+  239  ls
+  240  ls data_collection/
+  241  cd data_collection/1763513006/
+  242  ks
+  243  ls
+  244  xdg-open .
+  245  ls
+  246  ps
+  247  pkill usb_cam_node_ex 
+  248  pkill xsens_mti_node 
+  249  pkill node 
+  250  pkill DataCollector 
+  251  pkill LidarNodeMain 
+  252  ls
+  253  cd ../../../
+  254  cd ros_workspace
+  255  ls
+  256  python3 run_jetson.py 
+  257  ps
+  258  ros2 launch packager launch.py &
+  259  ros2 run test_data_providers LidarNodeMain &
+  260  ros2 launch packager launch.py &
+  261  vim run_jetson.py 
+  262  ps
+  263  pkill DataCollector 
+  264  python3 run_jetson.py --packager-only
+  265  ps
+  266  pkill usb_cam_node_ex 
+  267  pkill xsens_mti_node 
+  268  pkill node
+  269  pkill LidarNodeMain 
+  270  ps
+  271  vim run_jetson.py 
+  272  ls /dev | grep rplida
+  273  ls ../../../
+  274  vim run_jetson.py 
+  275  lsusb
+  276  vim /etc/udev/rules.d/ublox.rules 
+  277  ls -l /dev/xsens 
+  278  sudo ln -s /dev/ttyUSB1 /dev/rplidar
+  279  ps
+  280  vim run_jetson.py 
+  281  python3 run_jetson.py 
+  282  ps
+  283  python3 run_jetson.py 
+  284  lsusb
+  285  udevadm info
+  286  udevadm info /dev/ttyUSB1
+  287  cd /s
+  288  cd /ssd
+  289  ls
+  290  cd xavier_transfer/
+  291  ls
+  292  cd littleblue/
+  293  ls
+  294  ssh igvc@raspberrypi.local
+  295  ping 192.168.0.255
+  296  ping 192.168.0.200
+  297  ip addr show
+  298  ip dev show
+  299  ip link show
+  300  source /opt/ros/iron/setup.bash 
+  301  ros2 topic listr
+  302  ros2 topic list
+  303  ping 192.168.215.200
+  304  ping 192.168.215.201
+  305  sudo ip addr add 192.168.215.201/24 dev enP8p1s0 
+  306  sudo ip addr del 192.168.215.201/24 dev enP8p1s0 
+  307  sudo ip addr add 192.168.215.200/24 dev enP8p1s0 
+  308  sudo ip addr remove 192.168.215.201/24 dev enP8p1s0 
+  309  ip addr help
+  310  sudo ip addr del 192.168.215.201/24 dev enP8p1s0 
+  311  sudo ip addr del 192.168.215.201 dev enP8p1s0 
+  312  ip addr show
+  313  sudo ip addr add 192.168.215.200/24 dev enP8p1s0 
+  314  ip addr show
+  315  ping 192.168.215.200
+  316  +++++++++++++++++++++++
+  317  sudo ip addr add 192.168.215.199/24 dev wlP1p1s0 
+  318  ping 192.168.215.200
+  319  ip link show
+  320  ip addr show
+  321  sudo ip link set enP8p1s0 up 
+  322  ping 192.168.215.200
+  323  ip link show
+  324  su
+  325  su 
+  326  sudo su
+  327  sudo su belfore
+  328  nmtui
+  329  ping 192.168.215.201
+  330  nmgui
+  331  nmcli
+  332  ssh littleblue@192.168.215.201
+  333  nmtui
+  334  ln -s /ssd/xavier_transfer/littleblue/ ./littleblue
+  335  cd ./littleblue/
+  336  ls
+  337  ls littleblue
+  338  cd ../
+  339  ls
+  340  cd littleblue/
+  341  ls
+  342  ls -l
+  343  ls
+  344  cd ros2_sensors/sllidar_ws/
+  345  ls
+  346  source install/setup.bash
+  347  cd ../xsens_ws/
+  348  source install/setup.bash
+  349  cd ../../IGVCDev2
+  350  ls ../../
+  351  cd
+  352  rm littleblue/
+  353  ls
+  354  ls -l
+  355  mv littleblue_old
+  356  mv littleblue littleblue_old
+  357  ln -s /ssd/xavier_transfer/littleblue/ ./littleblue
+  358  cd littleblue
+  359  ls
+  360  cd IGVCDev2
+  361  cd ../
+  362  cd ros2_sensors/sllidar_ws/
+  363  source install/setup.
+  364  source install/setup.bash 
+  365  cd ../xsens_ws/
+  366  source install/setup.bash 
+  367  cd ../../IGVCDev2/IGVCDev2/ros_workspace
+  368  cd ../../../
+  369  lsw
+  370  ls
+  371  cd IGVCDev2
+  372  ls
+  373  mv IGVCDev2/ ../IGVCDev2
+  374  xdg-open .
+  375  cd ros_workspace
+  376  ls
+  377  source install/setup.bash 
+  378  python3 ./run_jetson.py 
+  379  ps
+  380  pkill usb_cam_node_ex 
+  381  python3 ./run_jetson.py 
+  382  ps
+  383  cd ../../
+  384  ./Step_2.sh 
+  385  vim Step_3.txt 
+  386  qv4l2
+  387  ros2 topic echo fix
+  388  ros2 bag record -a
+  389  bg
+  390  cd IGVCDev/dev/
+  391  cd IGVCDev/Dev/
+  392  cd IGVCDev/IGVCDev/Dev/
+  393  ls
+  394  cd data_collection_ws/
+  395  ls
+  396  source install/setup.bash 
+  397  ros2 launch data launch.py 
+  398  vim src/data/
+  399  cd ../../../
+  400  ls
+  401  mv IGVCDev/* ./
+  402  sudo mv IGVCDev/* ./
+  403  ls
+  404  ls IGVCDev/
+  405  rm -r IGVCDev/
+  406  shopt -s dotglob
+  407  sudo mv IGVCDev/* ./
+  408  rm -r IGVCDev/
+  409  sudo rm -r IGVCDev/
+  410  ls
+  411  cd src/data_collection_ws/
+  412  colcon build
+  413  rm -r build
+  414  colcon build
+  415  source install/setup.bash 
+  416  ros2 launch data launch.py 
+  417  cd ../../../
+  418  cd IGVCDev
+  419  ls
+  420  rm build
+  421  rm -r build
+  422  sudo rm -r build
+  423  cd src/data_collection_ws/
+  424  rm -r build
+  425  cd ../../../IGVCDev2/ros_workspace
+  426  rm -r build
+  427  cd ../
+  428  df .
+  429  du -h .
+  430  ls
+  431  ls .
+  432  cd ros_workspace
+  433  ls
+  434  mv data_collection/ ../../data_collection_old
+  435  cd ../
+  436  ls
+  437  ls ros_workspace
+  438  ls ros_workspace.backup/
+  439  rm -r ros_workspace.backup/
+  440  du -h .
+  441  cd ros_workspace/
+  442  rm -r install/
+  443  cd ../
+  444  du -h .
+  445  du -sh .
+  446  du -shk . | sort -rn
+  447  du -sk . | sort -rn
+  448  du -h . | sort -rn
+  449  du -a . | sort -nr
+  450  du -a . | sort -nr | head -n 10
+  451  ls
+  452  rm ros_workspace.tar 
+  453  rm -r ros_workspace/log
+  454  du -h .
+  455  du -a . | sort -nr | head -n 10
+  456  rm -r ./ros_workspace/src/gps_node/deps/
+  457  ls
+  458  ls Doc
+  459  ls Docs/
+  460  xdg-open .
+  461  mv Docs/ ../Docs
+  462  ls
+  463  du -h
+  464  du -a . | sort -nr | head -n 10
+  465  mkdir models
+  466  mv model_ab.pth.int models/
+  467  mv model_ab.pth models/
+  468  mv ros_workspace/model_ab.pth models/
+  469  mv ros_workspace/little_blue_v2.pth models/
+  470  ls models/
+  471  mv models/ ../igvcdev2_models/
+  472  du -h
+  473  du -a . | sort -nr | head -n 10
+  474  du -ah . | sort -nr | head -n 10
+  475  du -a . | sort -nr | head -n 10
+  476  rm ros_workspace/model_ab.pth.int 
+  477  ls
+  478  cd ../
+  479  cd IGVCDev\
+  480  ls
+  481  du -h .
+  482  mkdir to_put_on_git
+  483  sudo mkdir to_put_on_git
+  484  sudo chown igvc to_put_on_git/
+  485  cd to_put_on_git/
+  486  cp -r ../Dev/ ./
+  487  ls ../
+  488  cp -r ../src/ ./
+  489  rm -r src/
+  490  ls ../src
+  491  du -h ../src
+  492  du -a ../src | sort -nr | head -n 10
+  493  ls
+  494  mkdir src
+  495  cd src
+  496  mkdir data_collection_ws
+  497  cp ../../src/data_collection_ws/src data_collection_ws/
+  498  cp -r ../../src/data_collection_ws/src data_collection_ws/
+  499  ls src
+  500  ls
+  501  ls data_collection_ws/src/
+  502  ls ../../src/data_collection_ws/
+  503  mv ../../src/data_collection_ws/data/ ../../data_dcws
+  504  sudo mv ../../src/data_collection_ws/data/ ../../data_dcws
+  505  ls ../../src/data_collection_ws/
+  506  ls
+  507  cp -r ../../src/data_collection_ws/ ./
+  508  ls
+  509  ls data_collection_ws/
+  510  ls
+  511  cd ../
+  512  cp -r ../src
+  513  cp -r ../src ./
+  514  ls src/
+  515  du -h .
+  516  du -a . | sort -nr | head -n 10
+  517  rm -r src/data_collection_ws/log/
+  518  du -a . | sort -nr | head -n 10
+  519  cd src/data_collection_ws/
+  520  ls
+  521  rm install -r
+  522  cd ,,.
+  523  cd ../gps_ws/
+  524  ls
+  525  rm build install -r
+  526  cd ../
+  527  ls
+  528  cd lidar_ws/
+  529  ls
+  530  cd ../
+  531  cd motorControl/
+  532  ls
+  533  ls rpi/
+  534  ls rpi/controller_ws/
+  535  cd rpi/controller_ws/
+  536  rm build/ install/ -r
+  537  cd ../
+  538  cd arduino/
+  539  ls
+  540  cd motorDrive/
+  541  ls
+  542  cd ../../
+  543  ls
+  544  cd ../
+  545  ls
+  546  ls tools/
+  547  ls autoNN/
+  548  ls autoNN/model
+  549  cd autoNN/
+  550  ls
+  551  mv ./model ~/littleblueduncan_model
+  552  mv ./model_orig ~/littleblueduncan_model_orig
+  553  mv ./model-orig ~/littleblueduncan_model_orig
+  554  ls
+  555  cd ../
+  556  ls
+  557  rm motorControl.tar 
+  558  ls
+  559  cd ../
+  560  ls
+  561  cd Dev/
+  562  ls
+  563  rm install/
+  564  rm install/ -r\
+  565  ls
+  566  cd ROS2/
+  567  ls
+  568  cd ../
+  569  ls
+  570  rm -r Dev/
+  571  ls
+  572  du -h .
+  573  ls
+  574  ls ../
+  575  cp ../README.md ./
+  576  ls
+  577  ls src/
+  578  cd ../
+  579  sudo bash'
+  580  sudo bash
+  581  source install/setup.bash 
+  582  ros2 launch xsens_mti_ros2_driver display.launch.py &
+  583  source install/setup.bash
+  584  ros2 launch ublox_gps ublox_gps_node_zedf9p-launch.py &
+  585  fg
+  586  ros2 launch ublox_gps ublox_gps_node_zedf9p-launch.py
+  587  source install/setup.bash 
+  588  [200~
+  589  ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 1 laser map &
+  590  ros2 launch sllidar_ros2 sllidar_s1_launch.py
+  591  bg
+  592  rviz2
+  593  ssh littleblue@192.168.215.201
+  594  lsb-release -a
+  595  cat /etc/os-release
+  596  uname -a
+  597  ros2 --version
+  598  printenv | grep -i ros
+  599  dpkg -l | grep ros
+  600  dpkg -l | grep nvidia
+  601  docker --version
+  602  dpkg -l | grep pylon
+  603  ls /opt/pylon
+  604  tree
+  605  ls
+  606  mkdir -p ~/basler_container
+  607  mkdir -p ~/basler_ws/src
+  608  cd ~/basler_container
+  609  ls ~/Downloads
+  610  cp ~/Downloads/pylon-8.0.1-linux-aarch64_debs.tar.gz ~/basler_container/
+  611  cp ~/Downloads/pylon-8.0.1_linux-aarch64_debs.tar.gz ~/basler_container/
+  612  cp ~/Downloads/pylon-8.1.0_linux-aarch64_debs.tar.gz ~/basler_container/
+  613  ls -l ~/Downloads
+  614  ls ~/basler_container
+  615  cat << 'EOF' > Dockerfile
+  616  From ros:jazzy
+  617  s
+  618  ls
+  619  nano Dockerfile
+  620  ls ~/basler_container
+  621  nano Dockerfile
+  622  nano entrypoint.sh
+  623  chmod +x entrypoint.sh
+  624  ls
+  625  docker build -t jazzy-basler .
+  626  ping -c 4 8.8.8.8
+  627  docker build -t jazzy-basler .
+  628  nano Dockerfile
+  629  docker build -t jazzy-basler .
+  630  nano Dockerfile
+  631  docker build -t jazzy-basler .
+  632  nano Dockerfile
+  633  docker build -t jazzy-basler .
+  634  nano Dockerfile
+  635  docker build -t jazzy-basler .
+  636  nano Dockerfile
+  637  docker build -t jazzy-basler .
+  638  lsusb
+  639  sudo reboot
+  640  lsusb
+  641  docker run -it --privilaged --net=host -v /dev:/dev jazzy-basler bash
+  642  docker run -it --privileged --net=host -v /dev:/dev jazzy-basler bash
+  643  ls
+  644  cd basler_container
+  645  docker run -it --privileged --net=host -v /dev:/dev jazzy-basler bash
+  646  nano entrypoint.sh
+  647  docker run -it --privileged --net=host -v /dev:/dev jazzy-basler bash
+  648  chmod +x entrypoint.sh
+  649  docker build -t jazzy-basler .
+  650  docker run -it --privileged --net=host -v /dev:/dev jazzy-basler bash
+  651  nano entrypoint.sh
+  652  docker run -it --privileged --net=host -v /dev:/dev jazzy-basler bash
+  653  docker build -t jazzy-basler .
+  654  docker run -it --privileged --net=host -v /dev:/dev jazzy-basler bash
+  655  docker run -it --privileged --net=host -v /dev:/dev \ -v /usr/lib/aarch64-linux-gnu:/usr/lib/aarch64-linux-gnu \ jazzy-basler bash
+  656  docker run -it --privileged --net=host -v /dev:/dev -v /usr/lib/aarch64-linux-gnu:/usr/lib/aarch64-linux-gnu jazzy-basler bash
+  657  docker run -it --privileged --net=host -v /dev:/dev jazzy-basler bash
+  658  file /opt/pylon/bin/PylonGigEConfigurator
+  659  ls -l /opt/pylon/bin
+  660  docker run -it --privileged --net=host -v /dev:/dev jazzy-basler bash
+  661  lsusb
+  662  clr
+  663  clear
+  664  lsusb
+  665  ls
+  666  basler_container
+  667  cd basler_container
+  668  ls
+  669  clear
+  670  lsusb
+  671  cd basler_container
+  672  clear
+  673  lsusb
+  674  ls
+  675  nano Dockerfile
+  676  nano entrypoint.sh
+  677  exit
+  678  ssh littleblue@192.168.215.201
+  679  sudo apt update
+  680  sudo apt upgrade
+  681  sudo dpkg --configure -a
+  682  sudo apt update
+  683  sudo apt upgrade
+  684  cd ~/littleblue/ros2_sensors/sllidar_ws/
+  685  source install/setup.bash
+  686  cd ../xsens_ws/
+  687  source insta/setup.bash
+  688  source install/setup.bash
+  689  cd ../../IGVCDev2/ros_workspace/
+  690  source install/setup.bash
+  691  source source install/setup.bash
+  692  source install/setup.bash
+  693  python3 ./run_jetson.py 
+  694  ps
+  695  pkill usb_cam_node_ex 
+  696  pkill xsens_mti_node 
+  697  ps
+  698  python3 ./run_jetson.py 
+  699  cd ~
+  700  ssh littleblue@192.168.215.201
+  701  strace help
+  702  sudo apt install strace
+  703  strace
+  704  strace ls
+  705  ls
+  706  cd ~
+  707  ls
+  708  cd littleblue
+  709  ls
+  710  ls massstore
+  711  ls masstore
+  712  cd IGVCDev1
+  713  cd IGVCDev2
+  714  ls
+  715  cd ros_workspace/
+  716  ls
+  717  cd src
+  718  ls
+  719  cd igvc_nn/
+  720  ls
+  721  cd igvc_nn/
+  722  ls
+  723  vim training.py 
+  724  for in `find . name *.py -print`
+  725  for in `find . -name *.py -print`
+  726  for i in `find . -name *.py -print`; do grep best.pt $i /dev/null && echo $i; done
+  727  ls
+  728  for i in `find . -name "*.py" -print`; do grep best.pt $i /dev/null && echo $i; done
+  729  cd v1
+  730  ls
+  731  vim NeuralNetwork.py 
+  732  for i in `find . -name "*.py" -print`; do grep -n best.pt $i /dev/null && echo $i; done
+  733  vim NeuralNetwork.py 
+  734  cd ~/littleblue/ros2_sensors/sllidar_ws
+  735  source install/setup.bash
+  736  cd ../xsens_ws/
+  737  source install/setup.bash
+  738  cd ../../IGVCDev2/ros_workspace/
+  739  source install/setup.bash
+  740  python3 ./run_jetson.py 
+  741  ps
+  742  pkill usb_cam_node_ex 
+  743  ps
+  744  pkill xsens_mti_node 
+  745  python3 ./run_jetson.py 
+  746  ps
+  747  pkill usb_cam_node_ex 
+  748  pkill xsens_mti_node 
+  749  pkill sllidar_node 
+  750  ps
+  751  ps -a
+  752  python3 ./run_jetson.py 
+  753  ps
+  754  vim run_jetson.py 
+  755  ps
+  756  pkill usb_cam_node_ex 
+  757  pkill xsens_mti_node 
+  758  pkill sllidar_node 
+  759  sudo python3 ./run_jetson.py 
+  760  python3 ./run_jetson.py 
+  761  ls /home/igvc/littleblue
+  762  xdg-open .
+  763  cd ~/littleblue/ros2_sensors/sllidar_ws/
+  764  source install/setup.bash
+  765  cd ../xsens_ws/
+  766  source install/setup.bash
+  767  cd ~/littleblue/IGVCDev2/ros_workspace
+  768  source install/setup.bash
+  769  ls
+  770  vim source_things.sh 
+  771  source ~/ros2_sensors_combined/install/setup.bash
+  772  python3 ./run_jetson.py 
+  773  ps
+  774  pkill usb_cam_node_ex 
+  775  ps
+  776  pkill xsens_mti_node 
+  777  pkill sllidar_node 
+  778  ps
+  779  python3 ./run_jetson.py 
+  780  ps
+  781  pkill usb
+  782  pkill xsense
+  783  pkill xsens
+  784  ps
+  785  colcon build
+  786  source install/setup/bash
+  787  python3 ./run_jetson.py 
+  788  cd ~/littleblue/IGVCDev2
+  789  ls
+  790  cd ..
+  791  ls
+  792  cd ros2_sensors
+  793  ls
+  794  cd ..
+  795  find . -name "install/setup.bash"
+  796  find . -wholename "install/setup.bash"
+  797  find . -name "setup.bash"
+  798  cd ~/littleblue/IGVCDev2/ros_workspace/
+  799  find . -name "setup.bash"
+  800  source install/setup/bash
+  801  source install/setup.bash
+  802  ls
+  803  ps
+  804  pkill usb_cam_node_ex 
+  805  pkill xsens_mti_node 
+  806  pkill sllidar_node 
+  807  ls
+  808  ps
+  809  python3 ./run_jetson.py 
+  810  ps
+  811  lsblk
+  812  mount.exfat-fuse /dev/sda1 /media/SanDisk/
+  813  sudo mount.exfat-fuse /dev/sda1 /media/SanDisk/
+  814  ls /media/SanDisk/
+  815  ls
+  816  cp -a /media/SanDisk/little_blue_v2.pth .
+  817  ls
+  818  ps
+  819  pkill usb_cam_node_ex 
+  820  pkill xsens_mti_node 
+  821  pkill sllidar_node 
+  822  pkill DataCollector 
+  823  ls
+  824  ps
+  825  source install/setup.bash
+  826  python3 ./run_jetson.py 
+  827  ps
+  828  pkill usb_cam_node_ex 
+  829  pkill xsens_mti_node 
+  830  pkill DataCollector 
+  831  pkill sllidar_node 
+  832  ps
+  833  python3 ./run_jetson.py 
+  834  cd /home/igvc/littleblue/ros2_sensors/xsens_ws/install/xsens_mti_ros2_driver/nautiles
+  835  cd /home/igvc/littleblue/ros2_sensors/xsens_ws/install/xsens_mti_ros2_driver/nautiles .
+  836  xgd/open
+  837  xdg-open
+  838  xdg-open .
+  839  ssh littleblue@192.168.215.201
+  840  ps
+  841  ls
+  842  cd /ssd/xavier_transfer/
+  843  ls
+  844  cd littleblue/
+  845  ls
+  846  cd IGVCDev2/ros_workspace/
+  847  ls
+  848  cd ~/littleblue
+  849  ls
+  850  find ., -name "model_ab.pth"
+  851  find . -name "model_ab.pth"
+  852  cp -a igvcdev2_models/model_ab.pth IGVCDev2/ros_workspace/
+  853  ls
+  854  cd ~/littleblue/ros2_sensors/sllidar_ws
+  855  source install/setup.bash
+  856  cd ../xsens_ws/
+  857  source install/setup.bash
+  858  cd ../../IGVCDev2/ros_workspace/
+  859  source install/setup.bash
+  860  python3 ./run_jetson.py 
+  861  ps
+  862  ls
+  863  source ~/ros2_sensors_combined/install/setup.bash
+  864  ps
+  865  pkill usb_cam_node_ex 
+  866  pkill xsens_mti_node 
+  867  pkill DataCollector 
+  868  pkill sllidar_node 
+  869  ps
+  870  python3 ./run_jetson.py 
+  871  eject /dev/sda
+  872  sudo eject /dev/sda
+  873  ls
+  874  ls install
+  875  cd ..
+  876  [s
+  877  ps
+  878  pkill usb_cam_node_ex 
+  879  pkill xsens_mti_node 
+  880  pkill sllidar_node 
+  881  pkill DataCollector 
+  882  ls
+  883  ps
+  884  ls
+  885  cd ros_workspace/
+  886  ls
+  887  rm -rf build/
+  888  colcon build
+  889  source install/setup.bash
+  890  ls
+  891  python3 ./run_jetson.py 
+  892  ps
+  893  pkill usb_cam_node_ex xsens_mti_node sllidar_node DataCollector 
+  894  pkill usb_cam_node_ex 
+  895  pkill xsens_mti_node 
+  896  pkill sllidar_node 
+  897  pkill DataCollector 
+  898  ls
+  899  ps
+  900  python3 ./run_jetson.py 
+  901  ps
+  902  ls
+  903  sudo mount.exfat-fuse /dev/sda1 /media/SanDisk/
+  904  cp -a ~/littleblue/IGVCDev2/ros_workspace/model_ab.pth /media/SanDisk/
+  905  sudo cp -a ~/littleblue/IGVCDev2/ros_workspace/model_ab.pth /media/SanDisk/
+  906  sudo cp ~/littleblue/IGVCDev2/ros_workspace/model_ab.pth /media/SanDisk/
+  907  ls /media/SanDisk/
+  908  eject /media/SanDisk/
+  909  sudo eject /media/SanDisk/
+  910  ssh littleblue@192.168.215.201
+  911  cd ~/littleblue/ros2_sensors/sllidar_ws/
+  912  source install/setup.bash
+  913  cd ../xsens_ws/
+  914  source install/setup.bash
+  915  cd ../../IGVCDev2/ros_workspace/
+  916  source install/setup.bash
+  917  python3 ./run_jetson.py 
+  918  ps
+  919  vim /etc/udev/rules.d/ublox.rules 
+  920  cd /etc/udev/rules.d
+  921  ls
+  922  cd ..
+  923  cd ,,
+  924  cd ..
+  925  ls
+  926  cd ~
+  927  ls
+  928  cd basler_container
+  929  ls
+  930  nano Dockerfile
+  931  vim Dockerfile 
+  932  ls
+  933  vim entrypoint.sh 
+  934  ls ..
+  935  ls ../basler_ws/
+  936  cd ../basler_ws
+  937  ls
+  938  cd src
+  939  ls
+  940  cd ..
+  941  ls
+  942  cd install
+  943  ls
+  944  cd ..
+  945  ls
+  946  cd ..
+  947  ls
+  948  cd littleblue
+  949  ls
+  950  cd ros2_sensors
+  951  ls
+  952  ln -s ~/basler_ws/ ./basler_ws
+  953  ls
+  954  cd basler_ws
+  955  source install/setup.bash
+  956  cd ../..
+  957  cd IGVCDev2
+  958  ls
+  959  cd ros_workspace/
+  960  ls
+  961  vim run_jetson.py 
+  962  cd ~/basler_container/
+  963  ls
+  964  vim Dockerfile 
+  965  vim entrypoint.sh 
+  966  vim Dockerfile 
+  967  docker run basler_container
+  968  docker run jazzy-basler:latest 
+  969  docker ps
+  970  docerk ps -a
+  971  docker ps -a
+  972  docker help
+  973  \
+  974  rvis
+  975  rviz
+  976  cd ~/littleblue
+  977  ls
+  978  vim Step_3.txt 
+  979  rviz
+  980  cd IGVCDev2
+  981  ls
+  982  cd ros_workspace/
+  983  ls
+  984  python3 run_jetson.py 
+  985  cd /devl
+  986  cd /dev
+  987  ls
+  988  ls | grep video
+  989  ls | grep 
+  990  ls | grep "*video*"
+  991  ls | grep "video"
+  992  cd ublox
+  993  ls
+  994  cd ublox
+  995  whatis ublox
+  996  lsusb
+  997  ls
+  998  ls | grep "usb"
+  999  ls | grep "USB"
+ 1000  what is ttyUSB0
+ 1001  whatis ttyUSB0
+ 1002  sudo whatis ttyUSB0
+ 1003  ls *USB
+ 1004  vim ttyUSB0
+ 1005  cd ttyUSB0
+ 1006  vim ttyUSB1
+ 1007  vim ublox
+ 1008  what is ublox
+ 1009  whatis xsens
+ 1010  vim ttyACM0
+ 1011  docker ps
+ 1012  docker ps -a
+ 1013  docker exec -it jazzy-basler bash
+ 1014  docker exec -it jazzy-basler:latest  bash
+ 1015  docker run jazzy-basler:latest 
+ 1016  docker exec -it jazzy-basler:latest  bash
+ 1017  docker ps
+ 1018  docker ps -a
+ 1019  cd ~/basler_container/
+ 1020  docker build .
+ 1021  docker run jazzy-basler:latest 
+ 1022  docker ps\
+ 1023  docker ps
+ 1024  ls
+ 1025  ls -a
+ 1026  vim entrypoint.sh 
+ 1027  docker build .
+ 1028  docker --debug
+ 1029  docker build . --debug
+ 1030  vim Dockerfile 
+ 1031  sudo apt update
+ 1032  sudo apt upgrade
+ 1033  ssh littleblue@192.168.215.201
+ 1034  sudo shutdown now
+ 1035  cd ~/littleblue/ros2_sensors/sllidar_ws
+ 1036  source install/setup.bash 
+ 1037  cd ../xsens_ws/
+ 1038  source install/setup.bash 
+ 1039  cd ../../IGVCDev2/ros_workspace/
+ 1040  source install/setup.bash 
+ 1041  python3 ./run_jetson.py 
+ 1042  ps
+ 1043  python3 ./run_jetson.py 
+ 1044  ps
+ 1045  ssh littleblue@192.168.215.201
+ 1046  cd ~/littleblue/ros2_sensors/sllidar_ws/
+ 1047  source install/setup.bash
+ 1048  cd ../xsens_ws/
+ 1049  source install/setup.bash
+ 1050  cd ../../IGVCDev2/ros_workspace/
+ 1051  source install/setup.bash
+ 1052  python3 ./run_jetson.py 
+ 1053  pkill -9
+ 1054  pkill -list
+ 1055  ps aux
+ 1056  pkill python3 
+ 1057  sudo pkill python3 
+ 1058  reboot
+ 1059  ssh littleblue@192.168.215.201
+ 1060  ip route
+ 1061  ssh littleblue@192.168.215.201
+ 1062  reboot
+ 1063  ssh littleblue@192.168.215.201
+ 1064  reboot
+ 1065  firefox
+ 1066  sudo bash
+ 1067  df
+ 1068  cd /ssd
+ 1069  cd
+ 1070  cd masstore
+ 1071  ls
+ 1072  ls -l new-docker
+ 1073  cd new-docker
+ 1074  cat I*
+ 1075  cat IN* | more
+ 1076  ks .iot
+ 1077  ls /opt
+ 1078  ls containerd
+ 1079  ls -l
+ 1080  cat basler-docker
+ 1081  ls /opt/ros
+ 1082  ls
+ 1083  cd ..
+ 1084  ls
+ 1085  firefox
+ 1086  cd
+ 1087  ls
+ 1088  cdi docker
+ 1089  cd masstore
+ 1090  cd docker
+ 1091  ls
+ 1092  cd new-docker
+ 1093  ls
+ 1094  cat basler-docker
+ 1095  vi basler-docker
+ 1096  vi *
+ 1097  vi I*
+ 1098  cd
+ 1099  cd Downloads
+ 1100  ls
+ 1101  ls -lt | head
+ 1102  sudo bash
+ 1103  firefox
+ 1104  ls -l snap
+ 1105  ls -l snap/firefox
+ 1106  sudo bash
+ 1107  cd
+ 1108  cd masstore
+ 1109  ls
+ 1110  cd new-docker
+ 1111  ls
+ 1112  vi basler-docker
+ 1113  ls /opt/pylon/bin
+ 1114  ls /opt/pylon/bin/pylon-config
+ 1115  /opt/pylon/bin/pylon-config
+ 1116  /opt/pylon/bin/pylon-config pylonc
+ 1117  ls /opt/pylon/bin
+ 1118  /opt/pylon/bin/pylonviewer
+ 1119  exit
+ 1120  cd /opt
+ 1121  cd pylon
+ 1122  ls
+ 1123  find . -name *.sh -print
+ 1124  cd share
+ 1125  cd pylon
+ 1126  ls
+ 1127  sudo bash
+ 1128  cd
+ 1129  cd masstore
+ 1130  ls
+ 1131  cd basler-02*
+ 1132  ls
+ 1133  cd
+ 1134  ls bas*
+ 1135  ls bas*.gz
+ 1136  ls bas*.xz
+ 1137  pylonviewer
+ 1138  rm core
+ 1139  ls
+ 1140  ls core
+ 1141  cd masstore
+ 1142  ls
+ 1143  cd basler-0*
+ 1144  ls
+ 1145  ./run-ros-jazzy-docker-r3.sh
+ 1146  pylonviewer
+ 1147  ./run-ros-jazzy-docker-r3.sh
+ 1148  exit
+ 1149  w
+ 1150  top
+ 1151  ifconfig  | more
+ 1152  xhost +
+ 1153  ifconfig
+ 1154  exit
+ 1155  xhost +
+ 1156  ifconfig 
+ 1157  jobs
+ 1158  w
+ 1159  top
+ 1160  pylonviewer
+ 1161  bg
+ 1162  ls
+ 1163  ls -lt | head
+ 1164  file *.pfs
+ 1165  vi *.pfs
+ 1166  date
+ 1167  sudo bash
+ 1168  ls *.pfs
+ 1169  ls -l *.pfs
+ 1170  cd masstore
+ 1171  ls
+ 1172  cd basler-022626
+ 1173  ls
+ 1174  ./run-ros-jazzy-docker-r3.sh
+ 1175  source /opt/ros/iron/setup.bash
+ 1176  ros2 topic hz /first_cam_id/first_cam_node/image_raw
+ 1177  cd masstore
+ 1178  ls
+ 1179  cd basler-02*
+ 1180  ls
+ 1181  cd pieces-r4
+ 1182  ls
+ 1183  ls -l
+ 1184  exit
+ 1185  ls
+ 1186  ls -lt | head
+ 1187  ls -lt | more
+ 1188  ls -l *.tiff
+ 1189  df
+ 1190  ls
+ 1191  du -s basler*
+ 1192  ls
+ 1193  cd masstore
+ 1194  ls
+ 1195  cd basler-02*
+ 1196  ls
+ 1197  ls /media/igvc/U*
+ 1198  ls /media
+ 1199  ls /media/igvc
+ 1200  ls /media/belfore
+ 1201  sudo bash
+ 1202  docker ps
+ 1203  docker image list
+ 1204  ./run-ros-jazzy-docker-r3.sh
+ 1205  lsusb
+ 1206  ./run-ros-jazzy-docker-r4.sh
+ 1207  ls
+ 1208  ./run-ros-jazzy-docker-r4.sh
+ 1209  ls -lt
+ 1210  w
+ 1211  top
+ 1212  ls -lt
+ 1213  w
+ 1214  sudo bash
+ 1215  docker volume list
+ 1216  cd
+ 1217  cd masstore
+ 1218  ls
+ 1219  cd docker-base
+ 1220  ls
+ 1221  cd docker
+ 1222  ls
+ 1223  sudo bash
+ 1224  docker volume create littleblue-24.04
+ 1225  docker volume list
+ 1226  w
+ 1227  cd ..
+ 1228  ls
+ 1229  cd basler-022626
+ 1230  ls
+ 1231  grpe volume *
+ 1232  grep volume *
+ 1233  ls ~/*.sh
+ 1234  locate ubuntu_iron
+ 1235  locate run ros-iron
+ 1236  vi /ssd/igvc/competition-docker/run-ros-iron-docker-r11.sh
+ 1237  cat /ssd/igvc/competition-docker/run-ros-iron-docker-r11.sh
+ 1238  vi *r4.sh
+ 1239  ./run-ros-jazzy-docker-r4.sh
+ 1240  vi *r4.sh
+ 1241  ./run-ros-jazzy-docker-r4.sh
+ 1242  df
+ 1243  ls -l /media/igvc/USB321FD
+ 1244  ls -l docker-030626
+ 1245  ls -l /media/igvc/USB321FD/docker-030626
+ 1246  ls -l /media/igvc/USB321FD/docker-030626/pieces-r4
+ 1247  ls -l /media/igvc/USB321FD/docker-030626
+ 1248  ls -l /media/igvc/USB321FD/docker-030626/pieces-r4
+ 1249  cd ..
+ 1250  ls
+ 1251  cd ~/masstore/basler-022626
+ 1252  ls
+ 1253  ls pieces-volume
+ 1254  ls -l /media/igvc/USB321FD/docker-030626/pieces-volume
+ 1255  ls
+ 1256  cp -a *.sh /media/igvc/USB321FD/docker-030626/
+ 1257  vi save-image.sh
+ 1258  vi commit-image.sh
+ 1259  cp -a *.sh /media/igvc/USB321FD/docker-030626/
+ 1260  ls /media/igvc/USB321FD/docker-030626/
+ 1261  w
+ 1262  ps
+ 1263  ps -a
+ 1264  kill -9 17339
+ 1265  sudo bash
+ 1266  cp -a *.sh /media/igvc/USB321FD/docker-030626/
+ 1267  ls -l /media/igvc/USB321FD/docker-030626/pieces-r4
+ 1268  w
+ 1269  cd 
+ 1270  cd masstore
+ 1271  ls
+ 1272  cd basler-022*
+ 1273  ls
+ 1274  ls -l
+ 1275  ls -l
+ 1276  mkdir pieces-r4
+ 1277  cd pieces-r4
+ 1278  ls
+ 1279  split --bytes=2G ../ubuntu_ros2_jazzy-r4.tar ubuntu_ros2_jazzy-r4.tar
+ 1280  ls
+ 1281  du
+ 1282  ls
+ 1283  rm *
+ 1284  cd ..
+ 1285  cd pie*
+ 1286  split --bytes=2G ../ubuntu_ros2_jazzy-r4.tar ubuntu_ros2_jazzy-r4.tar
+ 1287  cd ..
+ 1288  cd pieces-volume
+ 1289  ls
+ 1290  ls -la
+ 1291  ls
+ 1292  ls..
+ 1293  ls ../*.tar
+ 1294  split --bytes=2G ../littleblue-24.04-volume.tar littleblue-24.04-volume.tar
+ 1295  ls
+ 1296  cd ..
+ 1297  ls
+ 1298  ls /media/igvc
+ 1299  ls /media/igvc/U*
+ 1300  mkdir /media/igvc/U*/docker-030626
+ 1301  mkdir /media/igvc/USB321FD/docker-030626
+ 1302  cp -a pieces* /media/igvc/USB321FD/docker-030626/
+ 1303  ls
+ 1304  vi load-image.sh
+ 1305  cp -a pieces* /media/igvc/USB321FD/docker-030626/
+ 1306  ls -l /media/igvc/USB321FD/docker-030626/pieces-r4
+ 1307  ls pieces-r4
+ 1308  cp -a pieces-r4/ubuntu_ros2_jazzy-r4.taraa /media/igvc/USB321FD/docker-030626/pieces-r4/
+ 1309  ls -lt /media/igvc/USB321FD/docker-030626/pieces-r4/
+ 1310  sync
+ 1311  ifconfig
+ 1312  ls
+ 1313  cd masstore
+ 1314  ls
+ 1315  cd basler-02*
+ 1316  ls
+ 1317  vi recon*.sh
+ 1318  docker ps
+ 1319  docker commit 2b3cdab21b3e ubuntu_ros2_jazzy:r4
+ 1320  docker image list
+ 1321  ls
+ 1322  cp -a run-ros-jazzy-docker-r3.sh run-ros-jazzy-docker-r4.sh
+ 1323  vi run-ros-jazzy-docker-r4.sh
+ 1324  xhost +
+ 1325  rviz2
+ 1326  ls /opt
+ 1327  ls /opt/ros
+ 1328  ls /opt/ros/iron
+ 1329  source /opt/ros/iron/setup.bash
+ 1330  date -1772815221.587071582
+ 1331  date -d 1772815221.587071582
+ 1332  date +s1772815221.587071582
+ 1333  date +%s1772815221.587071582
+ 1334  date -d @$(date +%s) +"%Y-%m-%d %H:%M:%S"
+ 1335  date -d @1772815221.587071582 +"%Y-%m-%d %H:%M:%S"
+ 1336  ros2 topic list
+ 1337  ros2 topic hz /second_cam_id/second_cam_node/image_raw
+ 1338  ros2 topic hz /first_cam_id/first_cam_node/image_raw
+ 1339  rviz2
+ 1340  sudo bash
+ 1341  ls
+ 1342  cat run-ros-jazzy-docker-r4.sh
+ 1343  vi /var/log/kern.log
+ 1344  sudo bash
+ 1345  vi run-ros-jazzy-docker-r4.sh
+ 1346  vi ~/.bashrc
+ 1347  source ~/.bashrc
+ 1348  ros topic list
+ 1349  vi ~/.bashrc
+ 1350  ros2 topic list
+ 1351  ros2 node list
+ 1352  rost topic echo /second_cam_id/second_cam_node/image_raw
+ 1353  ros2 topic echo /second_cam_id/second_cam_node/image_raw
+ 1354  ros2 topic echo /sefirst_cam_id/first_cam_node/image_raw
+ 1355  ros2 topic list
+ 1356  ros2 topic echo /first_cam_id/first_cam_node/image_raw
+ 1357  ros2 
+ 1358  rviz2
+ 1359  bg
+ 1360  date -d @1772816647.328270497 +"%Y-%m-%d %H:%M:%S"
+ 1361  date
+ 1362  ros2 topic hz /first_cam_id/first_cam_node/image_raw
+ 1363  date -d @1772816647.328270497 +"%Y-%m-%d %H:%M:%S"
+ 1364  date
+ 1365  date -d @1772816647.328270497 +"%Y-%m-%d %H:%M:%S"
+ 1366  w
+ 1367  date
+ 1368  ros2 topic hz /second_cam_id/second_cam_node/image_raw
+ 1369  vi *.sh
+ 1370  cat ~/.bashrc
+ 1371  vi create-volume.sh
+ 1372  sudo bash
+ 1373  ls
+ 1374  ls -lt
+ 1375  ls pieces-r4
+ 1376  ls -l
+ 1377  mkdir pieces-volume
+ 1378  cd pieces-volume
+ 1379  w
+ 1380  top
+ 1381  lsusb
+ 1382  date
+ 1383  sudo bash
+ 1384  vi .bashrc
+ 1385  xhost +
+ 1386  w
+ 1387  top
+ 1388  w
+ 1389  top
+ 1390  cat /sys/module/usbcore/parameters/usbfs_memory_mb
+ 1391  ls
+ 1392  cd masstore
+ 1393  ls
+ 1394  ls -lt
+ 1395  cd basler-022626
+ 1396  ls -lt
+ 1397  ls *.sh
+ 1398  cat run-ros-jazzy-docker-r4.sh
+ 1399  ./run-ros-jazzy-docker-r4.sh
+ 1400  lsusb
+ 1401  date -d @1773091433.519744047
+ 1402  date
+ 1403  date %HH:MM:SS
+ 1404  date %hh:%mm:%ss
+ 1405  date +%H:%M:%S"
+ 1406  date +%H:%M:%S
+ 1407  date -s 
+ 1408  date -S
+ 1409  date --seconds
+ 1410  date +%s
+ 1411  date -d @1773091433.519744047
+ 1412  octave -q 
+ 1413  xcalc
+ 1414  dc
+ 1415  dc < `date +%s` 1773091433 - p
+ 1416  dc < `date +%s` `echo 1773091433 - p`
+ 1417  dc << `date +%s` `echo 1773091433 - p`
+ 1418  date +%s
+ 1419  while true; do Now=`date +%s`; Diff=`expr $Now - 1773091433`; echo $Diff; sleep 60; done
+ 1420  vi duration.sh 
+ 1421  chmod 755 duration.sh
+ 1422  ./duration.sh
+ 1423  vi duration.sh 
+ 1424  cat duration.sh 
+ 1425  echo $Now
+ 1426  echo $Diff
+ 1427  echo $Hours
+ 1428  echo $NowHours= `expr $Diff / 3600`
+ 1429  echo $NowHours=`expr $Diff / 3600`
+ 1430  Hours=`expr $Diff / 3600`
+ 1431  echo $Hours
+ 1432  vi duration.sh
+ 1433  cat duration.sh
+ 1434  echo $Hours
+ 1435  TmpSec1= `expr $Diff - ( $Hours \* 3600 )`
+ 1436  TmpSec1= `expr $Diff - ( $Hours * 3600 )`
+ 1437  TmpSec1= `expr $Diff - \( $Hours * 3600 \)`
+ 1438  TmpSec1= `expr $Diff -  $Hours * 3600 `
+ 1439  TmpSec1= `expr $Diff -  $Hours \* 3600 `
+ 1440  TmpSec1=`expr $Diff -  $Hours \* 3600 `
+ 1441  echo TmpSec1
+ 1442  echo $TmpSec1
+ 1443  TmpSec1=`expr $Diff - \( $Hours \* 3600 \)`
+ 1444  echo TmpSec1
+ 1445  echo $TmpSec1
+ 1446  vi duration.sh
+ 1447  ./duration.sh
+ 1448  vi duration.sh
+ 1449  ./duration.sh
+ 1450  vi duration.sh
+ 1451  ./duration.sh
+ 1452  vi duration.sh
+ 1453  ./duration.sh
+ 1454  vi duration.sh
+ 1455  ./duration.sh
+ 1456  vi duration.sh
+ 1457  cat duration.sh
+ 1458  echo $Seconds
+ 1459  echo $Minutes
+ 1460  echo $Hours
+ 1461  echo $Diff
+ 1462  echo TmpSec1
+ 1463  echo $TmpSec1
+ 1464  echo $TmpSec2
+ 1465  echo $TmpSec1
+ 1466  vi duration.sh
+ 1467  ./duration.sh
+ 1468  vi duration.sh
+ 1469  ./duration.sh
+ 1470  sudo bash
+ 1471  cd masstore
+ 1472  ls
+ 1473  cd basler-022626
+ 1474  ls
+ 1475  ./run-ros-jazzy-docker-r4.sh
+ 1476  lsblk
+ 1477  l;spci
+ 1478  reboot
+ 1479  ls *.sh
+ 1480  locate iron
+ 1481  locate iron | grep sh$
+ 1482  locate iron | grep sh | grep igvc
+ 1483  locate _iron | grep sh | grep igvc
+ 1484  cd ssd
+ 1485  cd
+ 1486  cd masstore
+ 1487  ls
+ 1488  ls software
+ 1489  sudo bash
+ 1490  cd docker-04*
+ 1491  ls
+ 1492  cd home*
+ 1493  ls
+ 1494  ls -lt
+ 1495  sudo bash
+ 1496  ls
+ 1497  cd ..
+ 1498  ls
+ 1499  ls *.sh
+ 1500  chmod 755 *.sh
+ 1501  ./run-ros-iron-docker-r11.sh
+ 1502  vi cast run-ros-jazzy-docker-r6.sh
+ 1503  cat run-ros-jazzy-docker-r6.sh
+ 1504  vi ./run-ros-iron-docker-r11.sh
+ 1505  ./run-ros-iron-docker-r11.sh
+ 1506  df
+ 1507  exit
+ 1508  sudo bash
+ 1509  cd masstore
+ 1510  ls
+ 1511  cd docker-0*
+ 1512  ls
+ 1513  ls -lt
+ 1514  ls litt*
+ 1515  docker images
+ 1516  ls ../basler-03*
+ 1517  ls ..
+ 1518  ls ../basler-022626
+ 1519  cat ../basler-022626/load-image.sh
+ 1520  docker load --help
+ 1521  ls *.tar
+ 1522  docker load image --input ubuntu_ros2_jazzy-r6.tar
+ 1523  docker load  --input ubuntu_ros2_jazzy-r6.tar
+ 1524  ls *.sh
+ 1525  ls
+ 1526  ls ../basler-02*
+ 1527  ls ../basler-02*/*.sh
+ 1528  cp -a  ../basler-02*/*.sh .
+ 1529  cp -a ls
+ 1530  lks
+ 1531  ls
+ 1532  cp -a run-ros-jazzy-docker-r4.sh run-ros-jazzy-docker-r6.sh
+ 1533  ls -l
+ 1534  ./run-ros-jazzy-docker-r6.sh
+ 1535  exit
+ 1536  df
+ 1537  cd masstore
+ 1538  ls 
+ 1539  mkdir docker-041626
+ 1540  cd docker*
+ 1541  ls
+ 1542  cd docker-0*
+ 1543  ls
+ 1544  ls jazzy*&
+ 1545  cat jazzy*/* > ubuntu_ros2_jazzy-r6.tar
+ 1546  ls -lR
+ 1547  ls
+ 1548  ls -l
+ 1549  touch *.tar
+ 1550  cat little*/* > littleblue-24.04.tar
+ 1551  ls /ssd
+ 1552  df
+ 1553  sudo bash
+ 1554  xhost +
+ 1555  ls
+ 1556  cat ubuntu_ros2_iron-r11-pieces/* > ubuntu_ros2_iron-r11.tar
+ 1557  ls
+ 1558  cat load-image.sh
+ 1559  docker load --input ubuntu_ros2_iron-r11.tar
+ 1560  docker images
+ 1561  sudo bash
+ 1562  xit
+ 1563  exit
+ 1564  cd masstore
+ 1565  kls
+ 1566  ;s
+ 1567  ls
+ 1568  ls -lt
+ 1569  cd docker docker-041626
+ 1570  cd  docker-041626
+ 1571  ls -lt
+ 1572  ./run-ros-iron-docker-r11.sh
+ 1573  exit
+ 1574  lsusb
+ 1575  ls -l /dev/ttyU*
+ 1576  cat /dev/ttyUSB0
+ 1577  cat /dev/ttyUSB1
+ 1578  ls locate udev *
+ 1579  ls locate udev igvc
+ 1580  locate udev igvc
+ 1581  cat /home/igvc/ros2_sensors_combined/src/sllidar_ws/src/sllidar_ros2/scripts/create_udev_rules.sh
+ 1582  locate rplidar.rules
+ 1583  cat /etc/udev/rules.d/rplidar.rules
+ 1584  ls -l /dev/rplidar
+ 1585  exit
+ 1586  cd masstore
+ 1587  ls
+ 1588  cd docker-041626
+ 1589  ls *.sh
+ 1590  ./run-ros-jazzy-docker-r6.sh
+ 1591  exit
+ 1592  lsusb
+ 1593  ls -l /dev/rp*
+ 1594  sudo bash
+ 1595  ls /dev/
+ 1596  ls /dev/ubl*&
+ 1597  ls /dev/rp*
+ 1598  ls -l /dev/rplidar
+ 1599  ls
+ 1600  pwd
+ 1601  ls -lt | head
+ 1602  mkdir tiff-images
+ 1603  mv *.diff tiff-images/
+ 1604  mv *.tiff tiff-images/
+ 1605  ls
+ 1606  ls -l
+ 1607  ls software
+ 1608  mkdir software
+ 1609  mv *.whl software/
+ 1610  ls
+ 1611  lsusb
+ 1612  ls
+ 1613  ls *.sh
+ 1614  cat duration.sh
+ 1615  ls
+ 1616  ls masstore/
+ 1617  ls masstore/docker-041626
+ 1618  mkdir startupScripts
+ 1619  cp -a masstore/docker-041626/run-ros-jazzy-docker-r6.sh startupScripts
+ 1620  cp -a masstore/docker-041626/run-ros-iron-docker-r11.sh startupScripts
+ 1621  ls udev
+ 1622  ls
+ 1623  ls -t
+ 1624  ls /media/igvc
+ 1625  ls /media/igvc/USB321FD'
+ 1626  ls /media/igvc/USB321FD
+ 1627  ls /media/igvc/USB321FD/docker-041626
+ 1628  cp -a /media/igvc/USB321FD/udev .
+ 1629  ls
+ 1630  cd startupScripts
+ 1631  ./run-ros-iron-docker-r11.sh
+ 1632  cd startupScripts
+ 1633  ssh littleblue@192.168.215.201
+ 1634  exit
+ 1635  df
+ 1636  cd /media/igvc/USB321FD
+ 1637  ls
+ 1638  bash ./startup_script.sh
+ 1639  ping 192.168.215.201
+ 1640  bash ./startup_script.sh
+ 1641  bg
+ 1642  cat start*
+ 1643  ssh littleblue@192.168.215.201 
+ 1644  exit
+ 1645  cd /dev/rp*
+ 1646  ls /dev/ttyU*
+ 1647  locate rplidar
+ 1648  locate rplidar | grep etc
+ 1649  cat /etc/udev/rules.d/rplidar.rules
+ 1650  lsusb
+ 1651  ps
+ 1652  ros2 node list
+ 1653  source /opt/ros/iron/setup.bash
+ 1654  ros2 node list
+ 1655  exit
+ 1656  lsusb
+ 1657  cd ros2_sens*
+ 1658  ls
+ 1659  rm -rf build install
+ 1660  rm -rf log
+ 1661  cd src
+ 1662  ls
+ 1663  mv ublox_ws ..
+ 1664  mv xsens_ws ..
+ 1665  ls
+ 1666  cd ..
+ 1667  ls 
+ 1668  mv ublox_ws src
+ 1669  mv xsens_ws src
+ 1670  cd src
+ 1671  ls
+ 1672  cd sl*
+ 1673  ls
+ 1674  colcon build
+ 1675  sudo bash
+ 1676  source /opt/ros/iron/setup.bash
+ 1677  colcon build
+ 1678  ls
+ 1679  source /opt/ros/iron/setup.bash
+ 1680  ./RequiredTransformForRPLidar.sh
+ 1681  bash ./RequiredTransformForRPLidar.sh
+ 1682  bg
+ 1683  ls
+ 1684  cd src
+ 1685  ls
+ 1686  cd *
+ 1687  ls
+ 1688  cd launch
+ 1689  ls
+ 1690  cd ..
+ 1691  ls
+ 1692  source install/setup.bash
+ 1693  ros2 launch sllidar_ros2 sllidar_s1_launch.py
+ 1694  ros2 node list
+ 1695  ps
+ 1696  ps -a
+ 1697  ps -ax
+ 1698  jobs
+ 1699  fg
+ 1700  jobs
+ 1701  ps -ax
+ 1702  exit
+ 1703  ros2 topic list
+ 1704  source /opt/ros/iron/setup.bash
+ 1705  ros2 topic list
+ 1706  cd
+ 1707  vi .bashrc
+ 1708  ros2 topic list
+ 1709  ssh littleblue@192.168.215.201
+ 1710  ros2 topic list
+ 1711  ifconfig
+ 1712  ros2 node list
+ 1713  ls
+ 1714  jobs
+ 1715  ps -e | grep second
+ 1716  ps -e | grep node
+ 1717  ls
+ 1718  ls -tl | head
+ 1719  ssh littleblue@192.168.215.201
+ 1720  ros2 node list
+ 1721  ros2 topic listr
+ 1722  ros2 topic list
+ 1723  export ROS_DOMAIN_ID=0
+ 1724  ros2 topic list
+ 1725  locate broadcast | grep iron
+ 1726  exit
+ 1727  vi .bashrc
+ 1728  grep FAST .bashrc
+ 1729  cd start*
+ 1730  ls
+ 1731  ./run-ros-jazzy-docker-r6.sh
+ 1732  exit
+ 1733  sudo bash
+ 1734  cd startup*
+ 1735  ls
+ 1736  ./run-ros-iron-docker-r11.sh
+ 1737  exit
+ 1738  ls /opt/ros
+ 1739  ps -ax
+ 1740  exit
+ 1741  s
+ 1742  cd startup*
+ 1743  ls
+ 1744  ./run-ros-jazzy-docker-r6.sh
+ 1745  exit
+ 1746  cd ros2*
+ 1747  ls
+ 1748  cd
+ 1749  cd ros2*
+ 1750  cd src
+ 1751  ls
+ 1752  cd slidar_ws
+ 1753  ls
+ 1754  cd sl*
+ 1755  ls
+ 1756  source /opt/ros/iron/setup.bash
+ 1757  ros2 launch sllidar_ros2 sllidar_s1_launch.py
+ 1758  source install/setup.bash
+ 1759  ros2 launch sllidar_ros2 sllidar_s1_launch.py
+ 1760  exit
+ 1761  cd start*
+ 1762  ls
+ 1763  ./run-ros-iron-docker-r11.sh
+ 1764  exit
+ 1765  ros2 topic list
+ 1766  source /opt/ros/iron/setup.bash
+ 1767  ros2 topic list
+ 1768  ls
+ 1769  cd start*
+ 1770  ls
+ 1771  xterm &
+ 1772  ssh littleblue@192.168.215.201
+ 1773  ros2 topic echo joy
+ 1774  ssh littleblue@192.168.215.201
+ 1775  exit
+ 1776  ssh littleblue@192.168.215.201
+ 1777  git
+ 1778  https://github.com/Andrew-Duguay/IGVC.git
+ 1779  git clone https://github.com/Andrew-Duguay/IGVC.git
+ 1780  ls
+ 1781  ls -t
+ 1782  cd IGVC
+ 1783  ls
+ 1784  git checkout deploy
+ 1785  ls
+ 1786  cd ros2_ws
+ 1787  ls
+ 1788  colcon build
+ 1789  cmake --version
+ 1790  ls
+ 1791  source install/setup.bash
+ 1792  cd src
+ 1793  ls
+ 1794  cd workbench
+ 1795  ls
+ 1796  ls -l /dev/video*
+ 1797  ls
+ 1798  cd littleblue_vision
+ 1799  ls
+ 1800  ls littleblue_vision
+ 1801  cd littleblue_vision
+ 1802  ls
+ 1803  emacs *.py &
+ 1804  sudo bash
+ 1805  emacs *.py &
+ 1806  emacs -fa 'Monospace' -fs 14 *.py
+ 1807  emacs -fa 'Monospace' -fs 12 *.py
+ 1808  emacs  -fs 12 *.py
+ 1809  exit
+ 1810  cd masstore
+ 1811  ls
+ 1812  cd
+ 1813  ls
+ 1814  ls *.sh
+ 1815  cat duration.sh
+ 1816  cd masstore
+ 1817  ls
+ 1818  cd docker-041626
+ 1819  ls
+ 1820  ./run-ros-jazzy-docker-r6.sh
+ 1821  exit
+ 1822  ls
+ 1823  cd IGVCDev
+ 1824  ls
+ 1825  src
+ 1826  ls
+ 1827  cd src
+ 1828  ls
+ 1829  cd ..
+ 1830  cd src
+ 1831  ls
+ 1832  cd ..
+ 1833  ls
+ 1834  cd ros_workspace
+ 1835  ls
+ 1836  cd src
+ 1837  ls
+ 1838  locate motorDRIVE.ino
+ 1839  locate -i motorDRIVE.ino
+ 1840  ls -lt `locate -i motorDRIVE.ino`
+ 1841  vi /home/igvc/IGVCDev-orig/src/motorControl/arduino/motorDrive/motorDrive.ino
+ 1842  ssh-copy-id littleblue@192.168.215.201
+ 1843  ssh littleblue@192.168.215.201
+ 1844  cd
+ 1845  ls
+ 1846  ls -t
+ 1847  git clone https://github.com/Andrew-Duguay/IGVC.git
+ 1848  rm -rf IGVC
+ 1849  git clone https://github.com/Andrew-Duguay/IGVC.git
+ 1850  cd IGVC
+ 1851  git checkout deploy
+ 1852  ls
+ 1853  cd ros2_ws
+ 1854  ls
+ 1855  colcon build
+ 1856  source install/setup.bash
+ 1857  ls -l /dev
+ 1858  cd /dev
+ 1859  sudo bash
+ 1860  cd
+ 1861  cd start*
+ 1862  ls
+ 1863  ./run-ros-iron-docker-r11.sh
+ 1864  exit
+ 1865  cd masstore
+ 1866  ls
+ 1867  cd
+ 1868  ls *.sh
+ 1869  locate r11
+ 1870  locate r11 | grep sh$
+ 1871  cd /home/igvc/startupScripts/
+ 1872  exit
+ 1873  cd IGVC
+ 1874  ls
+ 1875  cd ros2*
+ 1876  ls
+ 1877  cd src
+ 1878  ls
+ 1879  cd lit*
+ 1880  ls
+ 1881  cd ..
+ 1882  ls
+ 1883  cd workbench
+ 1884  ls
+ 1885  cd littleblue_vision
+ 1886  ls
+ 1887  cd littleblue_vision
+ 1888  ls
+ 1889  emacs *.py
+ 1890  bg
+ 1891  sudo bash
+ 1892  locate adobe
+ 1893  ls
+ 1894  grep left *
+ 1895  cd ..
+ 1896  ls
+ 1897  find . -type f -print
+ 1898  vi ./config/vision_params.yaml
+ 1899  ls ..
+ 1900  cd ..
+ 1901  ls
+ 1902  find . -type f -print
+ 1903  for i in `find . -type f -print`; do grep video $i > /dev/null && echo $i; done
+ 1904  vi ./startup_robot/launch/deploy.launch.py
+ 1905  ssh littleblue@192.168.215.201
+ 1906  exit
+ 1907  cd ros2_ws
+ 1908  cd
+ 1909  ls
+ 1910  cd IGVC
+ 1911  cd ros2_ws
+ 1912  ls
+ 1913  source install/setup.bash
+ 1914  find . -name *.pt -print
+ 1915  cd ..
+ 1916  find . -name *.pt -print
+ 1917  find . -name *.engine -print
+ 1918  wget https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt
+ 1919  ls -lt
+ 1920  yolo
+ 1921  sudo bash
+ 1922  locate yolo
+ 1923  locate yolo | grep -v zed
+ 1924  locate yolo | grep -v zed | grep -v igvc
+ 1925  locate engine | grep engine$
+ 1926  pip3 install ultralytics
+ 1927  ls *.pt
+ 1928  python3
+ 1929  yolo
+ 1930  exit
+ 1931  ros2 topic list
+ 1932  source /opt/ros/iron/setup.bash
+ 1933  ros2 topic list
+ 1934  ls
+ 1935  ros2 launch sllidar_ros2 sllidar_s1_launch.py
+ 1936  locate sllidar_s1_launch.py
+ 1937  cd /home/igvc/ros2_sensors_combined/
+ 1938  source /opt/ros/iron/setup.bash
+ 1939  ros2 launch sllidar_ros2 sllidar_s1_launch.py
+ 1940  source install/setup.bash
+ 1941  ls
+ 1942  cd ..
+ 1943  ls
+ 1944  cd masstore
+ 1945  ls
+ 1946  cd
+ 1947  ls
+ 1948  cd ros2_sensors_combined
+ 1949  ls -lt
+ 1950  locate ros2_sensors_combined/install
+ 1951  ls -lt `locate ros2_sensors_combined/install` | head
+ 1952  ls -lt `locate ros2_sensors_combined/install` | head | grep -v " 202[45] }
+ 1953  ls -lt `locate ros2_sensors_combined/install` | head | grep -v " 202[45] "
+ 1954  ls
+ 1955  cd src
+ 1956  ls
+ 1957  cd sl*
+ 1958  ls
+ 1959  source install/setup.bash
+ 1960  ros2 launch sllidar_ros2 sllidar_s1_launch.py
+ 1961  exit
+ 1962  cd IGVC
+ 1963  ls
+ 1964  python3 -m .venv
+ 1965  ls
+ 1966  ./venv/activate
+ 1967  ./venv/bin/activate
+ 1968  ls .venv
+ 1969  python3 -m venv .venv
+ 1970  ./venv/bin/activate
+ 1971  ./venv/activate
+ 1972  .venv/activate
+ 1973  .venv/bin/activate
+ 1974  source .venv/bin/activate
+ 1975  pip3 install ultralytics
+ 1976  yolo export model=yolo26n.pt format=engine
+ 1977  ls *.pt
+ 1978  exit
+ 1979  ssh littleblue@192.168.215.201
+ 1980  w
+ 1981  top
+ 1982  ssh littleblue@192.168.215.201
+ 1983  tail /var/log/kern.log
+ 1984  cat /etc/os-release
+ 1985  ssh littleblue@192.168.215.201
+ 1986  ifconfig
+ 1987  ping 192.168.215.201
+ 1988  ssh littleblue@192.168.215.201
+ 1989  exit
+ 1990  ssh littleblue@192.168.215.201
+ 1991  exit
+ 1992  ssh littleblue@192.168.215.201
+ 1993  exit
+ 1994  ssh littleblue@192.168.215.201
+ 1995  exit
+ 1996  firefox
+ 1997  cd /var/log
+ 1998  ls
+ 1999  firefox
+ 2000  cd /etc/systemd
+ 2001  cd system
+ 2002  ls
+ 2003  ls snap*
+ 2004  ls *mount
+ 2005  firefox
+ 2006  cd
+ 2007  cd masstore
+ 2008  ls
+ 2009  ls -lt | head
+ 2010  cd docker-041626
+ 2011  ls -lR | grep " Apr 21 "
+ 2012  cd ..
+ 2013  ls -lR | grep " Apr 21 "
+ 2014  cd
+ 2015  ls -lR | grep " Apr 21 "
+ 2016  cd IGVC
+ 2017  ls -lR | grep " Apr 21 "
+ 2018  ls -al
+ 2019  cd ros2_ws
+ 2020  ls
+ 2021  ls -l
+ 2022  /usr/bin/firefox
+ 2023  ls -l /usr/bin/firefox
+ 2024  cat /usr/bin/firefox
+ 2025  grep snap /usr/bin/firefox
+ 2026  cd
+ 2027  cd masstore
+ 2028  ls
+ 2029  cd IGVC
+ 2030  cd
+ 2031  cd IGVC
+ 2032  ls
+ 2033  source .venv/bin/activate
+ 2034  yolo export model=yolo26n.pt format=engine
+ 2035  cd
+ 2036  snap download snapd --revision=24724
+ 2037  firefox
+ 2038  ls /usr/local/cuda
+ 2039  ls /usr/local/cuda/lib64
+ 2040  ls /usr/local/cuda/lib64/libcud*
+ 2041  nvidia-smi
+ 2042  wget https://developer.download.nvidia.com/compute/cudss/0.7.1/local_installers/cudss-local-tegra-repo-ubuntu2204-0.7.1_0.7.1-1_arm64.deb
+ 2043  sudo bash
+ 2044  ls
+ 2045  cd IGVC
+ 2046  ls
+ 2047  yolo export model=yolo26n.pt format=engine
+ 2048  yolo export model=yolo26n.pt format=onnx
+ 2049  ls -lt
+ 2050  date
+ 2051  clear
+ 2052  yolo export model=yolo26n.pt format=engine
+ 2053  pip3 install tensorRT
+ 2054  yolo export model=yolo26n.pt format=engine
+ 2055  pip3 install tensorRT_cu126
+ 2056  pip3 install tensorRT_cu12
+ 2057  pip uninstall tensorrt
+ 2058  pip3 install tensorRT_cu12
+ 2059  history > foo

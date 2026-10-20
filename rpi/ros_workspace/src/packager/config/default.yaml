@@ -1,0 +1,5 @@
+topics:
+  cam0: "usb_cam_0/image_raw"
+  cam1: "usb_cam_1/image_raw"
+  imu: "imu/data"
+  lidar: "scan"
