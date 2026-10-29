@@ -248,7 +248,7 @@ This page contains documentation on each of Little Blue's components.
 | IP               | 192.168.215.200       |
 | Netmask          | 255.255.255.0         |
 | Model            | Orin Nano             |
-| Operating System | Ubuntu 22.04.4 LTS    |
+| Operating System | Ubuntu 24.04.4 LTS    |
 | Processor        | ARMv8 Processor rev 1 |
 | RAM              | 8GB                   |
 
