@@ -7,24 +7,63 @@ clean_autonomy()
     echo "CLEANING AUTONOMY..."
     cd jetson/IGVC/ros2_ws
     rm -rf build install log
+    cd - > /dev/null
 }
+
+clean_gps_driver()
+{
+    echo "CLEANING GPS DRIVER..."
+    cd jetson/ros2_sensors_combined/src/xsens_ws/src/xsens_mti_ros2_driver/lib/xspublic
+    make clean
+    cd - > /dev/null
+}
+
+clean_sensors()
+{
+    echo "CLEANING SENSORS..."
+    cd jetson/ros2_sensors_combined
+    rm -rf build install log
+    cd - > /dev/null
+}
+
+# Constants
+
+HELP="-h"
+AUTONOMY_PROJECT="auto"
+GPS_DRIVER="gpsdriver"
+SENSORS_PROJECT="sensors"
 
 # Script
 
+projects="$@"
 if test $# -eq 0
 then
-    echo "We should clean everything."
-    exit 0
+    projects=(${AUTONOMY_PROJECT} ${GPS_DRIVER} ${SENSORS_PROJECT})
 fi
 
-for var in "$@"
+for var in ${projects[@]}
 do
-    if test "${var}" == "auto"
+    if test "${var}" == "${AUTONOMY_PROJECT}"
     then
         clean_autonomy
+    elif test "${var}" == "${GPS_DRIVER}"
+    then
+        clean_gps_driver
+    elif test "${var}" == "${SENSORS_PROJECT}"
+    then
+        clean_sensors
+    elif test "${var}" == "${HELP}"
+    then
+        echo "THIS SCRIPT CLEANS PROJECTS."
+        echo "OPTIONS:"
+        echo -e "\t ${AUTONOMY_PROJECT}"
+        echo -e "\t ${GPS_DRIVER}"
+        echo -e "\t ${SENSORS_PROJECT}"
     else
         echo "unknown project \"${var}\""
     fi
 
-    cd - > /dev/null
+    echo ""
+    echo ""
+    echo ""
 done
