@@ -38,13 +38,18 @@ sudo apt install -y \
   ros-iron-teleop-twist-keyboard \
   ros-iron-rviz2 \
   ros-iron-gazebo-ros-pkgs \
+  ros-iron-mavros-msgs \
+  ros-iron-nmea-msgs \
+  ros-iron-asio-cmake-module \
+  ros-iron-diagnostic-updater \
   xterm \
   python3 \
   python3-colcon-common-extensions \
   python3-rosdep \
   docker \
   docker-cli \
-  clang
+  clang \
+  libasio-dev
 ```
 5. Prepare some of the packages after installation.
 ```bash
