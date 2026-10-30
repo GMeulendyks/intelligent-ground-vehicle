@@ -8,6 +8,13 @@ build_autonomy()
     cd jetson/IGVC/ros2_ws
     source /opt/ros/iron/setup.bash
     colcon build --symlink-install
+    cd - > /dev/null
+}
+
+build_gps_driver()
+{
+    echo "BUILDING GPS DRIVER..."
+    pushd jetson/ros2_sensors_combined/src/xsens_ws/src/xsens_mti_ros2_driver/lib/xspublic && make && popd
 }
 
 build_sensors()
@@ -19,16 +26,18 @@ build_sensors()
 
     if [ $? -ne 0 ]; then
         echo "COMMON ISSUES:"
-        echo -e "\t Build XSENS Drivers:"
+        echo -e "\t Allow XSENS Driver Folder Modification:"
         echo -e "\t\t sudo chmod -R o+rw jetson/ros2_sensors_combined/src/xsens_ws/src/xsens_mti_ros2_driver"
-        echo -e "\t\t pushd jetson/ros2_sensors_combined/src/xsens_ws/src/xsens_mti_ros2_driver/lib/xspublic && make && popd"
     fi
+
+    cd - > /dev/null
 }
 
 # Constants
 
 HELP="-h"
 AUTONOMY_PROJECT="auto"
+GPS_DRIVER="gpsdriver"
 SENSORS_PROJECT="sensors"
 
 # Script
@@ -36,7 +45,7 @@ SENSORS_PROJECT="sensors"
 projects="$@"
 if test $# -eq 0
 then
-    projects=(${AUTONOMY_PROJECT} ${SENSORS_PROJECT})
+    projects=(${AUTONOMY_PROJECT} ${GPS_DRIVER} ${SENSORS_PROJECT})
 fi
 
 for var in ${projects[@]}
@@ -44,6 +53,9 @@ do
     if test "${var}" == "${AUTONOMY_PROJECT}"
     then
         build_autonomy
+    elif test "${var}" == "${GPS_DRIVER}"
+    then
+        build_gps_driver
     elif test "${var}" == "${SENSORS_PROJECT}"
     then
         build_sensors
@@ -52,12 +64,12 @@ do
         echo "THIS SCRIPT BUILDS PROJECTS."
         echo "OPTIONS:"
         echo -e "\t ${AUTONOMY_PROJECT}"
+        echo -e "\t ${GPS_DRIVER}"
         echo -e "\t ${SENSORS_PROJECT}"
     else
         echo "unknown project \"${var}\""
     fi
 
-    cd - > /dev/null
     echo ""
     echo ""
     echo ""
