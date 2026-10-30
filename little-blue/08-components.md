@@ -123,7 +123,8 @@ This page contains documentation on each of Little Blue's components.
 | :----------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- |
 | Model              | MTi-600 DEV                                                                                                                                    |
 | Documentation      | [Available Here](https://www.xsens.com/hubfs/Downloads/Manuals/MTi600-series_DK_Usermanual.pdf)                                                |
-| Software           | [Available Here](https://base.xsens.com/s/article/MT-Manager-Installation-Guide-for-ubuntu-20-04-and-22-04?language=en_US)                     |
+| Software           | [Available Here](https://www.xsens.com/support/software-documentation)                                                                         |
+| GitHub             | [Available Here](https://github.com/DEMCON/ros2_xsens_mti_driver)                                                                              |
 | Interfaces         | USB, CAN, RS232, RS422, UART                                                                                                                   |
 
 <br/>
