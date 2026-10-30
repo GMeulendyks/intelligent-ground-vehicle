@@ -17,6 +17,7 @@ log/
 # Linux
 *.swp
 *.a
+*.d
 
 # Other
 .idea/
