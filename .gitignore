@@ -1,8 +1,23 @@
-__pycache__/
-.idea/
+# Visual Studio Code
 .vscode/
+
+# Python
+__pycache__/
 *.py[cod]
-*.swp
+
+# ROS2
 build/
 install/
 log/
+
+# C/C++
+*.cpp.o
+*.c.o
+
+# Linux
+*.swp
+*.a
+*.d
+
+# Other
+.idea/

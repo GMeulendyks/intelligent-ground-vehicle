@@ -1,0 +1,64 @@
+#!/bin/bash
+
+# Build Functions
+
+build_autonomy()
+{
+    echo "BUILDING AUTONOMY..."
+    cd jetson/IGVC/ros2_ws
+    source /opt/ros/iron/setup.bash
+    colcon build --symlink-install
+}
+
+build_sensors()
+{
+    echo "BUILDING SENSORS..."
+    cd jetson/ros2_sensors_combined
+    source /opt/ros/iron/setup.bash
+    colcon build --symlink-install
+
+    if [ $? -ne 0 ]; then
+        echo "COMMON ISSUES:"
+        echo -e "\t Build XSENS Drivers:"
+        echo -e "\t\t sudo chmod -R o+rw jetson/ros2_sensors_combined/src/xsens_ws/src/xsens_mti_ros2_driver"
+        echo -e "\t\t pushd jetson/ros2_sensors_combined/src/xsens_ws/src/xsens_mti_ros2_driver/lib/xspublic && make && popd"
+    fi
+}
+
+# Constants
+
+HELP="-h"
+AUTONOMY_PROJECT="auto"
+SENSORS_PROJECT="sensors"
+
+# Script
+
+projects="$@"
+if test $# -eq 0
+then
+    projects=(${AUTONOMY_PROJECT} ${SENSORS_PROJECT})
+fi
+
+for var in ${projects[@]}
+do
+    if test "${var}" == "${AUTONOMY_PROJECT}"
+    then
+        build_autonomy
+    elif test "${var}" == "${SENSORS_PROJECT}"
+    then
+        build_sensors
+    elif test "${var}" == "${HELP}"
+    then
+        echo "THIS SCRIPT BUILDS PROJECTS."
+        echo "OPTIONS:"
+        echo -e "\t ${AUTONOMY_PROJECT}"
+        echo -e "\t ${SENSORS_PROJECT}"
+    else
+        echo "unknown project \"${var}\""
+    fi
+
+    cd - > /dev/null
+    echo ""
+    echo ""
+    echo ""
+done
