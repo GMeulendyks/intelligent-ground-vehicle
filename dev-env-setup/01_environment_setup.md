@@ -54,11 +54,14 @@ sudo apt install -y \
 5. Prepare some of the packages after installation.
 ```bash
 sudo rosdep init
-
+```
+```bash
 rosdep update
-
+```
+```bash
 git config --global user.email "you@example.com"
-
+```
+```bash
 git config --global user.name "Your Name"
 ```
 5. Create a new github ssh key
@@ -80,4 +83,22 @@ cat ~/.ssh/id_ed25519.pub
 	1. NOTE: Run this in a folder of your choice
 ```bash
 git clone git@github.com:GMeulendyks/intelligent-ground-vehicle.git
+```
+
+8. Change permissions on the scripts so they can run.
+
+```bash
+chmod +700 build
+```
+
+```bash
+chmod +700 clean
+```
+
+```bash
+chmod +700 run
+```
+
+```bash
+chmod +700 update
 ```

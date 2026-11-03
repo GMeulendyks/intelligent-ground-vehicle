@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Global Variables
+
+HELP="-h"
+AUTONOMY_PROJECT="auto"
+GPS_DRIVER="gpsdriver"
+SENSORS_PROJECT="sensors"
+
+FAILED=""
+
 # Build Functions
 
 build_autonomy()
@@ -8,6 +17,12 @@ build_autonomy()
     cd jetson/IGVC/ros2_ws
     source /opt/ros/iron/setup.bash
     colcon build --symlink-install
+
+    if [ $? -ne 0 ];
+    then
+        FAILED+=" ${AUTONOMY_PROJECT}"
+    fi
+
     cd - > /dev/null
 }
 
@@ -15,6 +30,11 @@ build_gps_driver()
 {
     echo "BUILDING GPS DRIVER..."
     pushd jetson/ros2_sensors_combined/src/xsens_ws/src/xsens_mti_ros2_driver/lib/xspublic && make && popd
+
+    if [ $? -ne 0 ];
+    then
+        FAILED+=" ${GPS_DRIVER}"
+    fi
 }
 
 build_sensors()
@@ -24,21 +44,13 @@ build_sensors()
     source /opt/ros/iron/setup.bash
     colcon build --symlink-install
 
-    if [ $? -ne 0 ]; then
-        echo "COMMON ISSUES:"
-        echo -e "\t Allow XSENS Driver Folder Modification:"
-        echo -e "\t\t sudo chmod -R o+rw jetson/ros2_sensors_combined/src/xsens_ws/src/xsens_mti_ros2_driver"
+    if [ $? -ne 0 ];
+    then
+        FAILED+=" ${SENSORS_PROJECT}"
     fi
 
     cd - > /dev/null
 }
-
-# Constants
-
-HELP="-h"
-AUTONOMY_PROJECT="auto"
-GPS_DRIVER="gpsdriver"
-SENSORS_PROJECT="sensors"
 
 # Script
 
@@ -73,4 +85,15 @@ do
     echo ""
     echo ""
     echo ""
+done
+
+
+for var in ${projects[@]}
+do
+    if [[ "$FAILED" == *"${var}"* ]]
+    then
+        echo "${var}: FAILED"
+    else
+        echo "${var}: SUCCESS"
+    fi
 done
