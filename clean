@@ -6,6 +6,7 @@ HELP="-h"
 AUTONOMY_PROJECT="auto"
 GPS_DRIVER="gpsdriver"
 SENSORS_PROJECT="sensors"
+CAMERAS_PROJECT="cameras"
 
 FAILED=""
 
@@ -13,45 +14,58 @@ FAILED=""
 
 clean_autonomy()
 {
-    echo "CLEANING AUTONOMY..."
-    cd jetson/IGVC/ros2_ws
-    rm -rf build install log
+    (
+        echo "CLEANING AUTONOMY..."
+        cd jetson/IGVC/ros2_ws
+        rm -rf build install log
+    )
 
     if [ $? -ne 0 ];
     then
         FAILED+=" ${AUTONOMY_PROJECT}"
     fi
-
-    cd - > /dev/null
 }
 
 clean_gps_driver()
 {
-    echo "CLEANING GPS DRIVER..."
-    cd jetson/sensors/src/xsens_ws/src/xsens_mti_ros2_driver/lib/xspublic
-    make clean
+    (
+        echo "CLEANING GPS DRIVER..."
+        cd jetson/sensors/src/xsens_ws/src/xsens_mti_ros2_driver/lib/xspublic
+        make clean
+    )
 
     if [ $? -ne 0 ];
     then
         FAILED+=" ${GPS_DRIVER}"
     fi
-
-    cd - > /dev/null
 }
 
 clean_sensors()
 {
-    echo "CLEANING SENSORS..."
-    cd jetson/sensors
-    rm -rf build install log
+    (
+        echo "CLEANING SENSORS..."
+        cd jetson/sensors
+        rm -rf build install log
+    )
 
     if [ $? -ne 0 ];
     then
         FAILED+=" ${SENSORS_PROJECT}"
     fi
+}
 
+clean_cameras()
+{
+    (
+        echo "CLEANING CAMERAS..."
+        cd jetson/cameras
+        rm -rf build install log
+    )
 
-    cd - > /dev/null
+    if [ $? -ne 0 ];
+    then
+        FAILED+=" ${CAMERAS_PROJECT}"
+    fi
 }
 
 # Script
@@ -59,7 +73,7 @@ clean_sensors()
 projects="$@"
 if test $# -eq 0
 then
-    projects=(${AUTONOMY_PROJECT} ${GPS_DRIVER} ${SENSORS_PROJECT})
+    projects=(${AUTONOMY_PROJECT} ${GPS_DRIVER} ${SENSORS_PROJECT} ${CAMERAS_PROJECT})
 fi
 
 for var in ${projects[@]}
@@ -73,6 +87,9 @@ do
     elif test "${var}" == "${SENSORS_PROJECT}"
     then
         clean_sensors
+    elif test "${var}" == "${CAMERAS_PROJECT}"
+    then
+        clean_cameras
     elif test "${var}" == "${HELP}"
     then
         echo "THIS SCRIPT CLEANS PROJECTS."
@@ -80,6 +97,7 @@ do
         echo -e "\t ${AUTONOMY_PROJECT}"
         echo -e "\t ${GPS_DRIVER}"
         echo -e "\t ${SENSORS_PROJECT}"
+        echo -e "\t ${CAMERAS_PROJECT}"
     else
         echo "unknown project \"${var}\""
     fi
