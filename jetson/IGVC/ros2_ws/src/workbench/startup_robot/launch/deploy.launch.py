@@ -18,7 +18,7 @@ import os
 import xacro
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, TimerAction
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
@@ -406,7 +406,10 @@ def generate_launch_description():
         lane_follower,
         left_detector, right_detector, lane_accumulator, lidar_obstacle,
         # YOLO + depth-projected obstacles (Jetson TensorRT)
-        left_yolo, right_yolo,
+        # Staggered so the two TensorRT nodes don't create their CUDA
+        # contexts at the same time (avoids NvMap out-of-memory on init).
+        left_yolo,
+        TimerAction(period=5.0, actions=[right_yolo]),
         left_projector, right_projector,
         rviz_node,
     ])
