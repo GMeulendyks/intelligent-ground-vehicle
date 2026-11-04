@@ -47,7 +47,7 @@ Run all software:
 
 Run individual components:
 ```bash
-./run sensors
+./run gps
 ```
 
 Help:
