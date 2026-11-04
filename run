@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# Global Variables
+
+HELP="-h"
+AUTONOMY_PROJECT="auto"
+GPS_PROJECT="gps"
+IMU_PROJECT="imu"
+LLIDAR_PROJECT="llidar"
+
+# Build Functions
+
+run_autonomy()
+{
+    echo "RUNNING AUTONOMY..."
+    gnome-terminal --title="AUTONOMY" -- bash -c \
+        "cd jetson/IGVC/ros2_ws ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch startup_robot deploy.launch.py ; exec bash"
+}
+
+run_gps()
+{
+    echo "RUNNING GPS..."
+    gnome-terminal --title="GPS" -- bash -c \
+        "cd jetson/ros2_sensors_combined ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch ublox_gps ublox_gps_node_zedf9p-launch.py ; exec bash"
+}
+
+run_imu()
+{
+    echo "RUNNING IMU..."
+    gnome-terminal --title="IMU" -- bash -c \
+        "cd jetson/ros2_sensors_combined ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch xsens_mti_ros2_driver xsens_mti_node.launch.py ; exec bash"
+}
+
+run_llidar()
+{
+    echo "RUNNING LLIDAR..."
+    gnome-terminal --title="LLIDAR" -- bash -c \
+        "cd jetson/ros2_sensors_combined ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch sllidar_ros2 sllidar_s1_launch.py ; exec bash"
+}
+
+# Script
+
+projects="$@"
+if test $# -eq 0
+then
+    projects=(${AUTONOMY_PROJECT} ${GPS_PROJECT} ${IMU_PROJECT} ${LLIDAR_PROJECT})
+fi
+
+for var in ${projects[@]}
+do
+    if test "${var}" == "${AUTONOMY_PROJECT}"
+    then
+        run_autonomy
+    elif test "${var}" == "${GPS_PROJECT}"
+    then
+        run_gps
+    elif test "${var}" == "${IMU_PROJECT}"
+    then
+        run_imu
+    elif test "${var}" == "${LLIDAR_PROJECT}"
+    then
+        run_llidar
+    elif test "${var}" == "${HELP}"
+    then
+        echo "THIS SCRIPT RUNS PROJECTS."
+        echo "OPTIONS:"
+        echo -e "\t ${AUTONOMY_PROJECT}"
+        echo -e "\t ${GPS_PROJECT}"
+        echo -e "\t ${IMU_PROJECT}"
+        echo -e "\t ${LLIDAR_PROJECT}"
+    else
+        echo "unknown project \"${var}\""
+    fi
+done
