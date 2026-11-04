@@ -28,7 +28,7 @@ clean_autonomy()
 clean_gps_driver()
 {
     echo "CLEANING GPS DRIVER..."
-    cd jetson/ros2_sensors_combined/src/xsens_ws/src/xsens_mti_ros2_driver/lib/xspublic
+    cd jetson/sensors/src/xsens_ws/src/xsens_mti_ros2_driver/lib/xspublic
     make clean
 
     if [ $? -ne 0 ];
@@ -42,7 +42,7 @@ clean_gps_driver()
 clean_sensors()
 {
     echo "CLEANING SENSORS..."
-    cd jetson/ros2_sensors_combined
+    cd jetson/sensors
     rm -rf build install log
 
     if [ $? -ne 0 ];

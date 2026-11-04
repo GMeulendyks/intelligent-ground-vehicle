@@ -7,6 +7,7 @@ AUTONOMY_PROJECT="auto"
 GPS_PROJECT="gps"
 IMU_PROJECT="imu"
 LLIDAR_PROJECT="llidar"
+RPI_PROJECT="rpi"
 
 # Build Functions
 
@@ -21,21 +22,28 @@ run_gps()
 {
     echo "RUNNING GPS..."
     gnome-terminal --title="GPS" -- bash -c \
-        "cd jetson/ros2_sensors_combined ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch ublox_gps ublox_gps_node_zedf9p-launch.py ; exec bash"
+        "cd jetson/sensors ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch ublox_gps ublox_gps_node_zedf9p-launch.py ; exec bash"
 }
 
 run_imu()
 {
     echo "RUNNING IMU..."
     gnome-terminal --title="IMU" -- bash -c \
-        "cd jetson/ros2_sensors_combined ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch xsens_mti_ros2_driver xsens_mti_node.launch.py ; exec bash"
+        "cd jetson/sensors ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch xsens_mti_ros2_driver xsens_mti_node.launch.py ; exec bash"
 }
 
 run_llidar()
 {
     echo "RUNNING LLIDAR..."
     gnome-terminal --title="LLIDAR" -- bash -c \
-        "cd jetson/ros2_sensors_combined ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch sllidar_ros2 sllidar_s1_launch.py ; exec bash"
+        "cd jetson/sensors ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch sllidar_ros2 sllidar_s1_launch.py ; exec bash"
+}
+
+run_rpi()
+{
+    echo "RUNNING RPI..."
+    gnome-terminal --title="RPI" -- bash -c \
+        "ssh littleblue@192.168.215.201 ; cd IGVCDev2 ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch arduino_control launch.py ; exec bash"
 }
 
 # Script
@@ -43,7 +51,7 @@ run_llidar()
 projects="$@"
 if test $# -eq 0
 then
-    projects=(${AUTONOMY_PROJECT} ${GPS_PROJECT} ${IMU_PROJECT} ${LLIDAR_PROJECT})
+    projects=(${AUTONOMY_PROJECT} ${GPS_PROJECT} ${IMU_PROJECT} ${LLIDAR_PROJECT} ${RPI_PROJECT})
 fi
 
 for var in ${projects[@]}
@@ -60,6 +68,9 @@ do
     elif test "${var}" == "${LLIDAR_PROJECT}"
     then
         run_llidar
+    elif test "${var}" == "${RPI_PROJECT}"
+    then
+        run_rpi
     elif test "${var}" == "${HELP}"
     then
         echo "THIS SCRIPT RUNS PROJECTS."
@@ -68,6 +79,7 @@ do
         echo -e "\t ${GPS_PROJECT}"
         echo -e "\t ${IMU_PROJECT}"
         echo -e "\t ${LLIDAR_PROJECT}"
+        echo -e "\t ${RPI_PROJECT}"
     else
         echo "unknown project \"${var}\""
     fi

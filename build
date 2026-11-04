@@ -29,7 +29,7 @@ build_autonomy()
 build_gps_driver()
 {
     echo "BUILDING GPS DRIVER..."
-    pushd jetson/ros2_sensors_combined/src/xsens_ws/src/xsens_mti_ros2_driver/lib/xspublic && make && popd
+    pushd jetson/sensors/src/xsens_ws/src/xsens_mti_ros2_driver/lib/xspublic && make && popd
 
     if [ $? -ne 0 ];
     then
@@ -40,7 +40,7 @@ build_gps_driver()
 build_sensors()
 {
     echo "BUILDING SENSORS..."
-    cd jetson/ros2_sensors_combined
+    cd jetson/sensors
     source /opt/ros/iron/setup.bash
     colcon build --symlink-install
 
