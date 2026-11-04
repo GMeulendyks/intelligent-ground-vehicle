@@ -1,7 +1,6 @@
 # Table of Contents
 
 [Introduction](#introduction)<br/>
-[Structure](#structure)<br/>
 [Getting Started](#getting-started)<br/>
 [Acknowledgements](#acknowledgements)<br/>
 
@@ -15,19 +14,10 @@ Old Dominion University has an intelligent ground vehicle known as Little Blue. 
 <br/>
 <br/>
 
-# Structure
-
-Little Blue is made up of a variety of devices. Each device's purpose and properties can be found in [little-blue](./little-blue/).
-
-Each device on Little Blue has an associated folder at the root of this repository. These folders will contain all the software that runs on the associated device.
-
-<br/>
-<br/>
-
 # Getting Started
 
 It's recommended to start in [little-blue](./little-blue/) and check out the photos of Little Blue as well as each device's purpose and properties.
-Afterwards, developers should set up their environments using the guide in [dev-env-setup](./dev-env-setup/)
+Afterwards, developers should set up their environments using the guide in [dev-env-setup](./dev-env-setup/01_environment_setup.md)
 
 <br/>
 <br/>
