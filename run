@@ -6,7 +6,7 @@ HELP="-h"
 AUTONOMY_PROJECT="auto"
 GPS_PROJECT="gps"
 IMU_PROJECT="imu"
-LLIDAR_PROJECT="llidar"
+LIDAR_PROJECT="lidar"
 CAMERAS_PROJECT="cameras"
 RPI_PROJECT="rpi"
 
@@ -33,10 +33,10 @@ run_imu()
         "cd jetson/sensors ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch xsens_mti_ros2_driver display.launch.py; exec bash"
 }
 
-run_llidar()
+run_lidar()
 {
-    echo "RUNNING LLIDAR..."
-    gnome-terminal --title="LLIDAR" -- bash -c \
+    echo "RUNNING LIDAR..."
+    gnome-terminal --title="LIDAR" -- bash -c \
         "cd jetson/sensors ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch sllidar_ros2 sllidar_s1_launch.py ; exec bash"
 }
 
@@ -59,7 +59,7 @@ run_rpi()
 projects="$@"
 if test $# -eq 0
 then
-    projects=(${AUTONOMY_PROJECT} ${GPS_PROJECT} ${IMU_PROJECT} ${LLIDAR_PROJECT} ${CAMERAS_PROJECT} ${RPI_PROJECT})
+    projects=(${AUTONOMY_PROJECT} ${GPS_PROJECT} ${IMU_PROJECT} ${LIDAR_PROJECT} ${CAMERAS_PROJECT} ${RPI_PROJECT})
 fi
 
 for var in ${projects[@]}
@@ -73,9 +73,9 @@ do
     elif test "${var}" == "${IMU_PROJECT}"
     then
         run_imu
-    elif test "${var}" == "${LLIDAR_PROJECT}"
+    elif test "${var}" == "${LIDAR_PROJECT}"
     then
-        run_llidar
+        run_lidar
     elif test "${var}" == "${CAMERAS_PROJECT}"
     then
         run_cameras
@@ -89,7 +89,7 @@ do
         echo -e "\t ${AUTONOMY_PROJECT}"
         echo -e "\t ${GPS_PROJECT}"
         echo -e "\t ${IMU_PROJECT}"
-        echo -e "\t ${LLIDAR_PROJECT}"
+        echo -e "\t ${LIDAR_PROJECT}"
         echo -e "\t ${RPI_PROJECT}"
     else
         echo "unknown project \"${var}\""
