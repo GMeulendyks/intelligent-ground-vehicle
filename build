@@ -60,7 +60,7 @@ build_cameras()
     (
         echo "BUILDING CAMERAS..."
         cd jetson/cameras
-        source /opt/ros/humble/setup.bash
+        source /opt/ros/iron/setup.bash
         colcon build --symlink-install
     )
 
