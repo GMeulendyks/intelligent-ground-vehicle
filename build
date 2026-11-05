@@ -6,6 +6,7 @@ HELP="-h"
 AUTONOMY_PROJECT="auto"
 GPS_DRIVER="gpsdriver"
 SENSORS_PROJECT="sensors"
+CAMERAS_PROJECT="cameras"
 
 FAILED=""
 
@@ -13,23 +14,25 @@ FAILED=""
 
 build_autonomy()
 {
-    echo "BUILDING AUTONOMY..."
-    cd jetson/IGVC/ros2_ws
-    source /opt/ros/iron/setup.bash
-    colcon build --symlink-install
+    (
+        echo "BUILDING AUTONOMY..."
+        cd jetson/IGVC/ros2_ws
+        source /opt/ros/iron/setup.bash
+        colcon build --symlink-install
+    )
 
     if [ $? -ne 0 ];
     then
         FAILED+=" ${AUTONOMY_PROJECT}"
     fi
-
-    cd - > /dev/null
 }
 
 build_gps_driver()
 {
-    echo "BUILDING GPS DRIVER..."
-    pushd jetson/ros2_sensors_combined/src/xsens_ws/src/xsens_mti_ros2_driver/lib/xspublic && make && popd
+    (
+        echo "BUILDING GPS DRIVER..."
+        pushd jetson/sensors/src/xsens_ws/src/xsens_mti_ros2_driver/lib/xspublic && make && popd
+    )
 
     if [ $? -ne 0 ];
     then
@@ -39,17 +42,32 @@ build_gps_driver()
 
 build_sensors()
 {
-    echo "BUILDING SENSORS..."
-    cd jetson/ros2_sensors_combined
-    source /opt/ros/iron/setup.bash
-    colcon build --symlink-install
+    (
+        echo "BUILDING SENSORS..."
+        cd jetson/sensors
+        source /opt/ros/iron/setup.bash
+        colcon build --symlink-install
+    )
 
     if [ $? -ne 0 ];
     then
         FAILED+=" ${SENSORS_PROJECT}"
     fi
+}
 
-    cd - > /dev/null
+build_cameras()
+{
+    (
+        echo "BUILDING CAMERAS..."
+        cd jetson/cameras
+        source /opt/ros/iron/setup.bash
+        colcon build --symlink-install
+    )
+
+    if [ $? -ne 0 ];
+    then
+        FAILED+=" ${CAMERAS_PROJECT}"
+    fi
 }
 
 # Script
@@ -57,7 +75,7 @@ build_sensors()
 projects="$@"
 if test $# -eq 0
 then
-    projects=(${AUTONOMY_PROJECT} ${GPS_DRIVER} ${SENSORS_PROJECT})
+    projects=(${AUTONOMY_PROJECT} ${GPS_DRIVER} ${SENSORS_PROJECT} ${CAMERAS_PROJECT})
 fi
 
 for var in ${projects[@]}
@@ -71,6 +89,9 @@ do
     elif test "${var}" == "${SENSORS_PROJECT}"
     then
         build_sensors
+    elif test "${var}" == "${CAMERAS_PROJECT}"
+    then
+        build_cameras
     elif test "${var}" == "${HELP}"
     then
         echo "THIS SCRIPT BUILDS PROJECTS."
@@ -78,6 +99,7 @@ do
         echo -e "\t ${AUTONOMY_PROJECT}"
         echo -e "\t ${GPS_DRIVER}"
         echo -e "\t ${SENSORS_PROJECT}"
+        echo -e "\t ${CAMERAS_PROJECT}"
     else
         echo "unknown project \"${var}\""
     fi
