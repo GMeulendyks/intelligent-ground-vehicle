@@ -7,6 +7,7 @@ AUTONOMY_PROJECT="auto"
 GPS_PROJECT="gps"
 IMU_PROJECT="imu"
 LLIDAR_PROJECT="llidar"
+CAMERAS_PROJECT="cameras"
 RPI_PROJECT="rpi"
 
 # Build Functions
@@ -29,7 +30,7 @@ run_imu()
 {
     echo "RUNNING IMU..."
     gnome-terminal --title="IMU" -- bash -c \
-        "cd jetson/sensors ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch xsens_mti_ros2_driver xsens_mti_node.launch.py ; exec bash"
+        "cd jetson/sensors ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch xsens_mti_ros2_driver display.launch.py; exec bash"
 }
 
 run_llidar()
@@ -37,6 +38,13 @@ run_llidar()
     echo "RUNNING LLIDAR..."
     gnome-terminal --title="LLIDAR" -- bash -c \
         "cd jetson/sensors ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch sllidar_ros2 sllidar_s1_launch.py ; exec bash"
+}
+
+run_cameras()
+{
+    echo "RUNNING CAMERAS..."
+    gnome-terminal --title="CAMERAS" -- bash -c \
+        "cd jetson/cameras ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch pylon_ros2_camera_wrapper two_cams.launch.py ; exec bash"
 }
 
 run_rpi()
@@ -51,7 +59,7 @@ run_rpi()
 projects="$@"
 if test $# -eq 0
 then
-    projects=(${AUTONOMY_PROJECT} ${GPS_PROJECT} ${IMU_PROJECT} ${LLIDAR_PROJECT} ${RPI_PROJECT})
+    projects=(${AUTONOMY_PROJECT} ${GPS_PROJECT} ${IMU_PROJECT} ${LLIDAR_PROJECT} ${CAMERAS_PROJECT} ${RPI_PROJECT})
 fi
 
 for var in ${projects[@]}
@@ -68,6 +76,9 @@ do
     elif test "${var}" == "${LLIDAR_PROJECT}"
     then
         run_llidar
+    elif test "${var}" == "${CAMERAS_PROJECT}"
+    then
+        run_cameras
     elif test "${var}" == "${RPI_PROJECT}"
     then
         run_rpi
