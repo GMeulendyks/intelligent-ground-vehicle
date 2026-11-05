@@ -1,5 +1,10 @@
 # Build
 
+Help:
+```bash
+./build -h
+```
+
 Build all software:
 ```bash
 ./build
@@ -10,15 +15,15 @@ Build individual components:
 ./build sensors
 ```
 
-Help:
-```bash
-./build -h
-```
-
 <br/>
 <br/>
 
 # Clean
+
+Help:
+```bash
+./clean -h
+```
 
 Clean all software:
 ```bash
@@ -30,11 +35,6 @@ Clean individual components:
 ./clean sensors
 ```
 
-Help:
-```bash
-./clean -h
-```
-
 <br/>
 <br/>
 
@@ -42,9 +42,19 @@ Help:
 
 **NOTE: THIS WILL ONLY WORK ON LITTLE BLUE. DEVELOPER MACHINES WOULD NEED TO MIMIC THE SETUP OF LITTLE BLUE.**
 
-Run all software:
+Help:
+```bash
+./run -h
+```
+
+Run all software with no rviz:
 ```bash
 ./run
+```
+
+Run all software with rviz:
+```bash
+./run -rviz
 ```
 
 Run individual components:
@@ -52,7 +62,7 @@ Run individual components:
 ./run gps
 ```
 
-Help:
+Run individual components with rviz:
 ```bash
-./run -h
+./run -rviz imu
 ```

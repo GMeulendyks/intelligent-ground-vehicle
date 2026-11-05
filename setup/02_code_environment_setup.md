@@ -6,7 +6,8 @@
 2. Install the following extensions:
     - https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools
     - https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools
-3. Press CTRL+SHIFT+P and choose "Preferences: Open User Settings (JSON)" and paste the following code settings into it:
+    - https://marketplace.visualstudio.com/items?itemName=ms-python.python
+3. Press CTRL+SHIFT+P, search "Preferences: Open User Settings (JSON)", and paste the following code settings into the settings:
     ```
     {
         // Editor
