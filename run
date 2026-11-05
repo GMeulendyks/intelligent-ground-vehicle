@@ -42,6 +42,9 @@ run_gps()
     echo "RUNNING GPS..."
     gnome-terminal --title="GPS" -- bash -c \
         "cd little-blue/jetson/gps ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch ublox_gps ublox_gps_node_zedf9p-launch.py ; exec bash"
+
+    echo "Allowing ${GPS_PROJECT} to start up (5s)..."
+    sleep 5s
 }
 
 run_imu()
@@ -56,6 +59,9 @@ run_imu()
         gnome-terminal --title="IMU" -- bash -c \
             "cd little-blue/jetson/imu ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch xsens_mti_ros2_driver xsens_mti_node.launch.py ; exec bash"
     fi
+
+    echo "Allowing ${IMU_PROJECT} to start up (5s)..."
+    sleep 5s
 }
 
 run_lidar()
@@ -63,6 +69,9 @@ run_lidar()
     echo "RUNNING LIDAR..."
     gnome-terminal --title="LIDAR" -- bash -c \
         "cd little-blue/jetson/lidar ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch sllidar_ros2 sllidar_s1_launch.py ; exec bash"
+
+    echo "Allowing ${LIDAR_PROJECT} to start up (5s)..."
+    sleep 5s
 }
 
 run_cameras()
@@ -70,13 +79,19 @@ run_cameras()
     echo "RUNNING CAMERAS..."
     gnome-terminal --title="CAMERAS" -- bash -c \
         "cd little-blue/jetson/cameras ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch pylon_ros2_camera_wrapper two_cams.launch.py ; exec bash"
+
+    echo "Allowing ${CAMERAS_PROJECT_1} to start up (5s)..."
+    sleep 5s
 }
 
 run_rpi()
 {
     echo "RUNNING RPI..."
     gnome-terminal --title="RPI" -- bash -c \
-        "ssh littleblue@192.168.215.201 ; cd IGVCDev2 ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch arduino_control launch.py ; exec bash"
+        "ssh littleblue@192.168.215.201 'cd IGVCDev2 ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch arduino_control launch.py '; exec bash"
+
+    echo "Allowing ${RPI_PROJECT} to start up (15s)..."
+    sleep 15s
 }
 
 # Script
@@ -85,13 +100,13 @@ projects="$@"
 if test $# -eq 0
 then
     RVIZ_ENABLED=0
-    projects=(${AUTONOMY_PROJECT_1} ${CAMERAS_PROJECT_1} ${GPS_PROJECT} ${IMU_PROJECT} ${LIDAR_PROJECT} ${RPI_PROJECT})
+    projects=(${RPI_PROJECT} ${GPS_PROJECT} ${IMU_PROJECT} ${CAMERAS_PROJECT_1} ${LIDAR_PROJECT} ${AUTONOMY_PROJECT_1})
 elif test $# -eq 1
 then
     if test "$1" == "${RVIZ}"
     then
         RVIZ_ENABLED=1
-        projects=(${AUTONOMY_PROJECT_1} ${CAMERAS_PROJECT_1} ${GPS_PROJECT} ${IMU_PROJECT} ${LIDAR_PROJECT} ${RPI_PROJECT})
+        projects=(${RPI_PROJECT} ${GPS_PROJECT} ${IMU_PROJECT} ${CAMERAS_PROJECT_1} ${LIDAR_PROJECT} ${AUTONOMY_PROJECT_1})
     fi
 fi
 

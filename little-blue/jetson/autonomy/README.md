@@ -1,3 +1,13 @@
+# Autonomy
+
+1. Install the correct version of torch on little blue: `/usr/bin/python3 -m pip install --index-url https://pypi.jetson-ai-lab.io/jp6/cu126 torch==2.11.0 torchvision==0.26.0`
+
+
+
+
+
+
+
 # LittleBlue real-robot deployment
 
 This package (`startup_robot`) is the single entry point for running the
