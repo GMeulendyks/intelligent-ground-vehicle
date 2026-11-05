@@ -1,4 +1,10 @@
 #!/bin/bash
+if [[ `git status --porcelain` ]]; then
+    echo "You have made changes."
+    echo "Please stash them using 'git stash' or remove them using 'git restore ./*'"
+    exit 0
+fi
+
 branch="develop"
 if test $# -ne 1; then
     echo "Defaulting to develop branch..."
