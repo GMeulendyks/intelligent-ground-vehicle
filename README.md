@@ -9,15 +9,19 @@
 
 # Introduction
 
-Old Dominion University has an intelligent ground vehicle known as Little Blue. In this repository, we store all the software that will run on Little Blue as well as a simulation environment.
+Old Dominion University has an intelligent ground vehicle known as Little Blue. In this repository, we store all the software that will run on Little Blue and associated documentation.
 
 <br/>
 <br/>
 
 # Getting Started
 
-It's recommended to start in [little-blue](./little-blue/) and check out the photos of Little Blue as well as each device's purpose and properties.
-Afterwards, developers should set up their environments using the guide in [dev-env-setup](./dev-env-setup/01_environment_setup.md)
+1. See Little Blue and its components in [components](./little-blue/components/).
+1. Follow the development environment setup [here](./setup/01_environment_setup.md).
+1. Follow the code environment setup [here](./setup/02_code_environment_setup.md).
+1. Learn to build, clean, and run the software [here](./setup/03_build_and_run.md).
+1. Every time you see a README.md, read it. I promise to keep them succinct and useful.
+1. Start contributing!
 
 <br/>
 <br/>

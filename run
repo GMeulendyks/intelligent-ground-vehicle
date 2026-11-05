@@ -3,11 +3,22 @@
 # Global Variables
 
 HELP="-h"
-AUTONOMY_PROJECT="auto"
+
+RVIZ="-rviz"
+RVIZ_ENABLED=0
+
+AUTONOMY_PROJECT_1="autonomy"
+AUTONOMY_PROJECT_2="auto"
+
+CAMERAS_PROJECT_1="cameras"
+CAMERAS_PROJECT_2="camera"
+
 GPS_PROJECT="gps"
+
 IMU_PROJECT="imu"
+
 LIDAR_PROJECT="lidar"
-CAMERAS_PROJECT="cameras"
+
 RPI_PROJECT="rpi"
 
 # Build Functions
@@ -15,36 +26,50 @@ RPI_PROJECT="rpi"
 run_autonomy()
 {
     echo "RUNNING AUTONOMY..."
-    gnome-terminal --title="AUTONOMY" -- bash -c \
-        "cd jetson/IGVC/ros2_ws ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch startup_robot deploy.launch.py ; exec bash"
+
+    if test RVIZ_ENABLED == 1
+    then
+        gnome-terminal --title="AUTONOMY" -- bash -c \
+            "cd little-blue/jetson/autonomy/ros2_ws ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch startup_robot deploy.launch.py rviz:=true ; exec bash"
+    else
+        gnome-terminal --title="AUTONOMY" -- bash -c \
+            "cd little-blue/jetson/autonomy/ros2_ws ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch startup_robot deploy.launch.py ; exec bash"
+    fi
 }
 
 run_gps()
 {
     echo "RUNNING GPS..."
     gnome-terminal --title="GPS" -- bash -c \
-        "cd jetson/sensors ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch ublox_gps ublox_gps_node_zedf9p-launch.py ; exec bash"
+        "cd little-blue/jetson/gps ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch ublox_gps ublox_gps_node_zedf9p-launch.py ; exec bash"
 }
 
 run_imu()
 {
     echo "RUNNING IMU..."
-    gnome-terminal --title="IMU" -- bash -c \
-        "cd jetson/sensors ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch xsens_mti_ros2_driver display.launch.py; exec bash"
+
+    if test RVIZ_ENABLED == 1
+    then
+        gnome-terminal --title="IMU" -- bash -c \
+            "cd little-blue/jetson/imu ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch xsens_mti_ros2_driver display.launch.py ; exec bash"
+    else
+        gnome-terminal --title="IMU" -- bash -c \
+            "cd little-blue/jetson/imu ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch xsens_mti_ros2_driver xsens_mti_node.launch.py ; exec bash"
+    fi
 }
 
 run_lidar()
 {
     echo "RUNNING LIDAR..."
     gnome-terminal --title="LIDAR" -- bash -c \
-        "cd jetson/sensors ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch sllidar_ros2 sllidar_s1_launch.py ; exec bash"
+        "cd little-blue/jetson/lidar ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch sllidar_ros2 sllidar_s1_launch.py ; exec bash"
 }
 
 run_cameras()
 {
     echo "RUNNING CAMERAS..."
     gnome-terminal --title="CAMERAS" -- bash -c \
-        "cd jetson/cameras ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch pylon_ros2_camera_wrapper two_cams.launch.py ; exec bash"
+        "cd little-blue/jetson/cameras ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch pylon_ros2_camera_wrapper two_cams.launch.py ; exec bash"
 }
 
 run_rpi()
@@ -59,14 +84,33 @@ run_rpi()
 projects="$@"
 if test $# -eq 0
 then
-    projects=(${AUTONOMY_PROJECT} ${GPS_PROJECT} ${IMU_PROJECT} ${LIDAR_PROJECT} ${CAMERAS_PROJECT} ${RPI_PROJECT})
+    RVIZ_ENABLED=0
+    projects=(${AUTONOMY_PROJECT_1} ${CAMERAS_PROJECT_1} ${GPS_PROJECT} ${IMU_PROJECT} ${LIDAR_PROJECT} ${RPI_PROJECT})
+elif test $# -eq 1
+then
+    if test "$1" == "${RVIZ}"
+    then
+        RVIZ_ENABLED=1
+        projects=(${AUTONOMY_PROJECT_1} ${CAMERAS_PROJECT_1} ${GPS_PROJECT} ${IMU_PROJECT} ${LIDAR_PROJECT} ${RPI_PROJECT})
+    fi
 fi
 
 for var in ${projects[@]}
 do
-    if test "${var}" == "${AUTONOMY_PROJECT}"
+    if test "$1" == "${RVIZ}"
+    then
+        RVIZ_ENABLED=1
+    fi
+done
+
+for var in ${projects[@]}
+do
+    if test "${var}" == "${AUTONOMY_PROJECT_1}" || test "${var}" == "${AUTONOMY_PROJECT_2}"
     then
         run_autonomy
+    elif test "${var}" == "${CAMERAS_PROJECT_1}" || test "${var}" == "${CAMERAS_PROJECT_2}"
+    then
+        run_cameras
     elif test "${var}" == "${GPS_PROJECT}"
     then
         run_gps
@@ -76,21 +120,25 @@ do
     elif test "${var}" == "${LIDAR_PROJECT}"
     then
         run_lidar
-    elif test "${var}" == "${CAMERAS_PROJECT}"
-    then
-        run_cameras
     elif test "${var}" == "${RPI_PROJECT}"
     then
         run_rpi
+    elif test "${var}" == "${RVIZ}"
+    then
+        :
     elif test "${var}" == "${HELP}"
     then
         echo "THIS SCRIPT RUNS PROJECTS."
+        echo "PARAMETERS:"
+        echo -e "\t ${RVIZ}"
         echo "OPTIONS:"
-        echo -e "\t ${AUTONOMY_PROJECT}"
+        echo -e "\t ${AUTONOMY_PROJECT_1} or ${AUTONOMY_PROJECT_2}"
+        echo -e "\t ${CAMERAS_PROJECT_1} or ${CAMERAS_PROJECT_2}"
         echo -e "\t ${GPS_PROJECT}"
         echo -e "\t ${IMU_PROJECT}"
         echo -e "\t ${LIDAR_PROJECT}"
         echo -e "\t ${RPI_PROJECT}"
+        exit 0;
     else
         echo "unknown project \"${var}\""
     fi

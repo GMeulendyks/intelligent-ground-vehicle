@@ -15,31 +15,7 @@ sudo apt update && sudo apt upgrade
 ```
 
 
-3. Install a newer version of cmake
-
-Download the cmake source 4.4.5 (cmake-4.4.5.tar.gz) [Available Here](https://github.com/Kitware/CMake/releases)
-```bash
-sudo apt purge cmake
-```
-```bash
-tar -xvzf cmake-4.4.5.tar.gz
-```
-```bash
-cd cmake-4.4.5
-```
-```bash
-sudo ./bootstrap
-```
-```bash
-sudo make
-```
-```bash
-sudo make install
-```
-
-
-4. Prepare to install ROS Iron
-	1. Follow this guide: https://docs.ros.org/en/iron/Installation/Ubuntu-Install-Debs.html
+3. Prepare to install ROS Iron. Follow this guide https://docs.ros.org/en/iron/Installation/Ubuntu-Install-Debs.html
 ```bash
 sudo apt install software-properties-common
 
@@ -55,7 +31,7 @@ sudo apt update
 ```
 
 
-5. Install all the packages you're going to need (grab a coffee, this will take a while):
+4. Install all the packages you're going to need (grab a coffee, this will take a while):
 ```bash
 sudo apt install -y \
   git \
@@ -71,15 +47,7 @@ sudo apt install -y \
   ros-iron-nmea-msgs \
   ros-iron-asio-cmake-module \
   ros-iron-diagnostic-updater \
-  ros-humble-diagnostic-updater \
-  ros-humble-pcl-ros \
-  ros-humble-std-srvs \
-  ros-humble-rosidl-default-generators \
-  ros-humble-cv-bridge \
-  ros-humble-camera-info-manager \
-  ros-humble-image-geometry \
-  ros-humble-image-transport \
-  ros-humble-ament-lint-auto \
+  ros-iron-pcl-ros \
   xterm \
   python3 \
   python3-colcon-common-extensions \
@@ -91,7 +59,7 @@ sudo apt install -y \
 ```
 
 
-6. Prepare some of the packages after installation.
+5. Prepare some of the packages after installation.
 ```bash
 sudo rosdep init
 ```
@@ -106,12 +74,16 @@ git config --global user.name "Your Name"
 ```
 
 
-7. Install pylon
+6. Install pylon 26.02. This is already in the repo, but can also be downloaded from [here](https://www.baslerweb.com/en/downloads/software/?downloadCategory.values.label.data=pylon&groupAssets.supportedOs.data=linux)
+```bash
+tar -xvzf pylon-26.02.1_linux-x86_64_debs.tar.gz
+```
+```bash
+sudo apt install pylon-26.02.1_linux-x86_64_debs/pylon_26.02.1-deb0_amd64.deb
+```
 
-Download and install pylon 26.10 [Available Here](https://www.baslerweb.com/en/downloads/software/?downloadCategory.values.label.data=pylon&groupAssets.supportedOs.data=linux)
 
-
-8. Create a new github ssh key
+7. Create a new github ssh key
 	1. Folow this guide: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 ```bash
 ssh-keygen -t ed25519 -C "YOUR_EMAIL@example.com"
@@ -122,7 +94,7 @@ ssh-add ~/.ssh/id_ed25519 # Or whatever you named the file.
 ```
 
 
-9. Add the public ssh key to your github
+8. Add the public ssh key to your github
 	1. Follow this guide: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?tool=webui
 ```bash
 # Copy and paste this into your GitHub account ssh keys.
@@ -130,14 +102,14 @@ cat ~/.ssh/id_ed25519.pub
 ```
 
 
-10. Clone this repository
+9. Clone this repository
 	1. NOTE: Run this in a folder of your choice
 ```bash
 git clone git@github.com:GMeulendyks/intelligent-ground-vehicle.git
 ```
 
 
-11. Change permissions on the scripts so they can run.
+10. Change permissions on the scripts so they can run.
 
 ```bash
 chmod +700 build

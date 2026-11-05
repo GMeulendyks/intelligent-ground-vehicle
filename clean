@@ -3,54 +3,34 @@
 # Global Variables
 
 HELP="-h"
-AUTONOMY_PROJECT="auto"
-GPS_DRIVER="gpsdriver"
-SENSORS_PROJECT="sensors"
-CAMERAS_PROJECT="cameras"
+
+AUTONOMY_PROJECT_1="autonomy"
+AUTONOMY_PROJECT_2="auto"
+
+CAMERAS_PROJECT_1="cameras"
+CAMERAS_PROJECT_2="camera"
+
+GPS_PROJECT="gps"
+
+IMU_PROJECT="imu"
+
+LIDAR_PROJECT="lidar"
 
 FAILED=""
 
-# Build Functions
+# Clean Functions
 
 clean_autonomy()
 {
     (
         echo "CLEANING AUTONOMY..."
-        cd jetson/IGVC/ros2_ws
+        cd little-blue/jetson/autonomy/ros2_ws
         rm -rf build install log
     )
 
     if [ $? -ne 0 ];
     then
-        FAILED+=" ${AUTONOMY_PROJECT}"
-    fi
-}
-
-clean_gps_driver()
-{
-    (
-        echo "CLEANING GPS DRIVER..."
-        cd jetson/sensors/src/xsens_ws/src/xsens_mti_ros2_driver/lib/xspublic
-        make clean
-    )
-
-    if [ $? -ne 0 ];
-    then
-        FAILED+=" ${GPS_DRIVER}"
-    fi
-}
-
-clean_sensors()
-{
-    (
-        echo "CLEANING SENSORS..."
-        cd jetson/sensors
-        rm -rf build install log
-    )
-
-    if [ $? -ne 0 ];
-    then
-        FAILED+=" ${SENSORS_PROJECT}"
+        FAILED+=" ${AUTONOMY_PROJECT_1}"
     fi
 }
 
@@ -58,7 +38,7 @@ clean_cameras()
 {
     (
         echo "CLEANING CAMERAS..."
-        cd jetson/cameras
+        cd little-blue/jetson/cameras
         rm -rf build install log
     )
 
@@ -68,36 +48,98 @@ clean_cameras()
     fi
 }
 
+clean_gps()
+{
+    (
+        echo "CLEANING GPS..."
+        cd little-blue/jetson/gps/
+        rm -rf build install log
+    )
+
+    if [ $? -ne 0 ];
+    then
+        FAILED+=" ${GPS_PROJECT}"
+    fi
+}
+
+clean_imu_driver()
+{
+    (
+        echo "CLEANING IMU DRIVER..."
+        cd little-blue/jetson/imu/src/xsens_mti_ros2_driver/lib/xspublic
+        make clean
+    )
+
+    if [ $? -ne 0 ];
+    then
+        FAILED+=" IMUDRIVER"
+    fi
+}
+
+clean_imu()
+{
+    (
+        echo "CLEANING IMU..."
+        cd little-blue/jetson/imu/
+        rm -rf build install log
+    )
+
+    if [ $? -ne 0 ];
+    then
+        FAILED+=" ${IMU_PROJECT}"
+    fi
+}
+
+clean_lidar()
+{
+    (
+        echo "CLEANING LIDAR..."
+        cd little-blue/jetson/lidar
+        rm -rf build install log
+    )
+
+    if [ $? -ne 0 ];
+    then
+        FAILED+=" ${LIDAR_PROJECT}"
+    fi
+}
+
 # Script
 
 projects="$@"
 if test $# -eq 0
 then
-    projects=(${AUTONOMY_PROJECT} ${GPS_DRIVER} ${SENSORS_PROJECT} ${CAMERAS_PROJECT})
+    projects=(${AUTONOMY_PROJECT_1} ${CAMERAS_PROJECT_1} ${GPS_PROJECT} ${IMU_PROJECT} ${LIDAR_PROJECT})
 fi
 
 for var in ${projects[@]}
 do
-    if test "${var}" == "${AUTONOMY_PROJECT}"
+    if test "${var}" == "${AUTONOMY_PROJECT_1}" || test "${var}" == "${AUTONOMY_PROJECT_2}"
     then
         clean_autonomy
-    elif test "${var}" == "${GPS_DRIVER}"
-    then
-        clean_gps_driver
-    elif test "${var}" == "${SENSORS_PROJECT}"
-    then
-        clean_sensors
-    elif test "${var}" == "${CAMERAS_PROJECT}"
+    elif test "${var}" == "${CAMERAS_PROJECT_1}" || test "${var}" == "${CAMERAS_PROJECT_2}"
     then
         clean_cameras
+    elif test "${var}" == "${GPS_PROJECT}"
+    then
+        clean_gps
+    elif test "${var}" == "${IMU_PROJECT}"
+    then
+        clean_imu_driver
+        clean_imu
+    elif test "${var}" == "${LIDAR_PROJECT}"
+    then
+        clean_lidar
     elif test "${var}" == "${HELP}"
     then
         echo "THIS SCRIPT CLEANS PROJECTS."
         echo "OPTIONS:"
-        echo -e "\t ${AUTONOMY_PROJECT}"
-        echo -e "\t ${GPS_DRIVER}"
-        echo -e "\t ${SENSORS_PROJECT}"
-        echo -e "\t ${CAMERAS_PROJECT}"
+        echo -e "\t ${AUTONOMY_PROJECT_1} or ${AUTONOMY_PROJECT_2}"
+        echo -e "\t ${CAMERAS_PROJECT_1} or ${CAMERAS_PROJECT_2}"
+        echo -e "\t ${GPS_PROJECT}"
+        echo -e "\t ${IMU_PROJECT}"
+        echo -e "\t ${LIDAR_PROJECT}"
+        exit 0
     else
         echo "unknown project \"${var}\""
     fi
@@ -106,6 +148,7 @@ do
     echo ""
     echo ""
 done
+
 
 for var in ${projects[@]}
 do

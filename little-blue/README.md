@@ -1,13 +1,5 @@
-# Table of Contents
+# Little Blue
 
-[Introduction](#introduction)<br/>
-
-<br/>
-<br/>
-
-# Introduction
-
-This folder contains pictures and documents explaining the layout of Little Blue.
-
-<br/>
-<br/>
+1. [components](./components/) contains documentation for all components on Little Blue
+1. [jetson](./jetson/) contains all source code that runs on the Nvidia Jetson.
+1. [rpi](./rpi/) contains all source code that runs on the raspberry pi.
