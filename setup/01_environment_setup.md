@@ -48,6 +48,7 @@ sudo apt install -y \
   ros-iron-asio-cmake-module \
   ros-iron-diagnostic-updater \
   ros-iron-pcl-ros \
+  ros-iron-robot-localization \
   xterm \
   python3 \
   python3-colcon-common-extensions \
