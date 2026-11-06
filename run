@@ -43,25 +43,18 @@ run_gps()
     gnome-terminal --title="GPS" -- bash -c \
         "cd little-blue/jetson/gps ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch ublox_gps ublox_gps_node_zedf9p-launch.py ; exec bash"
 
-    echo "Allowing ${GPS_PROJECT} to start up (5s)..."
-    sleep 5s
+    echo "Allowing ${GPS_PROJECT} to start up (15s)..."
+    sleep 15s
 }
 
 run_imu()
 {
     echo "RUNNING IMU..."
-
-    if test RVIZ_ENABLED == 1
-    then
-        gnome-terminal --title="IMU" -- bash -c \
+    gnome-terminal --title="IMU" -- bash -c \
             "cd little-blue/jetson/imu ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch xsens_mti_ros2_driver display.launch.py ; exec bash"
-    else
-        gnome-terminal --title="IMU" -- bash -c \
-            "cd little-blue/jetson/imu ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch xsens_mti_ros2_driver xsens_mti_node.launch.py ; exec bash"
-    fi
 
-    echo "Allowing ${IMU_PROJECT} to start up (5s)..."
-    sleep 5s
+    echo "Allowing ${IMU_PROJECT} to start up (10s)..."
+    sleep 10s
 }
 
 run_lidar()
@@ -70,8 +63,8 @@ run_lidar()
     gnome-terminal --title="LIDAR" -- bash -c \
         "cd little-blue/jetson/lidar ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch sllidar_ros2 sllidar_s1_launch.py ; exec bash"
 
-    echo "Allowing ${LIDAR_PROJECT} to start up (5s)..."
-    sleep 5s
+    echo "Allowing ${LIDAR_PROJECT} to start up (10s)..."
+    sleep 10s
 }
 
 run_cameras()
@@ -80,8 +73,8 @@ run_cameras()
     gnome-terminal --title="CAMERAS" -- bash -c \
         "cd little-blue/jetson/cameras ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch pylon_ros2_camera_wrapper two_cams.launch.py ; exec bash"
 
-    echo "Allowing ${CAMERAS_PROJECT_1} to start up (5s)..."
-    sleep 5s
+    echo "Allowing ${CAMERAS_PROJECT_1} to start up (15s)..."
+    sleep 15s
 }
 
 run_rpi()
@@ -112,7 +105,7 @@ fi
 
 for var in ${projects[@]}
 do
-    if test "$1" == "${RVIZ}"
+    if test "${var}" == "${RVIZ}"
     then
         RVIZ_ENABLED=1
     fi
