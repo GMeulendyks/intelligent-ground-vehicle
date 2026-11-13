@@ -33,6 +33,7 @@
 //#include <functional>
 
 #include "pylon_ros2_camera_node.hpp"
+#include "image_reduction.hpp"
 
 
 namespace pylon_ros2_camera
@@ -703,6 +704,23 @@ bool PylonROS2CameraNode::startGrabbing()
     }
   }
 
+  // LittleBlue: optional resolution reduction applied to image_raw before publishing.
+  // Valid values: 1 (off, default), 2, 4. See image_reduction.hpp.
+  if (!this->has_parameter("output_scale"))
+  {
+    this->declare_parameter<int>("output_scale", 1);
+  }
+  this->get_parameter("output_scale", this->output_scale_);
+  if (this->output_scale_ != 1 && this->output_scale_ != 2 && this->output_scale_ != 4)
+  {
+    RCLCPP_WARN(LOGGER, "output_scale must be 1, 2 or 4 (got %d), disabling reduction", this->output_scale_);
+    this->output_scale_ = 1;
+  }
+  if (this->output_scale_ > 1)
+  {
+    RCLCPP_INFO(LOGGER, "image_raw will be reduced by a factor of %d before publishing", this->output_scale_);
+  }
+
   this->img_raw_msg_.header.frame_id = this->pylon_camera_parameter_set_.cameraFrame();
   // Encoding of pixels -- channel meaning, ordering, size
   // taken from the list of strings in include/sensor_msgs/image_encodings.h
@@ -886,6 +904,96 @@ bool PylonROS2CameraNode::startGrabbing()
   return true;
 }
 
+bool PylonROS2CameraNode::reduceImage(const sensor_msgs::msg::Image& in, sensor_msgs::msg::Image& out)
+{
+  namespace enc = sensor_msgs::image_encodings;
+  const int s = this->output_scale_;
+  if (s <= 1)
+  {
+    return false;
+  }
+
+  if (in.width % s != 0 || in.height % s != 0)
+  {
+    RCLCPP_WARN_ONCE(LOGGER, "Image size %ux%u is not divisible by output_scale %d, publishing full size",
+                     in.width, in.height, s);
+    return false;
+  }
+  if (in.data.size() < static_cast<size_t>(in.step) * in.height)
+  {
+    return false;  // incomplete frame, let the normal path deal with it
+  }
+
+  const size_t out_w = in.width / s;
+  const size_t out_h = in.height / s;
+
+  out.header = in.header;
+  out.width = static_cast<uint32_t>(out_w);
+  out.height = static_cast<uint32_t>(out_h);
+  out.is_bigendian = in.is_bigendian;
+
+  // Preferred path: raw 8-bit Bayer -> BGR8 super-pixel reduction (no debayering needed)
+  int r = 0, g1 = 0, g2 = 0, b = 0;
+  if (bayerCellLayout(in.encoding, r, g1, g2, b))
+  {
+    out.encoding = enc::BGR8;
+    out.step = static_cast<uint32_t>(out_w * 3);
+    out.data.resize(static_cast<size_t>(out.step) * out_h);  // keeps capacity across frames
+    bayer8ToBgr8Reduce(in.data.data(), in.step, out_w, out_h, s, r, g1, g2, b, out.data.data());
+    return true;
+  }
+
+  // Fallback: already-debayered / mono 8-bit images, box-averaged
+  int channels = 0;
+  if (in.encoding == enc::BGR8 || in.encoding == enc::RGB8)
+  {
+    channels = 3;
+  }
+  else if (in.encoding == enc::MONO8)
+  {
+    channels = 1;
+  }
+  else
+  {
+    RCLCPP_WARN_ONCE(LOGGER, "output_scale is not supported for encoding '%s', publishing full size",
+                     in.encoding.c_str());
+    return false;
+  }
+
+  out.encoding = in.encoding;
+  out.step = static_cast<uint32_t>(out_w * channels);
+  out.data.resize(static_cast<size_t>(out.step) * out_h);
+  box8Reduce(in.data.data(), in.step, out_w, out_h, s, channels, out.data.data());
+  return true;
+}
+
+void PylonROS2CameraNode::scaleCameraInfo(sensor_msgs::msg::CameraInfo& ci, int scale,
+                                          uint32_t width, uint32_t height) const
+{
+  ci.width = width;
+  ci.height = height;
+
+  // Area/super-pixel reduction maps full-res pixel x to (x + 0.5) / scale - 0.5.
+  // Leave uncalibrated (all-zero) matrices alone.
+  const double inv = 1.0 / static_cast<double>(scale);
+  if (ci.k[0] != 0.0)
+  {
+    ci.k[0] *= inv;                         // fx
+    ci.k[4] *= inv;                         // fy
+    ci.k[2] = (ci.k[2] + 0.5) * inv - 0.5;  // cx
+    ci.k[5] = (ci.k[5] + 0.5) * inv - 0.5;  // cy
+  }
+  if (ci.p[0] != 0.0)
+  {
+    ci.p[0] *= inv;                         // fx'
+    ci.p[5] *= inv;                         // fy'
+    ci.p[3] *= inv;                         // Tx (= -fx' * baseline)
+    ci.p[7] *= inv;                         // Ty
+    ci.p[2] = (ci.p[2] + 0.5) * inv - 0.5;  // cx'
+    ci.p[6] = (ci.p[6] + 0.5) * inv - 0.5;  // cy'
+  }
+}
+
 void PylonROS2CameraNode::spin()
 {
   if (this->camera_info_manager_->isCalibrated())
@@ -945,8 +1053,17 @@ void PylonROS2CameraNode::spin()
         // changed due to a 'set_camera_info'-service call
         sensor_msgs::msg::CameraInfo cam_info = this->camera_info_manager_->getCameraInfo();
         cam_info.header.stamp = this->img_raw_msg_.header.stamp;
-        // publish via image_transport
-        this->img_raw_pub_.publish(this->img_raw_msg_, cam_info);
+        // LittleBlue: publish a reduced image if requested (falls back to full size on failure)
+        if (this->output_scale_ > 1 && this->reduceImage(this->img_raw_msg_, this->img_reduced_msg_))
+        {
+          this->scaleCameraInfo(cam_info, this->output_scale_, this->img_reduced_msg_.width, this->img_reduced_msg_.height);
+          this->img_raw_pub_.publish(this->img_reduced_msg_, cam_info);
+        }
+        else
+        {
+          // publish via image_transport
+          this->img_raw_pub_.publish(this->img_raw_msg_, cam_info);
+        }
       }
 
       // this->getNumSubscribersRectImagePub() involves that this->camera_info_manager_->isCalibrated() == true
