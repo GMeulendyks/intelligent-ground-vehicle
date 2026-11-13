@@ -202,6 +202,20 @@ protected:
   virtual bool grabImage();
 
   /**
+   * @brief LittleBlue: crop (optional) and reduce the resolution of an image by output_scale_ (1, 2 or 4).
+   *        8-bit Bayer input becomes BGR8 (super-pixel reduction); BGR8/RGB8/MONO8
+   *        are area-averaged. Does not modify the input.
+   * @return false if reduction is off or not possible; caller should publish the full image.
+   */
+  bool reduceImage(const sensor_msgs::msg::Image& in, sensor_msgs::msg::Image& out);
+
+  /**
+   * @brief LittleBlue: rescale width/height/K/P of a CameraInfo to match a reduced image.
+   */
+  void scaleCameraInfo(sensor_msgs::msg::CameraInfo& ci, int scale, uint32_t width, uint32_t height,
+                       int x0 = 0, int y0 = 0) const;
+
+  /**
    * @brief Update the exposure value on the camera
    * @param target_exposure the targeted exposure
    * @param reached_exposure the exposure that could be reached
@@ -1647,6 +1661,14 @@ protected:
   camera_info_manager::CameraInfoManager* camera_info_manager_;
 
   sensor_msgs::msg::Image img_raw_msg_;
+
+  // LittleBlue: optional reduction of image_raw (1 = off, 2, 4). ROS param "output_scale".
+  int output_scale_ = 1;
+  // LittleBlue: optional crop (full-resolution pixels), applied before output_scale_.
+  // Disabled when crop_w_ or crop_h_ is 0. ROS params crop_x / crop_y / crop_w / crop_h.
+  int crop_x_ = 0, crop_y_ = 0, crop_w_ = 0, crop_h_ = 0;
+  int applied_crop_x_ = 0, applied_crop_y_ = 0;  // offset actually used for the last frame
+  sensor_msgs::msg::Image img_reduced_msg_;
 
   cv_bridge::CvImage* cv_bridge_img_rect_;
 

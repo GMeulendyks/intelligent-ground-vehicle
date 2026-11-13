@@ -84,11 +84,13 @@ class YoloTrtNode(Node):
                 det_array.detections.append(det)
         self.det_pub.publish(det_array)
 
-        annotated = result.plot()
-
-        out_msg = self.bridge.cv2_to_imgmsg(annotated, encoding="bgr8")
-        out_msg.header = msg.header
-        self.image_pub.publish(out_msg)
+        # Drawing boxes and publishing the annotated frame is expensive at
+        # camera resolution, so only do it when something is subscribed.
+        if self.image_pub.get_subscription_count() > 0:
+            annotated = result.plot()
+            out_msg = self.bridge.cv2_to_imgmsg(annotated, encoding="bgr8")
+            out_msg.header = msg.header
+            self.image_pub.publish(out_msg)
 
         n = len(result.boxes) if result.boxes is not None else 0
         self.get_logger().info(f"Detections this frame: {n}")
