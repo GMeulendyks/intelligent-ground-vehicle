@@ -5,6 +5,12 @@
 
     #  The tf frame under which the images were published
     camera_frame: pylon_camera
+    # LittleBlue: reduce image_raw before publishing (1 = off, 2 = 1920x1080, 4 = 960x540).
+    # Works best on raw Bayer: set image_encoding to the camera's Bayer encoding
+    # (see the 'encoding = ...' line in the startup log, e.g. 'bayer_rggb8') so pylon
+    # does not debayer at full resolution. The node then outputs bgr8.
+    output_scale: 2
+    # image_encoding: 'bayer_rggb8'
 
     #  The DeviceUserID of the camera. If empty, the first camera found in the
     #  device list will be used
