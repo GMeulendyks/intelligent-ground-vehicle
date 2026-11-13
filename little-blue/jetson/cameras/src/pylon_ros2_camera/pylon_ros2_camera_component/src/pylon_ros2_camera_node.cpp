@@ -35,6 +35,9 @@
 #include "pylon_ros2_camera_node.hpp"
 #include "image_reduction.hpp"
 
+#include <algorithm>
+#include <cstring>
+
 
 namespace pylon_ros2_camera
 {
@@ -704,13 +707,25 @@ bool PylonROS2CameraNode::startGrabbing()
     }
   }
 
-  // LittleBlue: optional resolution reduction applied to image_raw before publishing.
-  // Valid values: 1 (off, default), 2, 4. See image_reduction.hpp.
+  // LittleBlue: optional crop and resolution reduction applied to image_raw before publishing.
+  // output_scale: 1 (off, default), 2, 4. crop_x/y/w/h: region in full-resolution pixels, 0 = off.
+  // See image_reduction.hpp.
+  for (const char* name : {"crop_x", "crop_y", "crop_w", "crop_h"})
+  {
+    if (!this->has_parameter(name))
+    {
+      this->declare_parameter<int>(name, 0);
+    }
+  }
   if (!this->has_parameter("output_scale"))
   {
     this->declare_parameter<int>("output_scale", 1);
   }
   this->get_parameter("output_scale", this->output_scale_);
+  this->get_parameter("crop_x", this->crop_x_);
+  this->get_parameter("crop_y", this->crop_y_);
+  this->get_parameter("crop_w", this->crop_w_);
+  this->get_parameter("crop_h", this->crop_h_);
   if (this->output_scale_ != 1 && this->output_scale_ != 2 && this->output_scale_ != 4)
   {
     RCLCPP_WARN(LOGGER, "output_scale must be 1, 2 or 4 (got %d), disabling reduction", this->output_scale_);
@@ -719,6 +734,11 @@ bool PylonROS2CameraNode::startGrabbing()
   if (this->output_scale_ > 1)
   {
     RCLCPP_INFO(LOGGER, "image_raw will be reduced by a factor of %d before publishing", this->output_scale_);
+  }
+  if (this->crop_w_ > 0 && this->crop_h_ > 0)
+  {
+    RCLCPP_INFO(LOGGER, "image_raw will be cropped to x=%d y=%d w=%d h=%d (full-resolution pixels)",
+                this->crop_x_, this->crop_y_, this->crop_w_, this->crop_h_);
   }
 
   this->img_raw_msg_.header.frame_id = this->pylon_camera_parameter_set_.cameraFrame();
@@ -907,90 +927,143 @@ bool PylonROS2CameraNode::startGrabbing()
 bool PylonROS2CameraNode::reduceImage(const sensor_msgs::msg::Image& in, sensor_msgs::msg::Image& out)
 {
   namespace enc = sensor_msgs::image_encodings;
-  const int s = this->output_scale_;
-  if (s <= 1)
+  const int sc = std::max(this->output_scale_, 1);
+  const bool want_crop = (this->crop_w_ > 0 && this->crop_h_ > 0);
+  if (sc <= 1 && !want_crop)
   {
     return false;
   }
 
-  if (in.width % s != 0 || in.height % s != 0)
+  // Region of the input to use: the full frame unless a valid crop is configured
+  size_t x0 = 0, y0 = 0, rw = in.width, rh = in.height;
+  if (want_crop)
   {
-    RCLCPP_WARN_ONCE(LOGGER, "Image size %ux%u is not divisible by output_scale %d, publishing full size",
-                     in.width, in.height, s);
+    const long align = std::max(sc, 2);  // keeps the Bayer pattern and the reduction grid aligned
+    if (this->crop_x_ < 0 || this->crop_y_ < 0 ||
+        static_cast<long>(this->crop_x_) + this->crop_w_ > static_cast<long>(in.width) ||
+        static_cast<long>(this->crop_y_) + this->crop_h_ > static_cast<long>(in.height) ||
+        this->crop_x_ % align != 0 || this->crop_y_ % align != 0 ||
+        this->crop_w_ % align != 0 || this->crop_h_ % align != 0)
+    {
+      RCLCPP_WARN_ONCE(LOGGER, "Ignoring crop x=%d y=%d w=%d h=%d: it must lie inside the %ux%u image and "
+                       "x, y, w, h must be multiples of %ld",
+                       this->crop_x_, this->crop_y_, this->crop_w_, this->crop_h_, in.width, in.height, align);
+    }
+    else
+    {
+      x0 = static_cast<size_t>(this->crop_x_);
+      y0 = static_cast<size_t>(this->crop_y_);
+      rw = static_cast<size_t>(this->crop_w_);
+      rh = static_cast<size_t>(this->crop_h_);
+    }
+  }
+  this->applied_crop_x_ = static_cast<int>(x0);
+  this->applied_crop_y_ = static_cast<int>(y0);
+
+  const bool cropped = (rw != in.width || rh != in.height);
+  if (sc <= 1 && !cropped)
+  {
+    return false;
+  }
+  if (rw % sc != 0 || rh % sc != 0)
+  {
+    RCLCPP_WARN_ONCE(LOGGER, "Region size %zux%zu is not divisible by output_scale %d, publishing full size",
+                     rw, rh, sc);
+    this->applied_crop_x_ = this->applied_crop_y_ = 0;
     return false;
   }
   if (in.data.size() < static_cast<size_t>(in.step) * in.height)
   {
+    this->applied_crop_x_ = this->applied_crop_y_ = 0;
     return false;  // incomplete frame, let the normal path deal with it
   }
 
-  const size_t out_w = in.width / s;
-  const size_t out_h = in.height / s;
+  const size_t out_w = rw / sc;
+  const size_t out_h = rh / sc;
+  const uint8_t* src = in.data.data();
 
   out.header = in.header;
   out.width = static_cast<uint32_t>(out_w);
   out.height = static_cast<uint32_t>(out_h);
   out.is_bigendian = in.is_bigendian;
 
-  // Preferred path: raw 8-bit Bayer -> BGR8 super-pixel reduction (no debayering needed)
+  // Bytes per pixel of the input, for the non-reducing (crop only) copy and the box path
+  int bpp = 0;
   int r = 0, g1 = 0, g2 = 0, b = 0;
-  if (bayerCellLayout(in.encoding, r, g1, g2, b))
+  const bool is_bayer = bayerCellLayout(in.encoding, r, g1, g2, b);
+  if (is_bayer || in.encoding == enc::MONO8)
   {
-    out.encoding = enc::BGR8;
-    out.step = static_cast<uint32_t>(out_w * 3);
-    out.data.resize(static_cast<size_t>(out.step) * out_h);  // keeps capacity across frames
-    bayer8ToBgr8Reduce(in.data.data(), in.step, out_w, out_h, s, r, g1, g2, b, out.data.data());
-    return true;
+    bpp = 1;
   }
-
-  // Fallback: already-debayered / mono 8-bit images, box-averaged
-  int channels = 0;
-  if (in.encoding == enc::BGR8 || in.encoding == enc::RGB8)
+  else if (in.encoding == enc::BGR8 || in.encoding == enc::RGB8)
   {
-    channels = 3;
-  }
-  else if (in.encoding == enc::MONO8)
-  {
-    channels = 1;
+    bpp = 3;
   }
   else
   {
-    RCLCPP_WARN_ONCE(LOGGER, "output_scale is not supported for encoding '%s', publishing full size",
+    RCLCPP_WARN_ONCE(LOGGER, "output_scale / crop is not supported for encoding '%s', publishing full size",
                      in.encoding.c_str());
+    this->applied_crop_x_ = this->applied_crop_y_ = 0;
     return false;
   }
 
+  const uint8_t* region = src + y0 * in.step + x0 * bpp;
+
+  if (sc == 1)
+  {
+    // Crop only: copy the rows, keep the encoding (x0 / y0 are even, so a Bayer pattern is unchanged)
+    out.encoding = in.encoding;
+    out.step = static_cast<uint32_t>(out_w * bpp);
+    out.data.resize(static_cast<size_t>(out.step) * out_h);
+    for (size_t y = 0; y < out_h; ++y)
+    {
+      std::memcpy(out.data.data() + y * out.step, region + y * in.step, out_w * bpp);
+    }
+    return true;
+  }
+
+  if (is_bayer)
+  {
+    // Preferred path: raw 8-bit Bayer -> BGR8 super-pixel reduction (no debayering needed)
+    out.encoding = enc::BGR8;
+    out.step = static_cast<uint32_t>(out_w * 3);
+    out.data.resize(static_cast<size_t>(out.step) * out_h);  // keeps capacity across frames
+    bayer8ToBgr8Reduce(region, in.step, out_w, out_h, sc, r, g1, g2, b, out.data.data());
+    return true;
+  }
+
+  // Already-debayered / mono 8-bit images: box average
   out.encoding = in.encoding;
-  out.step = static_cast<uint32_t>(out_w * channels);
+  out.step = static_cast<uint32_t>(out_w * bpp);
   out.data.resize(static_cast<size_t>(out.step) * out_h);
-  box8Reduce(in.data.data(), in.step, out_w, out_h, s, channels, out.data.data());
+  box8Reduce(region, in.step, out_w, out_h, sc, bpp, out.data.data());
   return true;
 }
 
 void PylonROS2CameraNode::scaleCameraInfo(sensor_msgs::msg::CameraInfo& ci, int scale,
-                                          uint32_t width, uint32_t height) const
+                                          uint32_t width, uint32_t height, int x0, int y0) const
 {
   ci.width = width;
   ci.height = height;
 
-  // Area/super-pixel reduction maps full-res pixel x to (x + 0.5) / scale - 0.5.
-  // Leave uncalibrated (all-zero) matrices alone.
+  // A crop at (x0, y0) followed by an area/super-pixel reduction maps full-res pixel x to
+  // (x - x0 + 0.5) / scale - 0.5. Leave uncalibrated (all-zero) matrices alone.
   const double inv = 1.0 / static_cast<double>(scale);
   if (ci.k[0] != 0.0)
   {
-    ci.k[0] *= inv;                         // fx
-    ci.k[4] *= inv;                         // fy
-    ci.k[2] = (ci.k[2] + 0.5) * inv - 0.5;  // cx
-    ci.k[5] = (ci.k[5] + 0.5) * inv - 0.5;  // cy
+    ci.k[0] *= inv;                                   // fx
+    ci.k[4] *= inv;                                   // fy
+    ci.k[2] = (ci.k[2] - x0 + 0.5) * inv - 0.5;       // cx
+    ci.k[5] = (ci.k[5] - y0 + 0.5) * inv - 0.5;       // cy
   }
   if (ci.p[0] != 0.0)
   {
-    ci.p[0] *= inv;                         // fx'
-    ci.p[5] *= inv;                         // fy'
-    ci.p[3] *= inv;                         // Tx (= -fx' * baseline)
-    ci.p[7] *= inv;                         // Ty
-    ci.p[2] = (ci.p[2] + 0.5) * inv - 0.5;  // cx'
-    ci.p[6] = (ci.p[6] + 0.5) * inv - 0.5;  // cy'
+    ci.p[0] *= inv;                                   // fx'
+    ci.p[5] *= inv;                                   // fy'
+    ci.p[3] *= inv;                                   // Tx (= -fx' * baseline)
+    ci.p[7] *= inv;                                   // Ty
+    ci.p[2] = (ci.p[2] - x0 + 0.5) * inv - 0.5;       // cx'
+    ci.p[6] = (ci.p[6] - y0 + 0.5) * inv - 0.5;       // cy'
   }
 }
 
@@ -1054,9 +1127,10 @@ void PylonROS2CameraNode::spin()
         sensor_msgs::msg::CameraInfo cam_info = this->camera_info_manager_->getCameraInfo();
         cam_info.header.stamp = this->img_raw_msg_.header.stamp;
         // LittleBlue: publish a reduced image if requested (falls back to full size on failure)
-        if (this->output_scale_ > 1 && this->reduceImage(this->img_raw_msg_, this->img_reduced_msg_))
+        if (this->reduceImage(this->img_raw_msg_, this->img_reduced_msg_))
         {
-          this->scaleCameraInfo(cam_info, this->output_scale_, this->img_reduced_msg_.width, this->img_reduced_msg_.height);
+          this->scaleCameraInfo(cam_info, std::max(this->output_scale_, 1), this->img_reduced_msg_.width,
+                                this->img_reduced_msg_.height, this->applied_crop_x_, this->applied_crop_y_);
           this->img_raw_pub_.publish(this->img_reduced_msg_, cam_info);
         }
         else
