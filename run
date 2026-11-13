@@ -27,7 +27,7 @@ run_autonomy()
 {
     echo "RUNNING AUTONOMY..."
 
-    if test RVIZ_ENABLED == 1
+    if test "${RVIZ_ENABLED}" == "1"
     then
         gnome-terminal --title="AUTONOMY" -- bash -c \
             "cd little-blue/jetson/autonomy/ros2_ws ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch startup_robot deploy.launch.py rviz:=true ; exec bash"
@@ -43,8 +43,8 @@ run_gps()
     gnome-terminal --title="GPS" -- bash -c \
         "cd little-blue/jetson/gps ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch ublox_gps ublox_gps_node_zedf9p-launch.py ; exec bash"
 
-    echo "Allowing ${GPS_PROJECT} to start up (15s)..."
-    sleep 15s
+    echo "Allowing ${GPS_PROJECT} to start up (25s)..."
+    sleep 25s
 }
 
 run_imu()
