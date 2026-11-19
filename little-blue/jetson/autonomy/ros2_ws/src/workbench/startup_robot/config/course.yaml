@@ -30,16 +30,24 @@ left_lane_candidate:
     # Measured from base_footprint (robot centre at ground).
     # Keep in sync with the mount plate; only remeasure if the plate
     # is physically moved.
-    camera_height: 0.32
-    camera_lateral_offset: 0.28   # +y = left of centerline
-    camera_forward_offset: 0.38
-    camera_pitch: 0.13            # rad, positive = tilted down
-    camera_yaw: 0.32              # rad, positive = rotated left
+    camera_height: 0.787
+    camera_lateral_offset: 0.32   # +y = left of centerline
+    camera_forward_offset: -0.18
+    camera_pitch: 0.0             # rad, positive = tilted down
+    camera_yaw: 0.28              # rad, positive = rotated left
+    crop_x: 304
+    crop_y: 176
+    crop_w: 3224
+    crop_h: 1808
 
 right_lane_candidate:
   ros__parameters:
-    camera_height: 0.32
-    camera_lateral_offset: -0.28  # right side
-    camera_forward_offset: 0.38
-    camera_pitch: 0.13
-    camera_yaw: -0.32
+    camera_height: 0.787
+    camera_lateral_offset: -0.32  # right side
+    camera_forward_offset: -0.20
+    camera_pitch: 0.0
+    camera_yaw: -0.45
+    crop_x: 304
+    crop_y: 176
+    crop_w: 3224
+    crop_h: 1808
