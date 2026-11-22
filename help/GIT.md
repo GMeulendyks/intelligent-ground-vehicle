@@ -41,12 +41,13 @@ The typical workflow is:
 
 # Concepts
 
-| Concept       | Description                        |
-|---------------|------------------------------------|
-| Branch        | An isolated place to work on code. |
-| Remote Branch | A branch on GitHub.                |
-| Local Branch  | A branch on the current machine.   |
-| Rebase        | Apply the commits on a local branch   |
+| Concept       | Description                                                |
+|---------------|------------------------------------------------------------|
+| Commit        | A change made to code.                                     |
+| Branch        | An isolated place to work on code.                         |
+| Remote Branch | A branch on GitHub.                                        |
+| Local Branch  | A branch on the current machine.                           |
+| Rebase        | Apply commits on the current branch to a different branch. |
 
 <br/>
 <br/>
