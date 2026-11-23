@@ -12,11 +12,11 @@ include(IGVCUtils)
 find_package(ament_cmake REQUIRED)
 find_package(packager_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
-set(CMAKE_MODULE_PATH
-    "${CMAKE_CURRENT_SOURCE_DIR}/deps/GeographicLib/cmake"
-    ${CMAKE_MODULE_PATH}
-)
+
+# Let cmake know where to find geographiclib. This could be different for other versions of linux.
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};/usr/share/cmake/geographiclib")
 find_package(GeographicLib REQUIRED)
+
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -35,11 +35,6 @@ endif()
 
 
 add_executable(gps_node src/NodeMain.cpp)
-
-target_include_directories(gps_node PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/deps/GeographicLib/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/deps/GeographicLib/build/include
-)
 
 msg_targets(msgs packager_msgs)
 target_include_directories(gps_node PUBLIC
