@@ -4,6 +4,8 @@
 
 HELP="-h"
 
+RPI_PROJECT="rpi"
+
 AUTONOMY_PROJECT_1="autonomy"
 AUTONOMY_PROJECT_2="auto"
 
@@ -19,6 +21,20 @@ LIDAR_PROJECT="lidar"
 FAILED=""
 
 # Build Functions
+
+build_rpi()
+{
+    (
+        echo "BUILDING RPI..."
+        cd little-blue/rpi/
+        docker buildx build --platform linux/aarch64 --output type=local,dest=. .
+    )
+
+    if [ $? -ne 0 ];
+    then
+        FAILED+=" ${RPI_PROJECT}"
+    fi
+}
 
 build_autonomy()
 {
@@ -113,12 +129,15 @@ build_lidar()
 projects="$@"
 if test $# -eq 0
 then
-    projects=(${AUTONOMY_PROJECT_1} ${CAMERAS_PROJECT_1} ${GPS_PROJECT} ${IMU_PROJECT} ${LIDAR_PROJECT})
+    projects=(${RPI_PROJECT} ${AUTONOMY_PROJECT_1} ${CAMERAS_PROJECT_1} ${GPS_PROJECT} ${IMU_PROJECT} ${LIDAR_PROJECT})
 fi
 
 for var in ${projects[@]}
 do
-    if test "${var}" == "${AUTONOMY_PROJECT_1}" || test "${var}" == "${AUTONOMY_PROJECT_2}"
+    if test "${var}" == "${RPI_PROJECT}"
+    then
+        build_rpi
+    elif test "${var}" == "${AUTONOMY_PROJECT_1}" || test "${var}" == "${AUTONOMY_PROJECT_2}"
     then
         build_autonomy
     elif test "${var}" == "${CAMERAS_PROJECT_1}" || test "${var}" == "${CAMERAS_PROJECT_2}"
@@ -138,6 +157,7 @@ do
     then
         echo "THIS SCRIPT BUILDS PROJECTS."
         echo "OPTIONS:"
+        echo -e "\t ${RPI_PROJECT}"
         echo -e "\t ${AUTONOMY_PROJECT_1} or ${AUTONOMY_PROJECT_2}"
         echo -e "\t ${CAMERAS_PROJECT_1} or ${CAMERAS_PROJECT_2}"
         echo -e "\t ${GPS_PROJECT}"

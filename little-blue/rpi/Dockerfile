@@ -1,13 +1,8 @@
 
-# docker buildx build --platform linux/aarch64 --output type=local,dest=. .
-
-# This is the current version of the rpi
+# General Setup
 FROM --platform=$BUILDPLATFORM ubuntu:22.04 AS rpibuilder
-
 SHELL ["/bin/bash", "-c"]
-
 WORKDIR /home/root
-
 RUN apt update
 
 # Install the ROS keyring to allow us to install ROS packages.
