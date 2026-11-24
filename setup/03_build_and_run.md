@@ -12,7 +12,7 @@ Build all software:
 
 Build individual components:
 ```bash
-./build sensors
+./build gps
 ```
 
 <br/>
@@ -32,7 +32,7 @@ Clean all software:
 
 Clean individual components:
 ```bash
-./clean sensors
+./clean gps
 ```
 
 <br/>

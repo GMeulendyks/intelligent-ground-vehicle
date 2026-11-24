@@ -1,13 +1,13 @@
 # Table of Contents
 
-[Workflow](#workflow)<br/>
+[General Workflow](#general-workflow)<br/>
 [Concepts](#concepts)<br/>
 [Commands](#commands)<br/>
 
 <br/>
 <br/>
 
-# Workflow
+# General Workflow
 
 The typical workflow is:
 1. Open the terminal and enter the folder that is a git repository.
@@ -25,6 +25,7 @@ The typical workflow is:
 1. Rebase changes on the latest remote develop branch
     1. `git fetch --all --prune`
     1. `git rebase -i origin/develop`
+        1. `git rebase --abort` Undo anything that was done during a rebase.
     1. Resolve all merge conflicts.
 1. Push your changes
     1. `git push`
@@ -54,39 +55,7 @@ The typical workflow is:
 
 # Commands
 
-**STATUS**
-```
-git status
-```
-Displays the current status of the repository including current branch, staged changes, unstaged changes.
-
-<br/>
-
-**LOG**
-```
-git log
-```
-Display the commits that exist on the current branch.
-
-<br/>
-
-**FETCH**
-```
-git fetch --all --prune
-```
-Synchronize all local branches with remote branches.
-
-<br/>
-
-**PULL**
-```
-git pull
-```
-Pulls the latest code for the current branch.
-
-<br/>
-
-**ADD**
+**ADD:**
 ```
 git add .
 ```
@@ -94,7 +63,42 @@ Stages all changes for commit. Individual files and folders can also be specifie
 
 <br/>
 
-**COMMIT**
+**APPLY:**
+```
+git apply ~/Downloads/patch.diff
+```
+Apply the changes stored in `~/Downloads/patch.diff` to this git repository.
+
+<br/>
+
+**BRANCH:**:
+
+```
+git branch -a
+```
+List all existing remote branches and local branches.
+
+```
+git branch -D branch-name
+```
+Delete the branch named `branch-name`.
+
+<br/>
+
+**CHECKOUT:**
+```
+git checkout branch-name
+```
+Change the current branch to a different branch.
+
+```
+git checkout -b my-cool-branch-name
+```
+Create a new feature branch named "my-cool-branch-name"
+
+<br/>
+
+**COMMIT:**
 ```
 git commit -m "COMMIT MESSAGE"
 ```
@@ -102,7 +106,39 @@ Commit the changes
 
 <br/>
 
-**PUSH**
+**DIFF:**
+```
+git diff > ~/Downloads/patch.diff"
+```
+Store unstaged changes into a file in `~/Downloads/patch.diff`
+
+<br/>
+
+**FETCH:**
+```
+git fetch --all --prune
+```
+Synchronize all local branches with remote branches.
+
+<br/>
+
+**LOG:**
+```
+git log
+```
+Display the commits that exist on the current branch.
+
+<br/>
+
+**PULL:**
+```
+git pull
+```
+Pulls the latest code for the current branch.
+
+<br/>
+
+**PUSH:**
 ```
 git push
 ```
@@ -126,16 +162,42 @@ Undo the current rebase and put the current branch back into a stable state.
 
 <br/>
 
-**CHECKOUT:**
+**RESTORE:**
 ```
-git checkout develop
+git restore ./*
 ```
-Change the current branch to a different branch.
+Undo all unstaged changes.
+
+<br/>
+
+**STASH:**
+```
+git stash
+```
+Store unstaged changes at the top of git's stack.
 
 ```
-git checkout -b my-cool-branch-name
+git stash list
 ```
-Create a new feature branch named "my-cool-branch-name"
+Show what's on git's stack.
+
+```
+git stash pop
+```
+Apply the changes stored in the top of git's stack.
+
+```
+git stash drop 1
+```
+Remove the changes stored at the 1st index of git's stack.
+
+<br/>
+
+**STATUS:**
+```
+git status
+```
+Displays the current status of the repository including current branch, staged changes, unstaged changes.
 
 <br/>
 <br/>
