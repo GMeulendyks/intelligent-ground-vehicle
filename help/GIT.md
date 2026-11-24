@@ -170,6 +170,14 @@ Undo all unstaged changes.
 
 <br/>
 
+**RESET:**
+```
+git reset --hard origin/branch-name*
+```
+Completely reset the branch to the remote branch `branch-name`.
+
+<br/>
+
 **STASH:**
 ```
 git stash
