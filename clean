@@ -4,6 +4,8 @@
 
 HELP="-h"
 
+RPI_PROJECT="rpi"
+
 AUTONOMY_PROJECT_1="autonomy"
 AUTONOMY_PROJECT_2="auto"
 
@@ -19,6 +21,20 @@ LIDAR_PROJECT="lidar"
 FAILED=""
 
 # Clean Functions
+
+clean_rpi()
+{
+    (
+        echo "CLEANING RPI..."
+        cd little-blue/rpi/
+        rm -rf build install log
+    )
+
+    if [ $? -ne 0 ];
+    then
+        FAILED+=" ${RPI_PROJECT}"
+    fi
+}
 
 clean_autonomy()
 {
@@ -109,12 +125,15 @@ clean_lidar()
 projects="$@"
 if test $# -eq 0
 then
-    projects=(${AUTONOMY_PROJECT_1} ${CAMERAS_PROJECT_1} ${GPS_PROJECT} ${IMU_PROJECT} ${LIDAR_PROJECT})
+    projects=(${RPI_PROJECT} ${AUTONOMY_PROJECT_1} ${CAMERAS_PROJECT_1} ${GPS_PROJECT} ${IMU_PROJECT} ${LIDAR_PROJECT})
 fi
 
 for var in ${projects[@]}
 do
-    if test "${var}" == "${AUTONOMY_PROJECT_1}" || test "${var}" == "${AUTONOMY_PROJECT_2}"
+    if test "${var}" == "${RPI_PROJECT}"
+    then
+        clean_rpi
+    elif test "${var}" == "${AUTONOMY_PROJECT_1}" || test "${var}" == "${AUTONOMY_PROJECT_2}"
     then
         clean_autonomy
     elif test "${var}" == "${CAMERAS_PROJECT_1}" || test "${var}" == "${CAMERAS_PROJECT_2}"
@@ -134,6 +153,7 @@ do
     then
         echo "THIS SCRIPT CLEANS PROJECTS."
         echo "OPTIONS:"
+        echo -e "\t ${RPI_PROJECT}"
         echo -e "\t ${AUTONOMY_PROJECT_1} or ${AUTONOMY_PROJECT_2}"
         echo -e "\t ${CAMERAS_PROJECT_1} or ${CAMERAS_PROJECT_2}"
         echo -e "\t ${GPS_PROJECT}"
