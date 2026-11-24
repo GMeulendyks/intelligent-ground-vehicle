@@ -18,15 +18,20 @@ sudo apt update && sudo apt upgrade
 3. Prepare to install ROS Iron. Follow this guide https://docs.ros.org/en/iron/Installation/Ubuntu-Install-Debs.html
 ```bash
 sudo apt install software-properties-common
-
+```
+```bash
 sudo add-apt-repository universe
-
+```
+```bash
 sudo apt update && sudo apt install curl -y
-
+```
+```bash
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
-
+```
+```bash
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
-
+```
+```bash
 sudo apt update
 ```
 
@@ -54,6 +59,7 @@ sudo apt install -y \
   python3-colcon-common-extensions \
   python3-rosdep \
   docker \
+  docker-buildx \
   docker-cli \
   clang \
   libasio-dev
@@ -73,9 +79,18 @@ git config --global user.email "you@example.com"
 ```bash
 git config --global user.name "Your Name"
 ```
+```bash
+sudo usermod -aG docker $USER
+```
 
 
-6. Install pylon 26.02. This is already in the repo, but can also be downloaded from [here](https://www.baslerweb.com/en/downloads/software/?downloadCategory.values.label.data=pylon&groupAssets.supportedOs.data=linux)
+6. Reboot to apply the above updates after installation.
+```bash
+sudo reboot
+```
+
+
+7. Install pylon 26.02. This is already in the repo, but can also be downloaded from [here](https://www.baslerweb.com/en/downloads/software/?downloadCategory.values.label.data=pylon&groupAssets.supportedOs.data=linux)
 ```bash
 tar -xvzf pylon-26.02.1_linux-x86_64_debs.tar.gz
 ```
@@ -84,7 +99,7 @@ sudo apt install pylon-26.02.1_linux-x86_64_debs/pylon_26.02.1-deb0_amd64.deb
 ```
 
 
-7. Create a new github ssh key
+8. Create a new github ssh key
 	1. Folow this guide: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 ```bash
 ssh-keygen -t ed25519 -C "YOUR_EMAIL@example.com"
@@ -95,7 +110,7 @@ ssh-add ~/.ssh/id_ed25519 # Or whatever you named the file.
 ```
 
 
-8. Add the public ssh key to your github
+9. Add the public ssh key to your github
 	1. Follow this guide: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?tool=webui
 ```bash
 # Copy and paste this into your GitHub account ssh keys.
@@ -103,14 +118,14 @@ cat ~/.ssh/id_ed25519.pub
 ```
 
 
-9. Clone this repository
+10. Clone this repository
 	1. NOTE: Run this in a folder of your choice
 ```bash
 git clone git@github.com:GMeulendyks/intelligent-ground-vehicle.git
 ```
 
 
-10. Change permissions on the scripts so they can run.
+11. Change permissions on the scripts so they can run.
 
 ```bash
 chmod +700 build

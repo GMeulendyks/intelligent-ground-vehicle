@@ -10,7 +10,11 @@
     # (see the 'encoding = ...' line in the startup log, e.g. 'bayer_rggb8') so pylon
     # does not debayer at full resolution. The node then outputs bgr8.
     output_scale: 2
-    # image_encoding: 'bayer_rggb8'
+    crop_x: 288
+    crop_y: 160
+    crop_w: 3256
+    crop_h: 1832
+    image_encoding: 'mono8'
 
     #  The DeviceUserID of the camera. If empty, the first camera found in the
     #  device list will be used
@@ -58,7 +62,7 @@
     ##########################################################################
 
     #  The exposure time in microseconds to be set after opening the camera.
-    exposure: 1000.0
+    #exposure: 1000.0
 
     #  The target gain in percent of the maximal value the camera supports
     #  For USB cameras, the gain is in dB, for GigE cameras it is given in so
@@ -80,8 +84,8 @@
     #  try to reach the desired brightness by only varying the exposure time. If
     #  gain AND exposure are given, it is not possible to reach the brightness,
     #  because both are assumed to be fixed.
-    brightness: 100
-
+    brightness: 65
+    
     #  Only relevant, if 'brightness' is set
     #  The brightness_continuous flag controls the auto brightness function.
     #  If it is set to false, the brightness will only be reached once.
@@ -115,7 +119,7 @@
     #  A typical value for this upper bound is ~2000000us.
     #  Beware that this upper limit is only set if `startup_user_set` is set to `Default`.
     # auto_exposure_upper_limit: 2000000.0
-    auto_exposure_upper_limit: 20000.0
+    auto_exposure_upper_limit: 16000.0
 
     #  The MTU size. Only used for GigE cameras.
     #  To prevent lost frames configure the camera has to be configured
@@ -130,7 +134,7 @@
     #  for most of GigE cameras, a value of 1000 is reasonable
     #  for cameras used on a single-board computer this value should be set to 11772
     #  beware that the inter-packet delay decrease will result in frame rate reduction
-    inter_pkg_delay: 2000
+    inter_pkg_delay: 1000
 
     #  Only used for GigE cameras.
     #  The frame transmission delay in ticks.

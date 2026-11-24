@@ -7,6 +7,8 @@ HELP="-h"
 RVIZ="-rviz"
 RVIZ_ENABLED=0
 
+RPI_PROJECT="rpi"
+
 AUTONOMY_PROJECT_1="autonomy"
 AUTONOMY_PROJECT_2="auto"
 
@@ -19,15 +21,28 @@ IMU_PROJECT="imu"
 
 LIDAR_PROJECT="lidar"
 
-RPI_PROJECT="rpi"
-
 # Build Functions
+
+run_rpi()
+{
+    echo "UPLOADING TO RPI..."
+    (
+        scp -r little-blue/rpi/ littleblue@192.168.215.201:/home/littleblue/rpi/
+    )
+
+    echo "RUNNING RPI..."
+    gnome-terminal --title="RPI" -- bash -c \
+        "ssh littleblue@192.168.215.201 'cd /home/littleblue/rpi/ ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch arduino_control launch.py '; exec bash"
+
+    echo "Allowing ${RPI_PROJECT} to start up (20s)..."
+    sleep 20s
+}
 
 run_autonomy()
 {
     echo "RUNNING AUTONOMY..."
 
-    if test RVIZ_ENABLED == 1
+    if test "${RVIZ_ENABLED}" == "1"
     then
         gnome-terminal --title="AUTONOMY" -- bash -c \
             "cd little-blue/jetson/autonomy/ros2_ws ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch startup_robot deploy.launch.py rviz:=true ; exec bash"
@@ -43,8 +58,8 @@ run_gps()
     gnome-terminal --title="GPS" -- bash -c \
         "cd little-blue/jetson/gps ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch ublox_gps ublox_gps_node_zedf9p-launch.py ; exec bash"
 
-    echo "Allowing ${GPS_PROJECT} to start up (15s)..."
-    sleep 15s
+    echo "Allowing ${GPS_PROJECT} to start up (25s)..."
+    sleep 25s
 }
 
 run_imu()
@@ -77,16 +92,6 @@ run_cameras()
     sleep 15s
 }
 
-run_rpi()
-{
-    echo "RUNNING RPI..."
-    gnome-terminal --title="RPI" -- bash -c \
-        "ssh littleblue@192.168.215.201 'cd IGVCDev2 ; source /opt/ros/iron/setup.bash ; source install/setup.bash ; ros2 launch arduino_control launch.py '; exec bash"
-
-    echo "Allowing ${RPI_PROJECT} to start up (15s)..."
-    sleep 15s
-}
-
 # Script
 
 projects="$@"
@@ -113,7 +118,10 @@ done
 
 for var in ${projects[@]}
 do
-    if test "${var}" == "${AUTONOMY_PROJECT_1}" || test "${var}" == "${AUTONOMY_PROJECT_2}"
+    if test "${var}" == "${RPI_PROJECT}"
+    then
+        run_rpi
+    elif test "${var}" == "${AUTONOMY_PROJECT_1}" || test "${var}" == "${AUTONOMY_PROJECT_2}"
     then
         run_autonomy
     elif test "${var}" == "${CAMERAS_PROJECT_1}" || test "${var}" == "${CAMERAS_PROJECT_2}"
@@ -128,9 +136,6 @@ do
     elif test "${var}" == "${LIDAR_PROJECT}"
     then
         run_lidar
-    elif test "${var}" == "${RPI_PROJECT}"
-    then
-        run_rpi
     elif test "${var}" == "${RVIZ}"
     then
         :
@@ -140,12 +145,12 @@ do
         echo "PARAMETERS:"
         echo -e "\t ${RVIZ}"
         echo "OPTIONS:"
+        echo -e "\t ${RPI_PROJECT}"
         echo -e "\t ${AUTONOMY_PROJECT_1} or ${AUTONOMY_PROJECT_2}"
         echo -e "\t ${CAMERAS_PROJECT_1} or ${CAMERAS_PROJECT_2}"
         echo -e "\t ${GPS_PROJECT}"
         echo -e "\t ${IMU_PROJECT}"
         echo -e "\t ${LIDAR_PROJECT}"
-        echo -e "\t ${RPI_PROJECT}"
         exit 0;
     else
         echo "unknown project \"${var}\""
